@@ -55,11 +55,9 @@ const prestatairesMega: MegaLink[] = [
 export function Navbar() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
-  const [hidden, setHidden] = useState(false);
   const [mega, setMega] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const { scrollY } = useScroll();
-  const lastY = useRef(0);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   /** Pages dont le héros est sombre (bg-ink) : la navbar y démarre en variante claire. */
@@ -67,11 +65,10 @@ export function Navbar() {
   const overHero = DARK_HERO_ROUTES.some((r) => pathname === r || pathname.startsWith(`${r}/`));
   const dark = overHero && !scrolled;
 
+  /** Navbar toujours fixe : elle reste visible au scroll (demande client),
+   *  et passe en pilule verre dépoli après 80 px. */
   useMotionValueEvent(scrollY, "change", (y) => {
     setScrolled(y > 80);
-    const goingDown = y > lastY.current && y > 160;
-    setHidden(goingDown && mega === null && !mobileOpen);
-    lastY.current = y;
   });
 
   useEffect(() => {
@@ -101,7 +98,7 @@ export function Navbar() {
     <>
       <motion.header
         initial={{ y: -80, opacity: 0 }}
-        animate={{ y: hidden ? -96 : 0, opacity: 1 }}
+        animate={{ y: 0, opacity: 1 }}
         transition={{ duration: duration.base, ease: ease.out }}
         className="fixed inset-x-0 top-0 z-50"
         onMouseLeave={scheduleClose}
