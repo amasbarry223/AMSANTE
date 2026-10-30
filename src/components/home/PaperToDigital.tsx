@@ -73,8 +73,8 @@ function Panel({ index }: { index: number }) {
   }
   if (index === 1) {
     return (
-      <div className="relative mx-auto w-[230px] rounded-[32px] border-[6px] border-ink bg-ink p-1 shadow-card">
-        <div className="overflow-hidden rounded-[26px] bg-[linear-gradient(150deg,#12766F,#0B1F1E)] p-3">
+      <div className="relative mx-auto w-[230px] rounded-[28px] border-[6px] border-ink bg-ink p-1 shadow-card">
+        <div className="overflow-hidden rounded-[24px] bg-[linear-gradient(150deg,#12766F,#0B1F1E)] p-3">
           <div className="mx-auto mb-2 h-4 w-16 rounded-full bg-black/60" />
           <div className="rounded-2xl bg-white/95 p-3">
             <p className="text-[10px] font-bold uppercase tracking-widest text-teal-900">Ma carte</p>
@@ -155,7 +155,7 @@ function Panel({ index }: { index: number }) {
 
 function MockShell({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <div className="w-full max-w-[330px] rounded-[20px] glass-panel p-4 shadow-lift">
+    <div className="w-full max-w-[330px] rounded-[16px] glass-panel p-4 shadow-lift">
       <p className="mb-3 flex items-center gap-2 text-[11px] font-bold uppercase tracking-widest text-teal-900/70">
         <span className="size-1.5 rounded-full bg-teal-500" /> {title}
       </p>
@@ -250,7 +250,7 @@ export function PaperToDigital() {
                 <Reveal key={s.id} delay={i * 0.05}>
                   <li className="rounded-2xl border border-white/10 bg-white/5 p-4">
                     <p className="flex items-center gap-2.5 font-display text-[16px] font-semibold">
-                      <s.icon className="size-4 text-teal-400" /> {s.title}
+                      <s.icon className="size-4 text-teal-300" /> {s.title}
                     </p>
                     <p className="mt-1.5 text-[13.5px] leading-relaxed text-sand-50/60">{s.text}</p>
                   </li>

@@ -88,7 +88,7 @@ export function StepFormula() {
               aria-checked={active}
               onClick={() => setFormula(p.id)}
               className={cn(
-                "relative flex min-h-11 flex-col rounded-[20px] border p-5 text-left transition-all focus-visible:outline-2 focus-visible:outline-teal-500",
+                "relative flex min-h-11 flex-col rounded-[16px] border p-5 text-left transition-all focus-visible:outline-2 focus-visible:outline-teal-500",
                 active
                   ? "border-teal-500 bg-teal-50/60 shadow-soft ring-1 ring-teal-500/40"
                   : "border-sand-200 bg-white hover:border-teal-500/50 hover:-translate-y-0.5 hover:shadow-soft"
@@ -115,7 +115,7 @@ export function StepFormula() {
               <span className="mt-1 text-[12px] text-muted-foreground">
                 {frequencyLabel[frequency]}
                 {frequency !== "mensuel" && (
-                  <> · soit <span className="tnum">{q.monthlyEquivalent.toLocaleString("fr-FR")}</span> FCFA/mois</>
+                  <> · soit <span className="tnum">{formatFcfa(q.monthlyEquivalent)}</span>/mois</>
                 )}
               </span>
 

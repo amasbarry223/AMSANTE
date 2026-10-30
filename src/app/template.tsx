@@ -17,9 +17,12 @@ export default function Template({ children }: { children: React.ReactNode }) {
         animate={{ y: "-100%" }}
         transition={{ duration: duration.base, ease: ease.inOut, delay: 0.05 }}
       />
+      {/* Contenu : fondu seul — AUCUN transform ici. Un `y` créerait un
+          bloc conteneur autour des éléments `fixed` (navbar, dock, tunnels)
+          pendant l'animation et les ferait sauter à la fin. */}
       <motion.div
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
         transition={{ duration: duration.base, ease: ease.out, delay: 0.18 }}
       >
         {children}

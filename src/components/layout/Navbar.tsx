@@ -59,6 +59,8 @@ export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const { scrollY } = useScroll();
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const burgerRef = useRef<HTMLButtonElement>(null);
+  const mobileFirstLinkRef = useRef<HTMLAnchorElement>(null);
 
   /** Pages dont le héros est sombre (bg-ink) : la navbar y démarre en variante claire. */
   const DARK_HERO_ROUTES = ["/", "/prestataires", "/verifier", "/aide", "/entreprises", "/simulateur"];
@@ -75,6 +77,22 @@ export function Navbar() {
     document.documentElement.style.overflow = mobileOpen ? "hidden" : "";
     return () => {
       document.documentElement.style.overflow = "";
+    };
+  }, [mobileOpen]);
+
+  /* Menu mobile : Escape ferme, le focus entre dans le panneau puis
+     revient au burger à la fermeture (WCAG 2.2 — navigation clavier). */
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMobileOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    const t = window.setTimeout(() => mobileFirstLinkRef.current?.focus(), 80);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      window.clearTimeout(t);
+      burgerRef.current?.focus();
     };
   }, [mobileOpen]);
 
@@ -102,6 +120,9 @@ export function Navbar() {
         transition={{ duration: duration.base, ease: ease.out }}
         className="fixed inset-x-0 top-0 z-50"
         onMouseLeave={scheduleClose}
+        onKeyDown={(e) => {
+          if (e.key === "Escape") setMega(null);
+        }}
       >
         <div
           className={cn(
@@ -130,6 +151,7 @@ export function Navbar() {
                 <div
                   key={item.id}
                   onMouseEnter={() => (item.mega ? openMega(item.id) : scheduleClose())}
+                  onFocus={() => (item.mega ? openMega(item.id) : scheduleClose())}
                   className="relative"
                 >
                   <Link href={item.href} className={linkCls(!!isCurrent && !item.mega)} aria-expanded={item.mega ? active : undefined} aria-haspopup={item.mega ? "true" : undefined}>
@@ -169,6 +191,7 @@ export function Navbar() {
 
           {/* ── Burger mobile ── */}
           <button
+            ref={burgerRef}
             type="button"
             className={cn(
               "flex size-11 items-center justify-center rounded-full transition-colors lg:hidden",
@@ -233,12 +256,15 @@ export function Navbar() {
             exit={{ opacity: 0 }}
             transition={{ duration: duration.fast }}
             className="fixed inset-0 z-40 flex flex-col bg-ink px-6 pb-8 pt-24 text-sand-50 lg:hidden"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Menu de navigation"
           >
             <motion.nav
               className="flex flex-col gap-1"
               initial="hidden"
               animate="show"
-              variants={{ hidden: {}, show: { transition: { staggerChildren: stagger.tight + 0.03 } } }}
+              variants={{ hidden: {}, show: { transition: { staggerChildren: stagger.tight } } }}
               aria-label="Navigation mobile"
             >
               {[
@@ -260,6 +286,7 @@ export function Navbar() {
                   }}
                 >
                   <Link
+                    ref={mobileFirstLinkRef}
                     href={l.href}
                     onClick={() => setMobileOpen(false)}
                     className="flex items-center justify-between border-b border-white/8 py-4 font-display text-[22px] font-semibold"

@@ -78,7 +78,7 @@ export function Hero() {
     <section ref={wrapRef} className="relative h-[280vh] bg-ink text-sand-50" aria-label="Présentation AMSANTÉ">
       <div className="sticky top-0 flex h-screen items-center overflow-hidden">
         {/* fond */}
-        <div aria-hidden className="absolute inset-0 bg-[radial-gradient(120%_90%_at_75%_20%,#124E4A_0%,#0B1F1E_62%)]" />
+        <div aria-hidden className="absolute inset-0 bg-[radial-gradient(120%_90%_at_75%_20%,#0F5B57_0%,#0B1F1E_62%)]" />
         <BogolanTexture color="#E3F4F1" opacity={0.05} />
 
         {/* scène 3D ou fallback carte 2D */}
@@ -111,7 +111,7 @@ export function Hero() {
               className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-[13px] font-medium text-teal-100"
             >
               <span className="relative flex size-2">
-                <span className="absolute inline-flex size-full animate-ping rounded-full bg-teal-400 opacity-75" />
+                <span className="absolute inline-flex size-full animate-ping rounded-full bg-teal-500 opacity-75" />
                 <span className="relative inline-flex size-2 rounded-full bg-teal-500" />
               </span>
               Assurance santé 100 % digitale, pensée pour le Mali

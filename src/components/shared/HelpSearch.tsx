@@ -210,7 +210,7 @@ export function HelpSearch() {
                         onClick={() => setActiveCategory(selected ? null : cat)}
                         aria-pressed={selected}
                         className={cn(
-                          "flex h-full w-full flex-col items-start rounded-[18px] border bg-white p-5 text-left shadow-soft transition-colors",
+                          "flex h-full w-full flex-col items-start rounded-[16px] border bg-white p-5 text-left shadow-soft transition-colors",
                           selected
                             ? "border-teal-700/50 ring-1 ring-teal-700/40"
                             : "border-sand-200 hover:border-teal-500/40"

@@ -34,6 +34,7 @@ import { isValidMalianPhone } from "@/lib/utils/format";
 /* Clés partagées avec /connexion/otp — le téléphone (ou l’e-mail pro) transite via sessionStorage. */
 const OTP_IDENTITY_KEY = "amsante-otp-phone";
 const OTP_PROFILE_KEY = "amsante-otp-profile";
+const OTP_REDIRECT_KEY = "amsante-otp-redirect";
 
 type ProfileId = (typeof fr.connexion.profiles)[number]["id"];
 type View = "profiles" | "assure" | "pro";
@@ -83,6 +84,22 @@ export function LoginFlow() {
     const t = setInterval(() => setLockSeconds((s) => s - 1), 1000);
     return () => clearInterval(t);
   }, [lockSeconds]);
+
+  /* §8.7 — capture du paramètre ?redirect= (ex. /connexion?redirect=/sinistres/nouveau).
+     Lu côté effet pour éviter tout décalage d'hydratation ; validé : chemin interne
+     uniquement (pas d'open redirect). L'espace connecté étant hors périmètre,
+     OtpPage redirigera vers APP_URL + ce chemin. */
+  useEffect(() => {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const target = params.get("redirect");
+      if (target && target.startsWith("/") && !target.startsWith("//")) {
+        sessionStorage.setItem(OTP_REDIRECT_KEY, target);
+      }
+    } catch {
+      /* ignore */
+    }
+  }, []);
 
   const registerFailure = (message: string) => {
     const next = attempts + 1;
@@ -204,7 +221,7 @@ export function LoginFlow() {
                         className={cn(
                           "flex min-h-28 flex-col items-start gap-1.5 rounded-[16px] border-2 bg-white p-4 text-left shadow-soft transition-all hover:-translate-y-0.5 hover:shadow-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500",
                           active
-                            ? "border-teal-600"
+                            ? "border-teal-700"
                             : "border-sand-200 hover:border-teal-500/50"
                         )}
                       >
@@ -275,7 +292,7 @@ export function LoginFlow() {
                   </div>
 
                   {feedback && (
-                    <p className="rounded-[12px] bg-destructive/10 px-4 py-3 text-[13.5px] font-medium text-destructive" role="alert">
+                    <p className="rounded-[10px] bg-destructive/10 px-4 py-3 text-[13.5px] font-medium text-destructive" role="alert">
                       {feedback}
                     </p>
                   )}
@@ -374,7 +391,7 @@ export function LoginFlow() {
                   </div>
 
                   {feedback && (
-                    <p className="rounded-[12px] bg-destructive/10 px-4 py-3 text-[13.5px] font-medium text-destructive" role="alert">
+                    <p className="rounded-[10px] bg-destructive/10 px-4 py-3 text-[13.5px] font-medium text-destructive" role="alert">
                       {feedback}
                     </p>
                   )}

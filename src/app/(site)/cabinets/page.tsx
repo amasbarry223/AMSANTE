@@ -158,7 +158,7 @@ function Mock({ kind }: { kind: (typeof modules)[number]["mock"] }) {
   return (
     <div className="mt-5 flex items-center gap-4" aria-hidden>
       <svg viewBox="0 0 64 64" className="size-14">
-        <circle cx="32" cy="32" r="26" fill="none" stroke="#cfe8e3" strokeWidth="7" />
+        <circle cx="32" cy="32" r="26" fill="none" stroke="#E3F4F1" strokeWidth="7" />
         <circle
           cx="32"
           cy="32"
@@ -241,7 +241,7 @@ export default function CabinetsPage() {
               const Icon = m.icon;
               return (
                 <StaggerItem key={m.name} className="h-full">
-                  <div className="group h-full rounded-[20px] border border-sand-200 bg-white p-6 shadow-soft transition-all hover:-translate-y-1 hover:shadow-lift hover:ring-1 hover:ring-teal-500/40">
+                  <div className="group h-full rounded-[16px] border border-sand-200 bg-white p-6 shadow-soft transition-all hover:-translate-y-1 hover:shadow-lift hover:ring-1 hover:ring-teal-500/40">
                     <span className="flex size-11 items-center justify-center rounded-xl bg-teal-100 text-teal-900 transition-colors group-hover:bg-teal-900 group-hover:text-sand-50">
                       <Icon className="size-5" aria-hidden />
                     </span>
@@ -283,7 +283,7 @@ export default function CabinetsPage() {
                 const Icon = s.icon;
                 return (
                   <StaggerItem key={s.title}>
-                    <div className="flex items-start gap-4 rounded-[20px] border border-white/10 bg-white/5 p-6 shadow-card backdrop-blur-sm">
+                    <div className="flex items-start gap-4 rounded-[16px] border border-white/10 bg-white/5 p-6 shadow-card backdrop-blur-sm">
                       <span className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-white/10 text-teal-100">
                         <Icon className="size-5" aria-hidden />
                       </span>
@@ -327,7 +327,7 @@ export default function CabinetsPage() {
       {/* ─────────────────────────── CTA final ─────────────────────────── */}
       <section id="final-cta" className="container-ams pb-28" aria-label="Réserver une démo">
         <Reveal>
-          <div className="relative overflow-hidden rounded-[32px] bg-[linear-gradient(135deg,#0F5B57_0%,#0B1F1E_75%)] px-8 py-16 text-sand-50 shadow-card sm:px-14 sm:py-20">
+          <div className="relative overflow-hidden rounded-[28px] bg-[linear-gradient(135deg,#0F5B57_0%,#0B1F1E_75%)] px-8 py-16 text-sand-50 shadow-card sm:px-14 sm:py-20">
             <BogolanTexture color="#E3F4F1" opacity={0.06} />
             <div aria-hidden className="absolute -right-24 -top-24 size-96 rounded-full bg-teal-500/20 blur-3xl" />
             <div className="relative grid items-center gap-10 lg:grid-cols-[1.3fr_1fr]">

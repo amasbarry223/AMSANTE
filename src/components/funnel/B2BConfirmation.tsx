@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { BadgeCheck, FileText, PhoneCall } from "lucide-react";
 import { getFormula } from "@/data/products";
+import { ease as motionEase } from "@/lib/motion/tokens";
 import { Counter } from "@/components/motion/Counter";
 import { PrimaryCta } from "@/components/shared/PrimaryCta";
 import { Button } from "@/components/ui/button";
@@ -36,7 +37,7 @@ export function B2BConfirmation({ result }: { result: B2BResultView }) {
         <motion.span
           initial={{ scale: 0.5, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          transition={{ type: "spring", stiffness: 220, damping: 16 }}
+          transition={motionEase.spring}
           className="mx-auto flex size-16 items-center justify-center rounded-full bg-success/15 text-success"
         >
           <BadgeCheck className="size-8" aria-hidden />
@@ -73,7 +74,7 @@ export function B2BConfirmation({ result }: { result: B2BResultView }) {
       </Reveal>
 
       <div className="mx-auto mt-8 grid max-w-2xl gap-4 sm:grid-cols-2">
-        <div className="rounded-[20px] border border-sand-200 bg-white p-5 shadow-soft">
+        <div className="rounded-[16px] border border-sand-200 bg-white p-5 shadow-soft">
           <span className="flex size-10 items-center justify-center rounded-full bg-teal-100 text-teal-900">
             <PhoneCall className="size-5" aria-hidden />
           </span>
@@ -82,7 +83,7 @@ export function B2BConfirmation({ result }: { result: B2BResultView }) {
             20 minutes pour affiner garanties, tarifs dégressifs et modalités de paiement.
           </p>
         </div>
-        <div className="rounded-[20px] border border-sand-200 bg-white p-5 shadow-soft">
+        <div className="rounded-[16px] border border-sand-200 bg-white p-5 shadow-soft">
           <span className="flex size-10 items-center justify-center rounded-full bg-teal-100 text-teal-900">
             <FileText className="size-5" aria-hidden />
           </span>

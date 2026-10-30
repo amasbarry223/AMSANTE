@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { Calculator, MapPin, MessageCircle } from "lucide-react";
 import { duration, ease } from "@/lib/motion/tokens";
+import { Magnetic } from "@/components/motion/Magnetic";
 import { fr } from "@/content/fr";
 
 /**
@@ -20,12 +21,15 @@ export function Dock() {
     const onScroll = () => {
       const doc = document.documentElement;
       const nearFooter = window.scrollY + window.innerHeight > doc.scrollHeight - 260;
-      setVisible(window.scrollY > 480 && !nearFooter);
+      // Sur l'accueil, le hero est épinglé sur ~280 vh : le dock n'apparaît
+      // qu'APRÈS le hero (sinon il recouvre l'indicateur « Faites défiler »).
+      const threshold = pathname === "/" ? window.innerHeight * 2.4 : 480;
+      setVisible(window.scrollY > threshold && !nearFooter);
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [pathname]);
 
   // Le tunnel de souscription a déjà son CTA permanent : pas de dock.
   if (pathname.startsWith("/souscrire")) return null;
@@ -42,12 +46,14 @@ export function Dock() {
           aria-label="Actions rapides"
         >
           <div className="flex items-center gap-1 rounded-full glass-panel p-1.5 shadow-lift">
-            <Link
-              href="/simulateur"
-              className="flex min-h-11 items-center gap-2 rounded-full bg-teal-900 px-4 text-[13px] font-semibold text-sand-50 transition-colors hover:bg-teal-700"
-            >
-              <Calculator className="size-4" /> {fr.dock.simuler}
-            </Link>
+            <Magnetic strength={6}>
+              <Link
+                href="/simulateur"
+                className="flex min-h-11 items-center gap-2 rounded-full bg-teal-900 px-4 text-[13px] font-semibold text-sand-50 transition-colors hover:bg-teal-700"
+              >
+                <Calculator className="size-4" /> {fr.dock.simuler}
+              </Link>
+            </Magnetic>
             <Link
               href="/prestataires"
               className="flex min-h-11 items-center gap-2 rounded-full px-4 text-[13px] font-semibold text-ink transition-colors hover:bg-teal-100"

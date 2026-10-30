@@ -119,7 +119,7 @@ export default function AidePage() {
 
           {/* Parcours assuré : déclarer un remboursement (espace connecté) */}
           <Reveal delay={0.1}>
-            <div className="mt-4 flex flex-wrap items-center justify-between gap-4 rounded-[20px] border border-sand-300 bg-white px-6 py-5 shadow-soft">
+            <div className="mt-4 flex flex-wrap items-center justify-between gap-4 rounded-[16px] border border-sand-300 bg-white px-6 py-5 shadow-soft">
               <p className="text-[15px] font-semibold text-ink">
                 Un soin payé sans passer par le tiers payant ?
               </p>
@@ -134,7 +134,7 @@ export default function AidePage() {
 
           {/* Lien vers le parcours prestataire */}
           <Reveal delay={0.1}>
-            <div className="mt-8 flex flex-wrap items-center justify-between gap-4 rounded-[20px] border border-teal-700/25 bg-teal-100/60 px-6 py-5">
+            <div className="mt-8 flex flex-wrap items-center justify-between gap-4 rounded-[16px] border border-teal-700/25 bg-teal-100/60 px-6 py-5">
               <p className="text-[15px] font-semibold text-teal-900">
                 Vous êtes prestataire de santé et vous voulez rejoindre le réseau ?
               </p>

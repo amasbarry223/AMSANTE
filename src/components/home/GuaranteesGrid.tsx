@@ -76,7 +76,7 @@ export function GuaranteesGrid() {
                   layout
                   whileHover={{ y: -4 }}
                   transition={{ duration: duration.fast, ease: ease.out }}
-                  className="group relative min-h-[148px] cursor-default overflow-hidden rounded-[18px] border border-sand-200 bg-white p-4 transition-shadow hover:shadow-lift hover:ring-1 hover:ring-teal-500/40 focus-within:ring-1 focus-within:ring-teal-500/40"
+                  className="group relative min-h-[148px] cursor-default overflow-hidden rounded-[16px] border border-sand-200 bg-white p-4 transition-shadow hover:shadow-lift hover:ring-1 hover:ring-teal-500/40 focus-within:ring-1 focus-within:ring-teal-500/40"
                   tabIndex={0}
                   aria-label={`${g.label} : ${included ? `${cov.taux} % couverts, plafond ${formatFcfa(cov.plafond)} par an` : "non incluse dans cette formule"}`}
                 >
@@ -95,7 +95,7 @@ export function GuaranteesGrid() {
                     <motion.div
                       initial={false}
                       animate={{ opacity: 1, height: "auto" }}
-                      className="pointer-events-none absolute inset-x-0 bottom-0 translate-y-full overflow-hidden bg-teal-900 p-4 text-sand-50 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-y-0 group-focus-within:translate-y-0"
+                      className="pointer-events-none absolute inset-x-0 bottom-0 translate-y-full overflow-hidden bg-teal-900 p-4 text-sand-50 transition-transform duration-300 ease-out group-hover:translate-y-0 group-focus-within:translate-y-0"
                     >
                       <p className="text-[11px] leading-snug text-teal-100/85">{g.description}</p>
                       {included ? (

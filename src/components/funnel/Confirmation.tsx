@@ -189,7 +189,7 @@ export function Confirmation() {
 
       {/* Prochaines étapes */}
       <div className="mx-auto mt-12 grid max-w-3xl gap-4 sm:grid-cols-2">
-        <div className="rounded-[20px] border border-sand-200 bg-white p-5 text-left shadow-soft">
+        <div className="rounded-[16px] border border-sand-200 bg-white p-5 text-left shadow-soft">
           <span className="flex size-10 items-center justify-center rounded-full bg-teal-100 text-teal-900">
             <CalendarClock className="size-5" aria-hidden />
           </span>
@@ -199,7 +199,7 @@ export function Confirmation() {
             En cas d&apos;urgence vitale, la prise en charge est immédiate.
           </p>
         </div>
-        <div className="rounded-[20px] border border-sand-200 bg-white p-5 text-left shadow-soft">
+        <div className="rounded-[16px] border border-sand-200 bg-white p-5 text-left shadow-soft">
           <span className="flex size-10 items-center justify-center rounded-full bg-teal-100 text-teal-900">
             <UserRound className="size-5" aria-hidden />
           </span>

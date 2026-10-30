@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowLeft, ArrowRight, ChevronDown, History } from "lucide-react";
 import { hasDraft, useSubscription } from "@/stores/subscription";
+import type { BillingFrequency, CoverageType, FormulaId } from "@/data/types";
 import { Stepper } from "@/components/funnel/Stepper";
 import { LiveSummary, LiveSummaryBody } from "@/components/funnel/LiveSummary";
 import { StepWho } from "@/components/funnel/StepWho";
@@ -26,6 +27,15 @@ const STEP_LABELS = [
   "Récapitulatif",
   "Paiement",
 ];
+
+/** Pré-remplissage transmis par les CTA de simulation (flag session). */
+interface PrefillData {
+  coverage?: CoverageType;
+  childrenCount?: number;
+  age?: number;
+  formula?: FormulaId;
+  frequency?: BillingFrequency;
+}
 
 function FunnelSkeleton() {
   return (
@@ -52,12 +62,35 @@ export function SubscriptionFunnel() {
   const [signed, setSigned] = useState(false);
   const [bannerVisible, setBannerVisible] = useState(true);
 
-  /* Reprise / assainissement du brouillon persisté, après hydratation. */
+  /* Reprise / assainissement du brouillon persisté, après hydratation.
+     Si l'utilisateur arrive via un CTA de simulation (flag session
+     « amsante-prefill »), on réapplique le pré-remplissage après reset. */
   useEffect(() => {
     const raf = requestAnimationFrame(() => {
       const s = useSubscription.getState();
       if (s.completedAt) {
+        let prefill: PrefillData | null = null;
+        try {
+          const raw = sessionStorage.getItem("amsante-prefill");
+          if (raw) prefill = JSON.parse(raw) as PrefillData;
+        } catch {
+          prefill = null;
+        }
         s.reset(); // souscription déjà finalisée : on repart d'une base saine
+        if (prefill) {
+          useSubscription.setState({
+            coverage: prefill.coverage ?? "seul",
+            childrenCount: prefill.childrenCount ?? 0,
+            age: prefill.age ?? 32,
+            formula: prefill.formula ?? "confort",
+            frequency: prefill.frequency ?? "mensuel",
+          });
+        }
+        try {
+          sessionStorage.removeItem("amsante-prefill");
+        } catch {
+          /* ignore */
+        }
       }
       const st = useSubscription.getState();
       if (st.coverage !== "seul" && !st.beneficiaries.some((b) => b.relation === "conjoint")) {

@@ -1,9 +1,10 @@
 import type { MetadataRoute } from "next";
 
 /**
- * Sitemap AMSANTÉ — toutes les pages publiques du périmètre.
- * Les tunnels (/souscrire, /connexion) restent indexés légèrement :
- * ce sont des parcours, pas du contenu SEO prioritaire.
+ * Sitemap AMSANTÉ — toutes les pages publiques indexables.
+ * Les tunnels noindex (/entreprises/devis, /connexion, /souscrire/confirmation,
+ * /connexion/otp) en sont volontairement exclus pour rester cohérents
+ * avec leurs directives robots.
  */
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = process.env.NEXT_PUBLIC_APP_URL ?? "https://amsante.ml";
@@ -17,7 +18,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/assurance-sante", priority: 0.9, changeFrequency: "weekly" },
     { path: "/simulateur", priority: 0.9, changeFrequency: "monthly" },
     { path: "/entreprises", priority: 0.8, changeFrequency: "monthly" },
-    { path: "/entreprises/devis", priority: 0.7, changeFrequency: "monthly" },
     { path: "/prestataires", priority: 0.8, changeFrequency: "weekly" },
     { path: "/prestataires/devenir-partenaire", priority: 0.6, changeFrequency: "monthly" },
     { path: "/comment-ca-marche", priority: 0.7, changeFrequency: "monthly" },
@@ -25,7 +25,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/aide", priority: 0.6, changeFrequency: "weekly" },
     { path: "/verifier", priority: 0.6, changeFrequency: "monthly" },
     { path: "/souscrire", priority: 0.5, changeFrequency: "monthly" },
-    { path: "/connexion", priority: 0.3, changeFrequency: "yearly" },
     { path: "/legal/mentions-legales", priority: 0.2, changeFrequency: "yearly" },
     { path: "/legal/confidentialite", priority: 0.2, changeFrequency: "yearly" },
     { path: "/legal/cgu", priority: 0.2, changeFrequency: "yearly" },

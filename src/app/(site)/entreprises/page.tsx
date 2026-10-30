@@ -18,6 +18,7 @@ export const metadata: Metadata = {
   title: "Assurance santé groupe pour entreprises",
   description:
     "Couvrez vos salariés et leurs ayants droit avec AMSANTÉ Entreprises : tarifs dégressifs, gestion des ayants droit en ligne, reporting clair. Devis sous 24 h ouvrées.",
+  alternates: { canonical: "/entreprises" },
 };
 
 const BENEFITS = [
@@ -115,7 +116,7 @@ export default function EntreprisesPage() {
             const Icon = b.icon;
             return (
               <StaggerItem key={b.title} className="h-full">
-                <article className="flex h-full flex-col rounded-[22px] border border-sand-200 bg-white p-6 shadow-soft transition-all hover:-translate-y-1 hover:shadow-lift">
+                <article className="flex h-full flex-col rounded-[16px] border border-sand-200 bg-white p-6 shadow-soft transition-all hover:-translate-y-1 hover:shadow-lift">
                   <span className="flex size-11 items-center justify-center rounded-full bg-teal-100 text-teal-900">
                     <Icon className="size-5" aria-hidden />
                   </span>
@@ -212,7 +213,7 @@ export default function EntreprisesPage() {
             Vous vous demandez sûrement…
           </SplitHeading>
           <Reveal delay={0.1} className="mt-8">
-            <Accordion type="single" collapsible className="rounded-[20px] border border-sand-200 bg-white px-5 shadow-soft">
+            <Accordion type="single" collapsible className="rounded-[16px] border border-sand-200 bg-white px-5 shadow-soft">
               {b2bFaq.map((f, i) => (
                 <AccordionItem key={f.id} value={f.id} className={i === b2bFaq.length - 1 ? "border-b-0" : undefined}>
                   <AccordionTrigger className="py-5 text-left text-[15.5px] font-semibold hover:no-underline">

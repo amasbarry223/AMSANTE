@@ -131,7 +131,7 @@ export function CareNetwork() {
                   initial={{ opacity: 0, y: 8, scale: 0.96 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: 6, scale: 0.97 }}
-                  transition={{ duration: duration.micro + 0.1, ease: ease.out }}
+                  transition={{ duration: duration.fast, ease: ease.out }}
                   className="pointer-events-none absolute left-1/2 bottom-4 w-[min(320px,90%)] -translate-x-1/2 rounded-2xl bg-ink/90 p-3.5 text-sand-50 shadow-lift backdrop-blur"
                 >
                   <p className="text-[13.5px] font-bold">{hovered.name}</p>
@@ -143,7 +143,7 @@ export function CareNetwork() {
             </AnimatePresence>
 
             <div className="absolute right-4 top-4 flex items-center gap-1.5 rounded-full bg-white/85 px-3 py-1.5 text-[11px] font-semibold text-ink shadow-xs backdrop-blur">
-              <Navigation className="size-3 text-teal-600" />
+              <Navigation className="size-3 text-teal-700" />
               Bamako · Kati
             </div>
           </div>

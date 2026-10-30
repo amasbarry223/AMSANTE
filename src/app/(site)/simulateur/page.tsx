@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: "Simulateur de prime d'assurance santé",
   description:
     "Estimez votre prime d'assurance santé en 30 secondes : couverture, nombre d'enfants, âge et fréquence de paiement. Résultat en direct, sans engagement.",
+  alternates: { canonical: "/simulateur" },
 };
 
 export default function SimulateurPage() {

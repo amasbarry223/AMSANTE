@@ -110,6 +110,7 @@ export function ProviderDirectory() {
     let active = true;
     const timer = setTimeout(
       () => {
+        setLoading(true); // squelette pendant le fetch (saisie comme filtres)
         searchProviders({ q: q.trim(), type, commune, open24 }).then((list) => {
           if (!active) return;
           setResults(list);
@@ -302,7 +303,7 @@ export function ProviderDirectory() {
                 ))}
               </ul>
             ) : sorted.length === 0 ? (
-              <div className="mt-4 rounded-[20px] border border-dashed border-sand-300 bg-white/60 p-8 text-center">
+              <div className="mt-4 rounded-[16px] border border-dashed border-sand-300 bg-white/60 p-8 text-center">
                 <SearchX className="mx-auto size-8 text-muted-foreground" aria-hidden />
                 <p className="mt-3 font-display text-lg font-bold text-ink">
                   Aucun prestataire trouvé
@@ -315,7 +316,7 @@ export function ProviderDirectory() {
                 </Button>
               </div>
             ) : (
-              <ul className="mt-4 space-y-3">
+              <ul className="mt-4 space-y-3 lg:max-h-[640px] lg:overflow-y-auto lg:pr-1">
                 {sorted.map((p) => (
                   <li
                     key={p.id}
@@ -379,7 +380,7 @@ export function ProviderDirectory() {
           <div className="order-1 self-start lg:order-2 lg:sticky lg:top-24">
             <div className="relative overflow-hidden rounded-[28px] border border-sand-200 bg-[linear-gradient(160deg,#F0FAF8,#F7F4EE)] p-4 shadow-soft">
               <div className="absolute right-4 top-4 z-10 flex items-center gap-1.5 rounded-full bg-white/85 px-3 py-1.5 text-[11px] font-semibold text-ink shadow-xs backdrop-blur">
-                <Navigation className="size-3 text-teal-600" aria-hidden />
+                <Navigation className="size-3 text-teal-700" aria-hidden />
                 Bamako · Kati
               </div>
               {userPos && (

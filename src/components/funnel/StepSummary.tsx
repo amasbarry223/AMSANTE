@@ -68,7 +68,10 @@ export function StepSummary({
   }, [consents]);
   const visible = showErrors ? consentErrors : {};
 
-  const docsAdded = Object.values(documents).filter(Boolean).length;
+  // Comptage aligné aux personnes ACTUELLES (les docs des bénéficiaires
+  // retirés sont purgés par le store — ici on ne compte que l'existant).
+  const docKeys = ["doc-principal", ...beneficiaries.map((b) => `doc-${b.id}`)];
+  const docsAdded = docKeys.filter((k) => documents[k]).length;
   const docsExpected = 1 + beneficiaries.length;
 
   async function sendCode() {
@@ -107,7 +110,7 @@ export function StepSummary({
       />
 
       {/* ── Récapitulatif ─────────────────────────────────────────── */}
-      <div className="space-y-5 rounded-[20px] border border-sand-200 p-5">
+      <div className="space-y-5 rounded-[16px] border border-sand-200 p-5">
         <dl className="space-y-3.5">
           <RecapRow label="Formule">
             <span className="font-semibold">{formula.name}</span>
@@ -206,7 +209,7 @@ export function StepSummary({
       </div>
 
       {/* ── Signature par code SMS ────────────────────────────────── */}
-      <div className="mt-6 rounded-[20px] bg-teal-50 p-5" aria-live="polite">
+      <div className="mt-6 rounded-[16px] bg-teal-50 p-5" aria-live="polite">
         {signed ? (
           <p className="flex items-center gap-2.5 text-[15px] font-semibold text-teal-900">
             <BadgeCheck className="size-5 text-success" aria-hidden />
@@ -238,8 +241,14 @@ export function StepSummary({
               onComplete={verify}
               error={otpError}
               onResend={async () => {
-                await requestOtp(principal.phone);
-                toast.success("Nouveau code envoyé par SMS");
+                try {
+                  await requestOtp(principal.phone);
+                  toast.success("Nouveau code envoyé par SMS");
+                } catch {
+                  toast.error("Impossible de renvoyer le code", {
+                    description: "Vérifiez votre numéro puis réessayez dans un instant.",
+                  });
+                }
               }}
             />
           </div>

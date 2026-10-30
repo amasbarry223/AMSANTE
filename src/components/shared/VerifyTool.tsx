@@ -163,7 +163,7 @@ export function VerifyTool() {
               transition={{ duration: duration.fast, ease: ease.inOut }}
             >
               {phase === "verifying" && (
-                <div className="mx-auto flex max-w-sm items-center justify-center gap-3 rounded-[20px] bg-teal-50 px-4 py-5 text-teal-900">
+                <div className="mx-auto flex max-w-sm items-center justify-center gap-3 rounded-[16px] bg-teal-50 px-4 py-5 text-teal-900">
                   <Loader2 className="size-5 animate-spin" aria-hidden />
                   <p className="text-sm font-semibold">Vérification des droits…</p>
                 </div>
@@ -180,7 +180,7 @@ export function VerifyTool() {
                 style={{ transformStyle: "preserve-3d" }}
               >
                 {result.status === "valide" ? (
-                  <div className="rounded-[20px] border-2 border-success bg-success/10 p-6">
+                  <div className="rounded-[16px] border-2 border-success bg-success/10 p-6">
                     <div className="flex items-center justify-between gap-3">
                       <div className="flex items-center gap-3">
                         <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-success text-white">
@@ -223,7 +223,7 @@ export function VerifyTool() {
                     </p>
                   </div>
                 ) : (
-                  <div className="rounded-[20px] border-2 border-destructive bg-destructive/10 p-6">
+                  <div className="rounded-[16px] border-2 border-destructive bg-destructive/10 p-6">
                     <div className="flex items-center gap-3">
                       <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-destructive text-white">
                         <XCircle className="size-6" aria-hidden />
@@ -235,7 +235,7 @@ export function VerifyTool() {
                     <p className="mt-4 text-[14.5px] leading-relaxed text-ink">
                       {result.reason}
                     </p>
-                    <p className="mt-3 rounded-[12px] bg-white/70 p-3 text-[13px] leading-relaxed text-muted-foreground">
+                    <p className="mt-3 rounded-[10px] bg-white/70 p-3 text-[13px] leading-relaxed text-muted-foreground">
                       <strong className="font-semibold text-foreground">Conseil :</strong>{" "}
                       {conseil}
                     </p>

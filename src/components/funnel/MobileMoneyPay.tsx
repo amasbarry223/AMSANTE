@@ -55,6 +55,9 @@ export function MobileMoneyPay({ amount }: { amount: number }) {
   const deadlineRef = useRef(0);
   const paidRef = useRef(false);
   const aliveRef = useRef(true);
+  const launchingRef = useRef(false);
+  /** Paiement reçu MAIS échec de création du contrat (message distinct, honnête). */
+  const [contractError, setContractError] = useState(false);
 
   function stopTimers() {
     if (pollRef.current !== null) {
@@ -87,11 +90,25 @@ export function MobileMoneyPay({ amount }: { amount: number }) {
       }
       router.push("/souscrire/confirmation");
     } catch {
+      /* Le débit a abouti mais le contrat n’a pas pu être créé :
+         message spécifique, on ne dit surtout pas « aucun montant débité ». */
+      setContractError(true);
       setPhase("failed");
     }
   }
 
   async function launch(op: MobileMoneyOperator, payeePhone: string) {
+    // Garde anti double-soumission (double-clic avant re-render).
+    if (launchingRef.current) return;
+    launchingRef.current = true;
+    try {
+      await doLaunch(op, payeePhone);
+    } finally {
+      launchingRef.current = false;
+    }
+  }
+
+  async function doLaunch(op: MobileMoneyOperator, payeePhone: string) {
     if (!/^\d{8}$/.test(payeePhone)) {
       setPayError("Ce numéro doit contenir 8 chiffres après +223.");
       return;
@@ -100,6 +117,7 @@ export function MobileMoneyPay({ amount }: { amount: number }) {
     const store = useSubscription.getState();
     store.setPayment({ operator: op, phone: payeePhone });
     paidRef.current = false;
+    setContractError(false);
     setPayee(payeePhone);
     setSecondsLeft(WAIT_TOTAL);
     deadlineRef.current = Date.now() + WAIT_TOTAL * 1000;
@@ -174,7 +192,7 @@ export function MobileMoneyPay({ amount }: { amount: number }) {
                     aria-checked={active}
                     onClick={() => setOperator(o.id)}
                     className={cn(
-                      "flex min-h-11 flex-col gap-3 rounded-[18px] border bg-white p-3.5 text-left transition-all focus-visible:outline-2 focus-visible:outline-teal-500",
+                      "flex min-h-11 flex-col gap-3 rounded-[16px] border bg-white p-3.5 text-left transition-all focus-visible:outline-2 focus-visible:outline-teal-500",
                       active
                         ? "border-teal-500 shadow-soft ring-1 ring-teal-500/40"
                         : "border-sand-200 hover:border-teal-500/50 hover:shadow-soft"
@@ -183,7 +201,7 @@ export function MobileMoneyPay({ amount }: { amount: number }) {
                     <span
                       aria-hidden
                       className={cn(
-                        "flex h-14 items-center justify-center gap-2 rounded-[12px] font-display text-[15px] font-bold",
+                        "flex h-14 items-center justify-center gap-2 rounded-[10px] font-display text-[15px] font-bold",
                         o.tileClass
                       )}
                     >
@@ -241,7 +259,7 @@ export function MobileMoneyPay({ amount }: { amount: number }) {
               aria-hidden
               className="flex size-20 items-center justify-center rounded-full bg-teal-900 text-sand-50 shadow-soft"
               animate={{ y: [0, -3, 0], rotate: [0, -7, 6, -4, 0] }}
-              transition={{ duration: 0.9, repeat: Infinity, ease: "easeInOut" }}
+              transition={{ duration: duration.base, repeat: Infinity, ease: ease.inOut }}
             >
               <Smartphone className="size-9" />
             </motion.span>
@@ -286,10 +304,13 @@ export function MobileMoneyPay({ amount }: { amount: number }) {
             <span className="mx-auto flex size-16 items-center justify-center rounded-full bg-destructive/10 text-destructive">
               <XCircle className="size-8" aria-hidden />
             </span>
-            <p className="mt-4 font-display text-xl font-bold text-destructive">Paiement refusé</p>
+            <p className="mt-4 font-display text-xl font-bold text-destructive">
+              {contractError ? "Paiement reçu — contrat non émis" : "Paiement refusé"}
+            </p>
             <p className="mx-auto mt-1.5 max-w-sm text-[14px] text-muted-foreground">
-              Le paiement n&apos;a pas abouti. Vérifiez votre solde Mobile Money ou utilisez un
-              autre numéro — aucun montant n&apos;a été débité.
+              {contractError
+                ? "Votre paiement est bien arrivé, mais la création du contrat a échoué. Notre équipe vous rembourse ou régularise sous 24 h — contactez le support avec la référence affichée sur votre SMS de débit."
+                : "Le paiement n’a pas abouti. Vérifiez votre solde Mobile Money ou utilisez un autre numéro — aucun montant n’a été débité."}
             </p>
             <div className="mt-6 flex flex-col items-center justify-center gap-2.5 sm:flex-row">
               <Button type="button" className="min-h-11" onClick={() => launch(operator, payee || phone)}>

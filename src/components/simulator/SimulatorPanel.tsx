@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Check, Minus, Plus, ShieldCheck } from "lucide-react";
 import { quote } from "@/lib/pricing";
 import { products, frequencyDiscount, frequencyLabel } from "@/data/products";
+import { formatFcfa } from "@/lib/utils/format";
 import { communeList } from "@/data/guarantees";
 import type { BillingFrequency, CoverageType, FormulaId } from "@/data/types";
 import { useSubscription } from "@/stores/subscription";
@@ -71,6 +72,16 @@ export function SimulatorPanel() {
     setStore.setAge(age);
     setStore.setFormula(formulaId);
     setStore.setFrequency(frequency);
+    // Flag session : le tunnel ne doit pas écraser ce pré-remplissage
+    // s'il assainit un brouillon déjà finalisé.
+    try {
+      sessionStorage.setItem(
+        "amsante-prefill",
+        JSON.stringify({ coverage, childrenCount: effectiveChildren, age, formula: formulaId, frequency })
+      );
+    } catch {
+      /* sessionStorage indisponible : le store persisté suffit */
+    }
     router.push("/souscrire");
   }
 
@@ -90,7 +101,7 @@ export function SimulatorPanel() {
             />
           </div>
           <div>
-            <p className="mb-2.5 text-[13px] font-semibold">4 · Fréquence de paiement</p>
+            <p className="mb-2.5 text-[13px] font-semibold">2 · Fréquence de paiement</p>
             <Segmented
               name="sim-frequency"
               label="Fréquence de paiement"
@@ -111,7 +122,7 @@ export function SimulatorPanel() {
           {/* Enfants (famille) */}
           <div className={cn(coverage !== "famille" && "pointer-events-none opacity-40")}>
             <p className="mb-2.5 text-[13px] font-semibold">
-              2 · Nombre d&apos;enfants{" "}
+              3 · Nombre d&apos;enfants{" "}
               <span className="tnum text-teal-700">({effectiveChildren})</span>
             </p>
             <div className="flex h-11 items-center gap-2.5">
@@ -150,7 +161,7 @@ export function SimulatorPanel() {
           {/* Âge */}
           <div>
             <p className="mb-2.5 flex items-baseline justify-between text-[13px] font-semibold">
-              3 · Âge de l&apos;adhérent
+              4 · Âge de l&apos;adhérent
               <span className="tnum text-[15px] text-teal-700">{age} ans</span>
             </p>
             <Slider
@@ -200,7 +211,7 @@ export function SimulatorPanel() {
               viewport={{ once: true, margin: "0px 0px -10% 0px" }}
               transition={{ duration: duration.base, ease: ease.out, delay: i * 0.07 }}
               className={cn(
-                "relative flex h-full flex-col rounded-[22px] border bg-white p-6 transition-all hover:-translate-y-1 hover:shadow-lift",
+                "relative flex h-full flex-col rounded-[16px] border bg-white p-6 transition-all hover:-translate-y-1 hover:shadow-lift",
                 p.popular ? "border-teal-500 shadow-soft ring-1 ring-teal-500/30" : "border-sand-200"
               )}
             >
@@ -223,13 +234,13 @@ export function SimulatorPanel() {
               </p>
 
               {/* Détail du calcul */}
-              <dl className="mt-4 space-y-1 rounded-[12px] bg-sand-50 px-3.5 py-3 text-[12.5px]">
+              <dl className="mt-4 space-y-1 rounded-[10px] bg-sand-50 px-3.5 py-3 text-[12.5px]">
                 <div className="flex items-baseline justify-between gap-3">
                   <dt className="text-muted-foreground">
                     Adulte{q.breakdown.adults > 1 ? "s" : ""} ({q.breakdown.adults})
                   </dt>
                   <dd className="tnum font-semibold">
-                    {q.breakdown.adultLine.toLocaleString("fr-FR")} FCFA
+                    {formatFcfa(q.breakdown.adultLine)}
                   </dd>
                 </div>
                 {effectiveChildren > 0 && (
@@ -238,7 +249,7 @@ export function SimulatorPanel() {
                       Enfant{effectiveChildren > 1 ? "s" : ""} ({effectiveChildren})
                     </dt>
                     <dd className="tnum font-semibold">
-                      {q.breakdown.childLine.toLocaleString("fr-FR")} FCFA
+                      {formatFcfa(q.breakdown.childLine)}
                     </dd>
                   </div>
                 )}

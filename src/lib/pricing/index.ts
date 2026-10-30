@@ -65,8 +65,10 @@ export function quote(input: QuoteInput): QuoteResult {
   const childLine = round100(children * f.childMonthly);
   const raw = adultLine + childLine;
   const discount = frequencyDiscount[frequency] ?? 0;
+  // Remise appliquée puis arrondi UNE seule fois à la centaine supérieure ;
+  // la période = mensuel × nombre de mois (aucun re-arrondi asymétrique).
   const monthly = round100(raw * (1 - discount));
-  const period = round100(monthly * (frequencyMultiplier[frequency] ?? 1));
+  const period = monthly * (frequencyMultiplier[frequency] ?? 1);
 
   return {
     monthly,
@@ -77,11 +79,16 @@ export function quote(input: QuoteInput): QuoteResult {
   };
 }
 
-/** Prime annuelle indicative pour un groupe (devis entreprise, fourchette mock). */
+/**
+ * Prime annuelle indicative pour un groupe (devis entreprise, fourchette mock) :
+ * borne basse ≈ base annuelle avec 1 mois offert (×11), borne haute intégrant
+ * la dégressivité groupe et les ayants droit (×13,5). Estimation indicative
+ * uniquement — la prime ferme est établie par le conseiller.
+ */
 export function groupEstimate(employeeCount: number, dependents: number, formula: FormulaId) {
   const f = getFormula(formula);
   const total = employeeCount + dependents;
-  const low = round100(total * f.adultMonthly * 11); // ≈ 2 mois offerts à l'année
+  const low = round100(total * f.adultMonthly * 11); // ≈ 1 mois offert sur l'année
   const high = round100(total * f.adultMonthly * 13.5);
   return { low, high, total };
 }

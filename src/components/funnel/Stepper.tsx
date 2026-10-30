@@ -67,11 +67,6 @@ export function Stepper({
                     state === "todo" && "bg-sand-200 text-muted-foreground"
                   )}
                 >
-                  {state === "done" ? (
-                    <Check className="size-3" />
-                  ) : (
-                    <span className="tnum">{i + 1}</span>
-                  )}
                   {state === "active" && (
                     <motion.span
                       layoutId="stepper-active"

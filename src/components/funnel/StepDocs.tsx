@@ -61,7 +61,7 @@ export function StepDocs({ showErrors }: { showErrors: boolean }) {
           </div>
         )}
 
-        <p className="flex items-center gap-2 rounded-[12px] bg-teal-50 px-3.5 py-2.5 text-[12.5px] text-teal-900">
+        <p className="flex items-center gap-2 rounded-[10px] bg-teal-50 px-3.5 py-2.5 text-[12.5px] text-teal-900">
           <Lock className="size-4 shrink-0 text-teal-700" aria-hidden />
           Vos documents servent uniquement à l&apos;étude du dossier. Vous pouvez les retirer à tout moment.
         </p>

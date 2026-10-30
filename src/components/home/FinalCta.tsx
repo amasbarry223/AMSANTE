@@ -16,7 +16,7 @@ export function FinalCta() {
   return (
     <section className="container-ams pb-28" aria-label="Passer à l'action">
       <Reveal>
-        <div className="relative overflow-hidden rounded-[32px] bg-[linear-gradient(135deg,#0F5B57_0%,#0B1F1E_75%)] px-8 py-16 text-sand-50 shadow-card sm:px-14 sm:py-20">
+        <div className="relative overflow-hidden rounded-[28px] bg-[linear-gradient(135deg,#0F5B57_0%,#0B1F1E_75%)] px-8 py-16 text-sand-50 shadow-card sm:px-14 sm:py-20">
           <BogolanTexture color="#E3F4F1" opacity={0.06} />
           <div aria-hidden className="absolute -right-24 -top-24 size-96 rounded-full bg-teal-500/20 blur-3xl" />
 

@@ -4,6 +4,7 @@ import { useMemo } from "react";
 import { ShieldCheck } from "lucide-react";
 import { quote } from "@/lib/pricing";
 import { getFormula, frequencyLabel } from "@/data/products";
+import { formatFcfa } from "@/lib/utils/format";
 import { useSubscription } from "@/stores/subscription";
 import { AmountDisplay } from "@/components/shared/AmountDisplay";
 import { Separator } from "@/components/ui/separator";
@@ -57,7 +58,7 @@ export function LiveSummaryBody({ className }: { className?: string }) {
         {q.discount > 0 ? (
           <p className="mt-2 text-[13px] font-medium text-teal-700">
             Remise {Math.round(q.discount * 100)} % incluse — soit{" "}
-            <span className="tnum">{q.monthlyEquivalent.toLocaleString("fr-FR")} FCFA</span>/mois équivalent
+            <span className="tnum">{formatFcfa(q.monthlyEquivalent)}</span>/mois équivalent
           </p>
         ) : (
           <p className="mt-2 text-[13px] text-muted-foreground">Sans engagement, modifiable à tout moment.</p>
@@ -72,14 +73,14 @@ export function LiveSummaryBody({ className }: { className?: string }) {
           <dt className="text-muted-foreground">
             Adulte{q.breakdown.adults > 1 ? "s" : ""} couvert{q.breakdown.adults > 1 ? "s" : ""}
           </dt>
-          <dd className="tnum font-semibold">{q.breakdown.adultLine.toLocaleString("fr-FR")} FCFA</dd>
+          <dd className="tnum font-semibold">{formatFcfa(q.breakdown.adultLine)}</dd>
         </div>
         {children > 0 && (
           <div className="flex items-baseline justify-between gap-3">
             <dt className="text-muted-foreground">
               Enfant{children > 1 ? "s" : ""} <span className="tnum">({children})</span>
             </dt>
-            <dd className="tnum font-semibold">{q.breakdown.childLine.toLocaleString("fr-FR")} FCFA</dd>
+            <dd className="tnum font-semibold">{formatFcfa(q.breakdown.childLine)}</dd>
           </div>
         )}
         <div className="flex items-baseline justify-between gap-3">
@@ -88,7 +89,7 @@ export function LiveSummaryBody({ className }: { className?: string }) {
         </div>
       </dl>
 
-      <p className="flex items-center gap-2 rounded-[12px] bg-sand-100 px-3.5 py-2.5 text-[12.5px] text-muted-foreground">
+      <p className="flex items-center gap-2 rounded-[10px] bg-sand-100 px-3.5 py-2.5 text-[12.5px] text-muted-foreground">
         <ShieldCheck className="size-4 shrink-0 text-teal-700" aria-hidden />
         Montant ferme à la souscription, aucun frais caché.
       </p>

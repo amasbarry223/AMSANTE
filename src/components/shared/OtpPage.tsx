@@ -23,6 +23,7 @@ import { formatPhone } from "@/lib/utils/format";
 /* Clés partagées avec /connexion — le téléphone (ou l’e-mail pro) transite via sessionStorage. */
 const OTP_IDENTITY_KEY = "amsante-otp-phone";
 const OTP_PROFILE_KEY = "amsante-otp-profile";
+const OTP_REDIRECT_KEY = "amsante-otp-redirect";
 
 const MAX_OTP_ERRORS = 2;
 const LOCK_SECONDS = 30;
@@ -50,8 +51,9 @@ export function OtpPage() {
   const [otpEpoch, setOtpEpoch] = useState(0); // remonte l’input après un verrouillage
   const [lockSeconds, setLockSeconds] = useState(0);
   const [busy, setBusy] = useState(false);
+  const [redirectTarget, setRedirectTarget] = useState<string | null>(null);
 
-  // PIN (profils pro)
+  // PIN (assuré — spec §8.6 : téléphone → OTP → code PIN 4 chiffres)
   const [pinStage, setPinStage] = useState<PinStage>("set");
   const [pin, setPin] = useState("");
   const [firstPin, setFirstPin] = useState("");
@@ -82,6 +84,17 @@ export function OtpPage() {
   }, [lockSeconds]);
 
   const openSpace = useCallback(() => {
+    /* §8.7 — si l’utilisateur vient d’un CTA « ?redirect=… », on l’emporte vers
+       l’espace connecté (hors périmètre) SUR cette route, pas vers l’accueil. */
+    let target: string | null = null;
+    try {
+      const raw = window.sessionStorage.getItem(OTP_REDIRECT_KEY);
+      if (raw && raw.startsWith("/") && !raw.startsWith("//")) target = raw;
+      window.sessionStorage.removeItem(OTP_REDIRECT_KEY);
+    } catch {
+      target = null;
+    }
+    setRedirectTarget(target);
     window.sessionStorage.removeItem(OTP_IDENTITY_KEY);
     window.sessionStorage.removeItem(OTP_PROFILE_KEY);
     setPhase("opening");
@@ -96,7 +109,8 @@ export function OtpPage() {
       setOtpError(null);
       try {
         await verifyOtp(identity, code);
-        if (isPro) {
+        if (!isPro) {
+          // Spec §8.6 — Assuré : OTP puis création de code PIN (pavé visuel).
           setOtpEpoch((e) => e + 1); // input neuf si l’utilisateur revient au code
           setPinStage("set");
           setPin("");
@@ -104,6 +118,7 @@ export function OtpPage() {
           setPinError(null);
           setPhase("pin");
         } else {
+          // Profils pro (e-mail + mot de passe + OTP) : ouverture directe.
           openSpace();
         }
       } catch (err) {
@@ -114,6 +129,9 @@ export function OtpPage() {
         const next = otpErrors + 1;
         setOtpErrors(next);
         if (next >= MAX_OTP_ERRORS) {
+          // Verrou 30 s puis compteur remis à zéro (comme LoginFlow) :
+          // sans reset, chaque erreur re-verrouillerait immédiatement.
+          setOtpErrors(0);
           setOtpEpoch((e) => e + 1);
           setOtpError(null);
           setLockSeconds(LOCK_SECONDS);
@@ -157,9 +175,10 @@ export function OtpPage() {
     );
   }
 
-  const identityLabel = /^\d{8}$/.test(identity)
-    ? `+223 ${formatPhone(identity).replace("+223 ", "")}`
-    : identity;
+  const identityValue = identity ?? "";
+  const identityLabel = /^\d{8}$/.test(identityValue)
+    ? `+223 ${formatPhone(identityValue).replace("+223 ", "")}`
+    : identityValue;
 
   return (
     <div className="relative flex flex-1 items-center justify-center px-5 py-12 sm:py-16">
@@ -382,9 +401,14 @@ export function OtpPage() {
               Bienvenue sur AMSANTÉ. La suite se passe dans votre espace sécurisé —
               carte, remboursements et proches vous y attendent.
             </p>
-            {/* TODO: remplacer par la vraie APP_URL de l'espace client */}
+            {/* TODO: remplacer par la vraie APP_URL de l'espace client.
+               Si l'utilisateur vient d'un CTA « ?redirect=… », la route est préservée. */}
             <Button asChild size="lg" className="mt-7 min-h-12 w-full">
-              <a href="https://app.amsante.ml" target="_blank" rel="noreferrer">
+              <a
+                href={`https://app.amsante.ml${redirectTarget ?? ""}`}
+                target="_blank"
+                rel="noreferrer"
+              >
                 Continuer vers mon espace
               </a>
             </Button>

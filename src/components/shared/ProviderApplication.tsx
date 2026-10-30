@@ -432,7 +432,7 @@ export function ProviderApplication() {
           )}
 
           {errors.form && (
-            <p className="mt-5 rounded-[12px] bg-destructive/10 px-4 py-3 text-[13.5px] font-medium text-destructive" role="alert">
+            <p className="mt-5 rounded-[10px] bg-destructive/10 px-4 py-3 text-[13.5px] font-medium text-destructive" role="alert">
               {errors.form}
             </p>
           )}

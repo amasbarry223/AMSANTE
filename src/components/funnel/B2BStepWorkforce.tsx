@@ -128,7 +128,7 @@ export function B2BStepWorkforce({ showErrors }: { showErrors: boolean }) {
         />
       </div>
 
-      <p className="mt-5 rounded-[12px] bg-teal-50 px-4 py-3 text-[14px] text-teal-900" aria-live="polite">
+      <p className="mt-5 rounded-[10px] bg-teal-50 px-4 py-3 text-[14px] text-teal-900" aria-live="polite">
         Effectif total à couvrir :{" "}
         <span className="tnum font-bold">{employees + dependents} personnes</span>
       </p>

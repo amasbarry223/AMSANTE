@@ -287,7 +287,7 @@ export default async function LegalPage({
           </div>
 
           <Reveal delay={0.1}>
-            <div className="mt-16 flex flex-wrap items-center justify-between gap-4 rounded-[20px] border border-sand-200 bg-white px-6 py-5 shadow-soft">
+            <div className="mt-16 flex flex-wrap items-center justify-between gap-4 rounded-[16px] border border-sand-200 bg-white px-6 py-5 shadow-soft">
               <p className="text-[14.5px] font-semibold text-ink">
                 Une question juridique précise ?
               </p>

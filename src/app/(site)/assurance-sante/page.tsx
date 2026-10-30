@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Check, ShieldCheck, XCircle, Wallet } from "lucide-react";
-import { products, frequencyDiscount, frequencyMultiplier, frequencyLabel } from "@/data/products";
+import { products, frequencyDiscount, frequencyLabel } from "@/data/products";
+import { quote } from "@/lib/pricing";
 import { guarantees } from "@/data/guarantees";
 import { faq } from "@/data/faq";
 import { formatFcfa } from "@/lib/utils/format";
@@ -17,6 +18,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { ChooseFormulaButton } from "@/components/shared/ChooseFormulaButton";
 import { BogolanTexture } from "@/components/layout/BogolanPattern";
 
 export const metadata: Metadata = {
@@ -51,8 +53,6 @@ const exclusions = [
 ];
 
 export default function AssuranceSantePage() {
-  const base = products.find((p) => p.id === "confort")?.adultMonthly ?? 11500;
-
   return (
     <>
       {/* ─────────────────────────── Hero ─────────────────────────── */}
@@ -132,9 +132,7 @@ export default function AssuranceSantePage() {
                         Souscrire à Confort <ArrowRight className="size-4" />
                       </PrimaryCta>
                     ) : (
-                      <Button asChild variant="outline" size="lg" className="w-full">
-                        <Link href="/souscrire">Choisir {p.name}</Link>
-                      </Button>
+                      <ChooseFormulaButton formulaId={p.id} label={`Choisir ${p.name}`} />
                     )}
                   </div>
                 </StaggerItem>
@@ -237,7 +235,7 @@ export default function AssuranceSantePage() {
           <div className="mt-10 space-y-4 md:hidden">
             {guarantees.map((g) => (
               <Reveal key={g.key}>
-                <div className="rounded-[18px] border border-sand-200 bg-white p-5 shadow-soft">
+                <div className="rounded-[16px] border border-sand-200 bg-white p-5 shadow-soft">
                   <p className="font-display text-[16px] font-bold text-ink">{g.label}</p>
                   <p className="mt-1 text-[12.5px] leading-snug text-muted-foreground">
                     {g.description}
@@ -302,10 +300,17 @@ export default function AssuranceSantePage() {
           <StaggerContainer className="mt-10 grid gap-5 md:grid-cols-3">
             {(["mensuel", "trimestriel", "annuel"] as const).map((freq) => {
               const discount = frequencyDiscount[freq];
-              const periodPrice = base * frequencyMultiplier[freq] * (1 - discount);
+              // Moteur officiel (lib/pricing) — exemples alignés au simulateur.
+              const periodPrice = quote({
+                coverage: "seul",
+                children: 0,
+                age: 29,
+                formula: "confort",
+                frequency: freq,
+              }).period;
               return (
                 <StaggerItem key={freq}>
-                  <div className="h-full rounded-[20px] border border-sand-200 bg-white p-7 shadow-soft transition-all hover:-translate-y-1 hover:shadow-lift">
+                  <div className="h-full rounded-[16px] border border-sand-200 bg-white p-7 shadow-soft transition-all hover:-translate-y-1 hover:shadow-lift">
                     <div className="flex items-center justify-between">
                       <h3 className="font-display text-[18px] font-bold capitalize text-ink">{freq}</h3>
                       {discount > 0 ? (
@@ -362,7 +367,7 @@ export default function AssuranceSantePage() {
           <StaggerContainer className="mt-10 grid gap-5 md:grid-cols-2">
             {exclusions.map((ex) => (
               <StaggerItem key={ex.title}>
-                <div className="flex h-full items-start gap-4 rounded-[20px] border border-sand-200 bg-white p-6 shadow-soft">
+                <div className="flex h-full items-start gap-4 rounded-[16px] border border-sand-200 bg-white p-6 shadow-soft">
                   <span className="mt-0.5 flex size-10 shrink-0 items-center justify-center rounded-xl bg-sand-200 text-ink-soft">
                     <XCircle className="size-5" aria-hidden />
                   </span>
@@ -430,7 +435,7 @@ export default function AssuranceSantePage() {
       {/* ─────────────────────────── CTA final ─────────────────────────── */}
       <section className="container-ams pb-28" aria-label="Simuler ma prime">
         <Reveal>
-          <div className="relative overflow-hidden rounded-[32px] bg-[linear-gradient(135deg,#0F5B57_0%,#0B1F1E_75%)] px-8 py-16 text-sand-50 shadow-card sm:px-14 sm:py-20">
+          <div className="relative overflow-hidden rounded-[28px] bg-[linear-gradient(135deg,#0F5B57_0%,#0B1F1E_75%)] px-8 py-16 text-sand-50 shadow-card sm:px-14 sm:py-20">
             <BogolanTexture color="#E3F4F1" opacity={0.06} />
             <div aria-hidden className="absolute -right-24 -top-24 size-96 rounded-full bg-teal-500/20 blur-3xl" />
             <div className="relative max-w-2xl">

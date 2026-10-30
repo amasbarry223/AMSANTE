@@ -4,16 +4,17 @@ import { useEffect, useRef, useState } from "react";
 import { animate } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { formatFcfa } from "@/lib/utils/format";
+import { duration as motionDuration, ease as motionEase } from "@/lib/motion/tokens";
 
 /**
  * Montant animé (prime) : interpolation douce, aria-live pour les lecteurs
- * d'écran, Geist Mono tabulaire.
+ * d'écran, Geist Mono tabulaire. Durées/courbes issues des tokens motion.
  */
 export function AmountDisplay({
   value,
   className,
   suffix = true,
-  duration = 0.5,
+  duration = motionDuration.fast,
 }: {
   value: number;
   className?: string;
@@ -22,17 +23,21 @@ export function AmountDisplay({
 }) {
   const ref = useRef<HTMLSpanElement>(null);
   const [display, setDisplay] = useState(value);
-  const prev = useRef(value);
+  /** Dernière valeur réellement affichée (mise à jour dans les callbacks anim). */
+  const shown = useRef(value);
 
   useEffect(() => {
-    const from = prev.current;
-    if (from === value) return;
+    const from = shown.current;
+    if (from === value) return; // déjà affiché : rien à animer, aucun setState
     const controls = animate(from, value, {
       duration,
-      ease: [0.16, 1, 0.3, 1],
-      onUpdate: (v) => setDisplay(v),
+      ease: motionEase.out,
+      onUpdate: (v) => {
+        shown.current = v;
+        setDisplay(v);
+      },
       onComplete: () => {
-        prev.current = value;
+        shown.current = value;
         setDisplay(value);
       },
     });

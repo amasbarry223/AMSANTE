@@ -15,7 +15,7 @@ import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
 import { duration, ease } from "@/lib/motion/tokens";
 import { cn } from "@/lib/utils";
-import type { CoverageType } from "@/data/types";
+import type { CoverageType, FormulaId } from "@/data/types";
 
 const coverages: { id: CoverageType; label: string }[] = [
   { id: "seul", label: "Seul·e" },
@@ -71,14 +71,32 @@ export function ExpressSimulator() {
     [coverage, children, age]
   );
 
-  const go = () => {
+  /** Écrit le pré-remplissage dans le store + un flag session pour que le
+   *  tunnel ne l'écrase pas en assainissant un brouillon déjà finalisé. */
+  const prefillAndGo = (formula: FormulaId) => {
     store.setCoverage(coverage);
     store.setChildrenCount(coverage === "famille" ? children : 0);
     store.setAge(age);
-    store.setFormula("confort");
+    store.setFormula(formula);
     store.setFrequency("mensuel");
+    try {
+      sessionStorage.setItem(
+        "amsante-prefill",
+        JSON.stringify({
+          coverage,
+          childrenCount: coverage === "famille" ? children : 0,
+          age,
+          formula,
+          frequency: "mensuel",
+        })
+      );
+    } catch {
+      /* sessionStorage indisponible : le store persisté suffit */
+    }
     router.push("/souscrire");
   };
+
+  const go = () => prefillAndGo("confort");
 
   return (
     <section className="relative overflow-hidden py-24 sm:py-32" aria-label="Simulateur express">
@@ -199,7 +217,7 @@ export function ExpressSimulator() {
               <Reveal key={p.id} delay={i * 0.07}>
                 <div
                   className={cn(
-                    "relative flex h-full flex-col rounded-[22px] border bg-white p-6 transition-all hover:-translate-y-1 hover:shadow-lift",
+                    "relative flex h-full flex-col rounded-[16px] border bg-white p-6 transition-all hover:-translate-y-1 hover:shadow-lift",
                     p.popular ? "border-teal-500 shadow-soft ring-1 ring-teal-500/30" : "border-sand-200"
                   )}
                 >
@@ -226,8 +244,8 @@ export function ExpressSimulator() {
                       Continuer avec Confort <ArrowRight className="size-4" />
                     </Button>
                   ) : (
-                    <Button asChild variant="outline" className="mt-6 w-full" size="lg">
-                      <Link href="/souscrire">Choisir {p.name}</Link>
+                    <Button onClick={() => prefillAndGo(p.id)} variant="outline" className="mt-6 w-full" size="lg">
+                      Choisir {p.name}
                     </Button>
                   )}
                 </div>

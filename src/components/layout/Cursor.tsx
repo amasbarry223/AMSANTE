@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
+import { duration as motionDuration, ease as motionEase } from "@/lib/motion/tokens";
 
 /**
  * Curseur personnalisé : point + anneau qui grossit sur les éléments
@@ -13,8 +14,10 @@ export function Cursor() {
   const [hovering, setHovering] = useState(false);
   const x = useMotionValue(-100);
   const y = useMotionValue(-100);
-  const rx = useSpring(x, { stiffness: 350, damping: 32, mass: 0.6 });
-  const ry = useSpring(y, { stiffness: 350, damping: 32, mass: 0.6 });
+  // Ressorts du curseur : valeurs dérivées des tokens (UI interactive).
+  const cursorSpring = { stiffness: 260, damping: 26, mass: 0.6 } as const;
+  const rx = useSpring(x, cursorSpring);
+  const ry = useSpring(y, cursorSpring);
 
   useEffect(() => {
     if (!window.matchMedia("(pointer: fine)").matches) return;
@@ -55,7 +58,7 @@ export function Cursor() {
           height: hovering ? 44 : 26,
           opacity: hovering ? 0.9 : 0.55,
         }}
-        transition={{ duration: 0.18 }}
+        transition={{ duration: motionDuration.micro, ease: motionEase.out }}
       />
     </>
   );

@@ -71,7 +71,7 @@ export function B2BStepNeeds({ showErrors }: { showErrors: boolean }) {
               aria-checked={active}
               onClick={() => patch({ formula: p.id })}
               className={cn(
-                "flex min-h-11 flex-col rounded-[18px] border p-4 text-left transition-all focus-visible:outline-2 focus-visible:outline-teal-500",
+                "flex min-h-11 flex-col rounded-[16px] border p-4 text-left transition-all focus-visible:outline-2 focus-visible:outline-teal-500",
                 active
                   ? "border-teal-500 bg-teal-50/60 shadow-soft ring-1 ring-teal-500/40"
                   : "border-sand-200 bg-white hover:border-teal-500/50 hover:shadow-soft"

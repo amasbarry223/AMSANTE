@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import { formatDate } from "@/lib/utils/format";
 import { bogolanDataUri } from "@/components/layout/BogolanPattern";
 import { LogoMark } from "@/components/layout/Logo";
+import { duration as motionDuration, ease as motionEase } from "@/lib/motion/tokens";
 
 /**
  * Carte d'assuré AMSANTÉ — objet signature de la marque.
@@ -36,13 +37,15 @@ export function InsuranceCard2D({
   const ref = useRef<HTMLDivElement>(null);
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
-  const rX = useSpring(useTransform(my, [-0.5, 0.5], [6, -6]), { stiffness: 200, damping: 22 });
-  const rY = useSpring(useTransform(mx, [-0.5, 0.5], [-6, 6]), { stiffness: 200, damping: 22 });
+  // Ressort d'inclinaison : tokens officiels (ease.spring 260/26).
+  const tiltSpring = { stiffness: motionEase.spring.stiffness, damping: motionEase.spring.damping };
+  const rX = useSpring(useTransform(my, [-0.5, 0.5], [6, -6]), tiltSpring);
+  const rY = useSpring(useTransform(mx, [-0.5, 0.5], [-6, 6]), tiltSpring);
 
   const sizes = {
     sm: { root: "max-w-[300px]", face: "p-4 rounded-[16px]" },
-    md: { root: "max-w-[420px]", face: "p-6 rounded-[22px]" },
-    lg: { root: "max-w-[520px]", face: "p-7 rounded-[26px]" },
+    md: { root: "max-w-[420px]", face: "p-6 rounded-[16px]" },
+    lg: { root: "max-w-[520px]", face: "p-7 rounded-[24px]" },
   };
 
   const handleMouse = (e: React.MouseEvent) => {
@@ -77,7 +80,7 @@ export function InsuranceCard2D({
         className="relative aspect-[1.586/1] w-full [transform-style:preserve-3d]"
         style={{ rotateX: rX, rotateY: tilt ? rY : 0 }}
         animate={{ rotateY: flipped ? 180 : 0 }}
-        transition={{ duration: 0.7, ease: [0.65, 0, 0.35, 1] }}
+        transition={{ duration: motionDuration.base, ease: motionEase.inOut }}
       >
         {/* ── Recto ─────────────────────────────────────────── */}
         <div

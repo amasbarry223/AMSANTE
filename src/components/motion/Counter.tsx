@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { animate, useInView, useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { formatFcfa } from "@/lib/utils/format";
+import { duration as motionDuration, ease as motionEase } from "@/lib/motion/tokens";
 
 /**
  * Compteur animé : montants interpolés avec un ressort (jamais de saut brut).
@@ -13,7 +14,7 @@ export function Counter({
   value,
   format = "number",
   className,
-  duration = 1.1,
+  duration = motionDuration.slow,
 }: {
   value: number;
   format?: "number" | "fcfa";
@@ -35,7 +36,7 @@ export function Counter({
     }
     const controls = animate(from, value, {
       duration,
-      ease: [0.16, 1, 0.3, 1],
+      ease: motionEase.out,
       onUpdate: (v) => {
         el.textContent =
           format === "fcfa"

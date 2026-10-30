@@ -126,7 +126,7 @@ export default function CommentCaMarchePage() {
                 const Icon = s.icon;
                 return (
                   <li key={s.title} className="flex items-start gap-5 sm:gap-7">
-                    <span className="relative z-10 flex size-14 shrink-0 items-center justify-center rounded-2xl border border-sand-200 bg-white text-teal-900 shadow-soft sm:size-[72px] sm:rounded-[22px]">
+                    <span className="relative z-10 flex size-14 shrink-0 items-center justify-center rounded-2xl border border-sand-200 bg-white text-teal-900 shadow-soft sm:size-[72px] sm:rounded-[16px]">
                       <Icon className="size-6 sm:size-7" aria-hidden />
                       <span className="tnum absolute -top-2 -right-2 flex size-6 items-center justify-center rounded-full bg-teal-900 text-[11px] font-bold text-sand-50">
                         {i + 1}
@@ -168,7 +168,7 @@ export default function CommentCaMarchePage() {
 
           <div className="mt-10 grid gap-5 lg:grid-cols-3">
             <Reveal>
-              <div className="h-full rounded-[20px] border border-sand-200 bg-white p-7 shadow-soft transition-all hover:-translate-y-1 hover:shadow-lift">
+              <div className="h-full rounded-[16px] border border-sand-200 bg-white p-7 shadow-soft transition-all hover:-translate-y-1 hover:shadow-lift">
                 <span className="flex size-11 items-center justify-center rounded-xl bg-teal-100 text-teal-900">
                   <CalendarClock className="size-5" aria-hidden />
                 </span>
@@ -183,7 +183,7 @@ export default function CommentCaMarchePage() {
               </div>
             </Reveal>
             <Reveal delay={0.08}>
-              <div className="h-full rounded-[20px] border border-sand-200 bg-white p-7 shadow-soft transition-all hover:-translate-y-1 hover:shadow-lift">
+              <div className="h-full rounded-[16px] border border-sand-200 bg-white p-7 shadow-soft transition-all hover:-translate-y-1 hover:shadow-lift">
                 <span className="flex size-11 items-center justify-center rounded-xl bg-teal-100 text-teal-900">
                   <Baby className="size-5" aria-hidden />
                 </span>
@@ -196,7 +196,7 @@ export default function CommentCaMarchePage() {
               </div>
             </Reveal>
             <Reveal delay={0.16}>
-              <div className="relative h-full overflow-hidden rounded-[20px] bg-teal-900 p-7 text-sand-50 shadow-card">
+              <div className="relative h-full overflow-hidden rounded-[16px] bg-teal-900 p-7 text-sand-50 shadow-card">
                 <BogolanTexture color="#E3F4F1" opacity={0.05} />
                 <span className="relative flex size-11 items-center justify-center rounded-xl bg-white/10 text-teal-100">
                   <Siren className="size-5" aria-hidden />
@@ -305,7 +305,7 @@ export default function CommentCaMarchePage() {
                 <StaggerItem key={op.name}>
                   <div
                     className={cn(
-                      "flex h-36 flex-col items-center justify-center rounded-[20px] shadow-soft transition-transform hover:-translate-y-1",
+                      "flex h-36 flex-col items-center justify-center rounded-[16px] shadow-soft transition-transform hover:-translate-y-1",
                       op.className
                     )}
                   >
@@ -326,7 +326,7 @@ export default function CommentCaMarchePage() {
       {/* ─────────────────────────── CTA final ─────────────────────────── */}
       <section className="container-ams pb-28" aria-label="Passer à l'action">
         <Reveal>
-          <div className="relative overflow-hidden rounded-[32px] bg-[linear-gradient(135deg,#0F5B57_0%,#0B1F1E_75%)] px-8 py-16 text-sand-50 shadow-card sm:px-14 sm:py-20">
+          <div className="relative overflow-hidden rounded-[28px] bg-[linear-gradient(135deg,#0F5B57_0%,#0B1F1E_75%)] px-8 py-16 text-sand-50 shadow-card sm:px-14 sm:py-20">
             <BogolanTexture color="#E3F4F1" opacity={0.06} />
             <div aria-hidden className="absolute -right-24 -top-24 size-96 rounded-full bg-teal-500/20 blur-3xl" />
             <div className="relative max-w-2xl">

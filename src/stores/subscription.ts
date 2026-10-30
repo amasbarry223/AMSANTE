@@ -74,12 +74,17 @@ export const useSubscription = create<SubscriptionState>()(
       ...initial,
       setStep: (step) => set({ step }),
       setCoverage: (coverage) =>
-        set((s) => ({
-          coverage,
-          beneficiaries: s.beneficiaries.filter((b) =>
+        set((s) => {
+          const kept = s.beneficiaries.filter((b) =>
             coverage === "seul" ? false : b.relation === "conjoint" || coverage === "famille"
-          ),
-        })),
+          );
+          // Purge des documents des bénéficiaires retirés (pas de pièce orpheline).
+          const documents = { ...s.documents };
+          s.beneficiaries
+            .filter((b) => !kept.includes(b))
+            .forEach((b) => delete documents[`doc-${b.id}`]);
+          return { coverage, beneficiaries: kept, documents };
+        }),
       setFormula: (formula) => set({ formula }),
       setFrequency: (frequency) => set({ frequency }),
       setAge: (age) => set({ age }),
@@ -87,7 +92,12 @@ export const useSubscription = create<SubscriptionState>()(
       setPrincipal: (p) => set((s) => ({ principal: { ...s.principal, ...p } })),
       addBeneficiary: (b) => set((s) => ({ beneficiaries: [...s.beneficiaries, b] })),
       removeBeneficiary: (id) =>
-        set((s) => ({ beneficiaries: s.beneficiaries.filter((b) => b.id !== id) })),
+        set((s) => {
+          // Purge du document lié (pas de pièce orpheline persistée).
+          const documents = { ...s.documents };
+          delete documents[`doc-${id}`];
+          return { beneficiaries: s.beneficiaries.filter((b) => b.id !== id), documents };
+        }),
       updateBeneficiary: (id, patch) =>
         set((s) => ({
           beneficiaries: s.beneficiaries.map((b) => (b.id === id ? { ...b, ...patch } : b)),

@@ -11,7 +11,7 @@ import { gsap, initGsap } from "@/lib/motion/gsap";
 export function DrawPath({
   children,
   className,
-  duration = 1.6,
+  duration = 1.4, // duration.story
   scrub = false,
   delay = 0,
 }: {

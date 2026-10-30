@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useGSAP } from "@gsap/react";
 import { ArrowRight } from "lucide-react";
 import { gsap, initGsap, ScrollTrigger } from "@/lib/motion/gsap";
+import { Magnetic } from "@/components/motion/Magnetic";
 import { Eyebrow } from "@/components/motion/Reveal";
 import { BogolanTexture } from "@/components/layout/BogolanPattern";
 import { cn } from "@/lib/utils";
@@ -148,12 +149,14 @@ export function ForWho() {
                     </svg>
                   )}
                 </div>
-                <Link
-                  href={p.href}
-                  className="relative mt-8 inline-flex min-h-11 items-center gap-2 rounded-full bg-white px-6 py-2.5 text-[14px] font-bold text-ink transition-transform hover:scale-[1.03] active:scale-100"
-                >
-                  {p.cta} <ArrowRight className="size-4" />
-                </Link>
+                <Magnetic strength={8}>
+                  <Link
+                    href={p.href}
+                    className="relative mt-8 inline-flex min-h-11 items-center gap-2 rounded-full bg-white px-6 py-2.5 text-[14px] font-bold text-ink transition-transform hover:scale-[1.03] active:scale-100"
+                  >
+                    {p.cta} <ArrowRight className="size-4" />
+                  </Link>
+                </Magnetic>
               </article>
             ))}
           </div>

@@ -37,7 +37,7 @@ export function StatsTrust() {
         <div className="mt-12 grid grid-cols-2 gap-4 lg:grid-cols-4">
           {stats.map((s, i) => (
             <Reveal key={s.label} delay={i * 0.06}>
-              <div className="rounded-[22px] border border-white/10 bg-white/[0.04] p-6">
+              <div className="rounded-[16px] border border-white/10 bg-white/[0.04] p-6">
                 <p className="font-display text-[clamp(1.9rem,3.4vw,2.8rem)] font-bold leading-none text-teal-300">
                   <Counter value={s.value} />
                   <span className="text-[0.6em]">{s.suffix}</span>
@@ -54,7 +54,7 @@ export function StatsTrust() {
         <div className="mt-6 grid gap-4 md:grid-cols-3">
           {badges.map((b, i) => (
             <Reveal key={b.title} delay={i * 0.06}>
-              <div className="flex h-full items-start gap-4 rounded-[22px] border border-white/10 bg-white/[0.04] p-6">
+              <div className="flex h-full items-start gap-4 rounded-[16px] border border-white/10 bg-white/[0.04] p-6">
                 <span className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-teal-500/15 text-teal-300">
                   <b.icon className="size-5" />
                 </span>
@@ -69,7 +69,7 @@ export function StatsTrust() {
 
         {/* zone témoignages : volontairement vide pour l'instant */}
         <Reveal delay={0.1}>
-          <div className="mt-6 rounded-[22px] border border-dashed border-white/15 bg-transparent p-8 text-center">
+          <div className="mt-6 rounded-[16px] border border-dashed border-white/15 bg-transparent p-8 text-center">
             <p className="text-[13px] font-semibold uppercase tracking-[0.18em] text-sand-50/40">
               Témoignages d&apos;assurés
             </p>
