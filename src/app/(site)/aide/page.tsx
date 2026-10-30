@@ -5,6 +5,7 @@ import { Eyebrow, Reveal } from "@/components/motion/Reveal";
 import { SplitHeading } from "@/components/motion/SplitHeading";
 import { HelpSearch } from "@/components/shared/HelpSearch";
 import { BogolanTexture } from "@/components/layout/BogolanPattern";
+import { allFaqJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Centre d'aide — AMSANTÉ",
@@ -21,6 +22,12 @@ const WHATSAPP_URL = "https://wa.me/22376005566";
 export default function AidePage() {
   return (
     <>
+      {/* Données structurées : FAQPage complète (les 14 questions du centre d'aide) */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(allFaqJsonLd()) }}
+      />
+
       {/* ─────────────────────────── Hero sombre ─────────────────────────── */}
       <section className="relative overflow-hidden bg-ink pt-32 pb-10 text-sand-50 sm:pt-40 sm:pb-12" aria-label="Centre d'aide">
         <div className="container-ams">
@@ -107,6 +114,21 @@ export default function AidePage() {
                   Lun–Sam, 8h–20h
                 </p>
               </div>
+            </div>
+          </Reveal>
+
+          {/* Parcours assuré : déclarer un remboursement (espace connecté) */}
+          <Reveal delay={0.1}>
+            <div className="mt-4 flex flex-wrap items-center justify-between gap-4 rounded-[20px] border border-sand-300 bg-white px-6 py-5 shadow-soft">
+              <p className="text-[15px] font-semibold text-ink">
+                Un soin payé sans passer par le tiers payant ?
+              </p>
+              <Link
+                href="/connexion?redirect=/sinistres/nouveau"
+                className="inline-flex min-h-11 items-center gap-2 rounded-full border border-teal-900/25 bg-teal-100/70 px-5 py-2.5 text-[13.5px] font-semibold text-teal-900 transition-colors hover:bg-teal-500/25"
+              >
+                Déclarer un remboursement <ArrowRight className="size-4" aria-hidden />
+              </Link>
             </div>
           </Reveal>
 

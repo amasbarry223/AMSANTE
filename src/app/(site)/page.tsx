@@ -9,6 +9,11 @@ import { CareNetwork } from "@/components/home/CareNetwork";
 import { StatsTrust } from "@/components/home/StatsTrust";
 import { HomeFaq } from "@/components/home/HomeFaq";
 import { FinalCta } from "@/components/home/FinalCta";
+import { faq, homeFaqIds } from "@/data/faq";
+import {
+  insuranceAgencyJsonLd,
+  faqPageJsonLd,
+} from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "AMSANTÉ — Assurance santé 100 % digitale au Mali",
@@ -18,8 +23,22 @@ export const metadata: Metadata = {
 };
 
 export default function HomePage() {
+  const homeFaq = homeFaqIds
+    .map((id) => faq.find((f) => f.id === id))
+    .filter((f): f is (typeof faq)[number] => Boolean(f));
+
   return (
     <>
+      {/* Données structurées : InsuranceAgency + FAQPage (questions de l'accueil) */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(insuranceAgencyJsonLd()) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqPageJsonLd(homeFaq)) }}
+      />
+
       <Hero />
       <PartnersBand />
       <PaperToDigital />

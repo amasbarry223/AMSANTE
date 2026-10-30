@@ -29,12 +29,21 @@ export function HomeFaq() {
               Une autre question ? Le centre d&apos;aide détaille chaque parcours, et notre équipe
               répond sur WhatsApp en quelques minutes.
             </p>
-            <Link
-              href="/aide"
-              className="mt-5 inline-flex min-h-11 items-center gap-2 rounded-full bg-teal-100 px-5 py-2.5 text-[14px] font-semibold text-teal-900 transition-colors hover:bg-teal-500/25"
-            >
-              Voir le centre d&apos;aide <ArrowRight className="size-4" />
-            </Link>
+            <div className="mt-5 flex flex-wrap items-center gap-3">
+              <Link
+                href="/aide"
+                className="inline-flex min-h-11 items-center gap-2 rounded-full bg-teal-100 px-5 py-2.5 text-[14px] font-semibold text-teal-900 transition-colors hover:bg-teal-500/25"
+              >
+                Voir le centre d&apos;aide <ArrowRight className="size-4" />
+              </Link>
+              {/* §8.7 — CTA « Déclarer un remboursement » depuis l'accueil */}
+              <Link
+                href="/connexion?redirect=/sinistres/nouveau"
+                className="inline-flex min-h-11 items-center gap-2 rounded-full border border-sand-300 bg-white px-5 py-2.5 text-[14px] font-semibold text-ink transition-colors hover:border-teal-500/60 hover:bg-teal-100/60"
+              >
+                Déclarer un remboursement <ArrowRight className="size-4" />
+              </Link>
+            </div>
           </Reveal>
         </div>
 
