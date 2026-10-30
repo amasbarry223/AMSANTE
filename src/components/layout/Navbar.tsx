@@ -62,7 +62,9 @@ export function Navbar() {
   const lastY = useRef(0);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const overHero = pathname === "/";
+  /** Pages dont le héros est sombre (bg-ink) : la navbar y démarre en variante claire. */
+  const DARK_HERO_ROUTES = ["/", "/prestataires", "/verifier", "/aide", "/entreprises", "/simulateur"];
+  const overHero = DARK_HERO_ROUTES.some((r) => pathname === r || pathname.startsWith(`${r}/`));
   const dark = overHero && !scrolled;
 
   useMotionValueEvent(scrollY, "change", (y) => {

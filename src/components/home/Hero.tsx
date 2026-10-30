@@ -86,7 +86,7 @@ export function Hero() {
           {use3D ? (
             <HeroScene />
           ) : (
-            <div className="absolute inset-0 flex items-center justify-end pr-[6vw] lg:pr-[10vw]">
+            <div className="absolute inset-0 flex items-center justify-center opacity-25 lg:justify-end lg:pr-[10vw] lg:opacity-100">
               <motion.div
                 initial={{ opacity: 0, y: 40, rotate: 4 }}
                 animate={{ opacity: 1, y: 0, rotate: 0 }}

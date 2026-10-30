@@ -67,7 +67,7 @@ export function Footer() {
   );
 
   return (
-    <footer className="relative overflow-hidden bg-ink text-sand-50 grain">
+    <footer className="relative mt-auto overflow-hidden bg-ink text-sand-50 grain">
       <BogolanTexture color="#E3F4F1" opacity={0.045} />
       <div className="container-ams relative pt-20">
         {/* haut : baseline + colonnes */}

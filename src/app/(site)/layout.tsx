@@ -9,18 +9,22 @@ import { SmoothScroll } from "@/lib/motion/lenis";
 export default function SiteLayout({ children }: { children: ReactNode }) {
   return (
     <SmoothScroll>
-      <Preloader />
-      <Cursor />
-      <a
-        href="#contenu"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[95] focus:rounded-full focus:bg-teal-900 focus:px-5 focus:py-3 focus:text-sm focus:font-semibold focus:text-sand-50"
-      >
-        Aller au contenu
-      </a>
-      <Navbar />
-      <main id="contenu">{children}</main>
-      <Dock />
-      <Footer />
+      <div className="flex min-h-screen flex-col">
+        <Preloader />
+        <Cursor />
+        <a
+          href="#contenu"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[95] focus:rounded-full focus:bg-teal-900 focus:px-5 focus:py-3 focus:text-sm focus:font-semibold focus:text-sand-50"
+        >
+          Aller au contenu
+        </a>
+        <Navbar />
+        <main id="contenu" className="flex-1">
+          {children}
+        </main>
+        <Dock />
+        <Footer />
+      </div>
     </SmoothScroll>
   );
 }

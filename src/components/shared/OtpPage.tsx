@@ -66,11 +66,13 @@ export function OtpPage() {
   );
 
   // Identifiant absent (accès direct à l’URL) → retour à la connexion.
+  // On n’interrompt PAS les phases « opening » / « ready » : la session vient
+  // d’être volontairement vidée après un code valide.
   useEffect(() => {
-    if (identity === null) {
+    if (identity === null && phase !== "opening" && phase !== "ready") {
       router.replace("/connexion");
     }
-  }, [identity, router]);
+  }, [identity, router, phase]);
 
   // Compte à rebours du verrouillage après 2 codes erronés.
   useEffect(() => {
@@ -144,7 +146,8 @@ export function OtpPage() {
   }, [identity]);
 
   /* ── Identifiant absent : écran neutre pendant la redirection ─────── */
-  if (identity === null) {
+  /* (sauf opening/ready : la session vient d’être validée puis vidée) */
+  if (identity === null && phase !== "opening" && phase !== "ready") {
     return (
       <div className="flex flex-1 items-center justify-center px-5 py-20">
         <p className="text-sm text-muted-foreground" role="status">

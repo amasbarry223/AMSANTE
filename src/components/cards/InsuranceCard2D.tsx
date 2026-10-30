@@ -40,9 +40,9 @@ export function InsuranceCard2D({
   const rY = useSpring(useTransform(mx, [-0.5, 0.5], [-6, 6]), { stiffness: 200, damping: 22 });
 
   const sizes = {
-    sm: "max-w-[300px] p-4 rounded-[16px]",
-    md: "max-w-[420px] p-6 rounded-[22px]",
-    lg: "max-w-[520px] p-7 rounded-[26px]",
+    sm: { root: "max-w-[300px]", face: "p-4 rounded-[16px]" },
+    md: { root: "max-w-[420px]", face: "p-6 rounded-[22px]" },
+    lg: { root: "max-w-[520px]", face: "p-7 rounded-[26px]" },
   };
 
   const handleMouse = (e: React.MouseEvent) => {
@@ -56,7 +56,7 @@ export function InsuranceCard2D({
   return (
     <div
       ref={ref}
-      className={cn("relative select-none [perspective:1200px]", className)}
+      className={cn("relative mx-auto w-full select-none [perspective:1200px]", sizes[size].root, className)}
       onMouseMove={handleMouse}
       onMouseLeave={() => {
         mx.set(0);
@@ -84,7 +84,7 @@ export function InsuranceCard2D({
           className={cn(
             "absolute inset-0 flex flex-col justify-between overflow-hidden text-sand-50 shadow-card [backface-visibility:hidden]",
             "bg-[linear-gradient(128deg,#12766F_0%,#0F5B57_38%,#0B1F1E_100%)] ring-1 ring-white/20",
-            sizes[size]
+            sizes[size].face
           )}
         >
           {/* texture bogolan + reflets */}
@@ -148,7 +148,7 @@ export function InsuranceCard2D({
           className={cn(
             "absolute inset-0 flex flex-col overflow-hidden text-sand-50 shadow-card [backface-visibility:hidden] [transform:rotateY(180deg)]",
             "bg-[linear-gradient(128deg,#0B1F1E_0%,#0F5B57_120%)] ring-1 ring-white/20",
-            sizes[size]
+            sizes[size].face
           )}
         >
           <div
