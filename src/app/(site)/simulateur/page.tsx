@@ -47,7 +47,7 @@ export default function SimulateurPage() {
       {/* CTA final : vers l'offre groupe */}
       <section className="container-ams pb-24 pt-10" aria-label="Offre pour les entreprises">
         <Reveal>
-          <div className="relative overflow-hidden rounded-[28px] bg-[linear-gradient(135deg,#0F5B57_0%,#0B1F1E_75%)] px-8 py-12 text-sand-50 shadow-card sm:px-12">
+          <div className="bg-panel-ink relative overflow-hidden rounded-[28px] px-8 py-12 text-sand-50 shadow-card sm:px-12">
             <BogolanTexture color="#E3F4F1" opacity={0.06} />
             <div className="relative flex flex-col items-start justify-between gap-6 lg:flex-row lg:items-center">
               <div>

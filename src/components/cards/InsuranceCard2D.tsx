@@ -17,7 +17,7 @@ import { duration as motionDuration, ease as motionEase } from "@/lib/motion/tok
 export function InsuranceCard2D({
   holderName = "Fatoumata Traoré",
   formula = "Confort",
-  cardCode = "AMSA-2025-8K4T",
+  cardCode = `AMSA-${new Date().getFullYear()}-8K4T`,
   validUntil,
   flipOnClick = true,
   tilt = true,

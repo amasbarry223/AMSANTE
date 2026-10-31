@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap, initGsap } from "@/lib/motion/gsap";
+import { duration as motionDuration } from "@/lib/motion/tokens";
 
 /**
  * Tracé au scroll : stroke-dashoffset animé (motifs bogolan, timelines).
@@ -11,7 +12,7 @@ import { gsap, initGsap } from "@/lib/motion/gsap";
 export function DrawPath({
   children,
   className,
-  duration = 1.4, // duration.story
+  duration = motionDuration.story,
   scrub = false,
   delay = 0,
 }: {

@@ -19,7 +19,8 @@ export default function SiteLayout({ children }: { children: ReactNode }) {
           Aller au contenu
         </a>
         <Navbar />
-        <main id="contenu" className="flex-1">
+        {/* pb-24 : espace pour le Dock flottant (mobile) — il est masqué près du footer et inutile en lg */}
+        <main id="contenu" className="flex-1 pb-24 lg:pb-0">
           {children}
         </main>
         <Dock />

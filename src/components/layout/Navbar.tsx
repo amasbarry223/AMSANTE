@@ -183,7 +183,7 @@ export function Navbar() {
               Se connecter
             </Link>
             <Magnetic strength={8}>
-              <Button asChild size="default" variant={dark ? "on-dark" : "default"} className="min-h-10">
+              <Button asChild size="default" variant={dark ? "on-dark" : "default"}>
                 <Link href="/simulateur">Simuler ma prime</Link>
               </Button>
             </Magnetic>
@@ -277,7 +277,7 @@ export function Navbar() {
                 { href: "/cabinets", label: "Cabinets" },
                 { href: "/aide", label: "Aide" },
                 { href: "/verifier", label: "Vérifier une carte" },
-              ].map((l) => (
+              ].map((l, index) => (
                 <motion.div
                   key={l.href}
                   variants={{
@@ -286,10 +286,10 @@ export function Navbar() {
                   }}
                 >
                   <Link
-                    ref={mobileFirstLinkRef}
+                    ref={index === 0 ? mobileFirstLinkRef : undefined}
                     href={l.href}
                     onClick={() => setMobileOpen(false)}
-                    className="flex items-center justify-between border-b border-white/8 py-4 font-display text-[22px] font-semibold"
+                    className="flex items-center justify-between border-b border-white/10 py-4 font-display text-[22px] font-semibold"
                   >
                     {l.label}
                     <ArrowRight className="size-5 opacity-40" />
@@ -303,7 +303,7 @@ export function Navbar() {
                   <Users className="size-4" /> Se connecter
                 </Link>
               </Button>
-              <p className="text-center text-[13px] text-sand-50/50">
+              <p className="text-center text-[13px] text-sand-50/65">
                 {/* TODO: remplacer par le numéro réel */}
                 Service client · <span className="tnum">+223 80 00 11 22</span>
               </p>

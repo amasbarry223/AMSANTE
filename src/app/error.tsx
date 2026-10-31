@@ -66,19 +66,19 @@ export default function Error({
         </p>
 
         {error?.digest ? (
-          <p className="mt-4 text-[12px] uppercase tracking-[0.14em] text-sand-50/40">
+          <p className="mt-4 text-[12px] uppercase tracking-[0.14em] text-sand-50/60">
             Référence&nbsp;: <span className="tnum">{error.digest}</span>
           </p>
         ) : null}
 
         <div className="mt-9 flex flex-col items-center gap-3.5 sm:flex-row">
           <Magnetic>
-            <Button onClick={reset} variant="on-dark" size="lg" className="min-h-11">
+            <Button onClick={reset} variant="on-dark" size="lg">
               <RefreshCw className="size-4" aria-hidden />
               Réessayer
             </Button>
           </Magnetic>
-          <Button asChild variant="outline-light" size="lg" className="min-h-12">
+          <Button asChild variant="outline-light" size="lg">
             <Link href="/aide">
               <Search className="size-4" aria-hidden />
               Contacter le support

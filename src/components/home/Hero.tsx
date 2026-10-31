@@ -24,7 +24,7 @@ const HeroScene = dynamic(
 const reassurance = [
   { icon: Smartphone, label: "Remboursé en Mobile Money" },
   { icon: Check, label: "Carte digitale immédiate" },
-  { icon: MapPin, label: "Réseau de soins à Bamako" },
+  { icon: MapPin, label: "Réseau de soins à Bamako et Kati" },
 ];
 
 export function Hero() {
@@ -143,12 +143,12 @@ export function Hero() {
               className="mt-8 flex flex-wrap items-center gap-3.5"
             >
               <Magnetic>
-                <Button asChild size="xl" variant="on-dark" className="min-h-12">
+                <Button asChild size="xl" variant="on-dark">
                   <Link href="/simulateur">Simuler ma prime</Link>
                 </Button>
               </Magnetic>
               <Magnetic strength={8}>
-                <Button asChild size="xl" variant="outline-light" className="min-h-12">
+                <Button asChild size="xl" variant="outline-light">
                   <Link href="/entreprises">
                     <Building2 className="size-4" /> Je suis une entreprise
                   </Link>

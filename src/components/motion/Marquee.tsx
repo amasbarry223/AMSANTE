@@ -20,7 +20,7 @@ export function Marquee({
   return (
     <div className={cn("group relative overflow-hidden", className)}>
       <div
-        className="flex w-max items-center gap-16 pr-16 motion-safe:animate-[marquee_var(--marquee-dur)_linear_infinite] group-hover:[animation-play-state:paused]"
+        className="flex w-max items-center motion-safe:animate-[marquee_var(--marquee-dur)_linear_infinite] group-hover:[animation-play-state:paused]"
         style={
           {
             "--marquee-dur": `${duration}s`,
@@ -28,8 +28,9 @@ export function Marquee({
           } as React.CSSProperties
         }
       >
-        {children}
-        {children}
+        <div className="flex items-center gap-16 pr-16">{children}</div>
+        {/* Le duplicata est masqué aux lecteurs d'écran : la boucle reste purement visuelle. */}
+        <div aria-hidden className="flex items-center gap-16 pr-16">{children}</div>
       </div>
       {/* Fondu latéral */}
       <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-background to-transparent" />

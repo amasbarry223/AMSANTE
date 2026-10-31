@@ -3,16 +3,17 @@
 import { Counter } from "@/components/motion/Counter";
 import { Eyebrow, Reveal } from "@/components/motion/Reveal";
 import { SplitHeading } from "@/components/motion/SplitHeading";
+import { STATS } from "@/data/stats";
 import { Lock, FileCheck2, Smartphone } from "lucide-react";
 
 /**
- * Chiffres et confiance : compteurs animés (placeholders marqués),
+ * Chiffres et confiance : compteurs animés (source unique src/data/stats.ts),
  * badges sécurité, zone témoignages prête (TODO visible en dev).
  */
 const stats = [
-  { value: 4200, suffix: "+", label: "assurés et leurs familles", note: "TODO: chiffre réel" },
-  { value: 72, suffix: " h", label: "délai moyen de remboursement", note: "TODO: à confirmer" },
-  { value: 97, suffix: " %", label: "de soins réglés sans avance", note: "TODO: à confirmer" },
+  { value: STATS.assureds, suffix: "+", label: "assurés et leurs familles", note: "TODO: chiffre réel" },
+  { value: STATS.reimbursementHours, suffix: " h", label: "délai moyen de remboursement", note: "TODO: à confirmer" },
+  { value: STATS.cashlessRate, suffix: " %", label: "de soins réglés sans avance", note: "TODO: à confirmer" },
   { value: 24, suffix: "/7", label: "assistance et urgences", note: "" },
 ];
 
@@ -70,10 +71,10 @@ export function StatsTrust() {
         {/* zone témoignages : volontairement vide pour l'instant */}
         <Reveal delay={0.1}>
           <div className="mt-6 rounded-[16px] border border-dashed border-white/15 bg-transparent p-8 text-center">
-            <p className="text-[13px] font-semibold uppercase tracking-[0.18em] text-sand-50/40">
+            <p className="text-[13px] font-semibold uppercase tracking-[0.18em] text-sand-50/60">
               Témoignages d&apos;assurés
             </p>
-            <p className="mx-auto mt-2 max-w-md text-[13.5px] text-sand-50/45">
+            <p className="mx-auto mt-2 max-w-md text-[13.5px] text-sand-50/65">
               {/* TODO: remplacer par de vrais témoignages validés — jamais de faux avis */}
               Espace réservé aux vrais témoignages. Aucun avis fictif n&apos;est affiché.
             </p>

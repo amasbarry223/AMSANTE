@@ -10,6 +10,7 @@ import { PrimaryCta } from "@/components/shared/PrimaryCta";
 import { Button } from "@/components/ui/button";
 import { InsuranceCard2D } from "@/components/cards/InsuranceCard2D";
 import { useSubscription } from "@/stores/subscription";
+import { getFormula } from "@/data/products";
 import { CONFIRM_SESSION_KEY } from "@/components/funnel/shared";
 import { toast } from "sonner";
 import { ease } from "@/lib/motion/tokens";
@@ -88,7 +89,9 @@ export function Confirmation() {
           saved.validUntil ??
           new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString(),
         holderName,
-        formulaName: saved.formulaName ?? "Confort",
+        // Jamais de fallback "Confort" en dur : le nom vient du store (la
+        // session peut être indisponible, le formule du store reste fiable).
+        formulaName: saved.formulaName ?? getFormula(s.formula).name,
         firstName: holderName.split(" ")[0] ?? "",
       });
 

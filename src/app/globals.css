@@ -22,6 +22,8 @@
   --color-sand-300: #ddd3bf;
   --color-ochre-500: #e07a3f;
   --color-ochre-100: #fbeadd;
+  --color-ochre-700: #9c4a1a;
+  --color-ochre-800: #6f3310;
   --color-success: #1f9d55;
   --color-warning: #d9a21b;
   --color-danger: #d64545;
@@ -184,7 +186,11 @@
     font-variant-numeric: tabular-nums;
     letter-spacing: -0.01em;
   }
-  /* Scrollbars élégantes */
+  /* Scrollbars élégantes (WebKit + Firefox) */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #c8cfc9 transparent;
+  }
   ::-webkit-scrollbar { width: 10px; height: 10px; }
   ::-webkit-scrollbar-track { background: transparent; }
   ::-webkit-scrollbar-thumb {
@@ -229,6 +235,11 @@
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+}
+
+/* Panneau CTA final : dégradé teal → ink (source unique, ex-5 copier-coller) */
+@utility bg-panel-ink {
+  background: linear-gradient(135deg, var(--color-teal-900) 0%, var(--color-ink) 75%);
 }
 
 /* Trait de soulignement animé des liens */

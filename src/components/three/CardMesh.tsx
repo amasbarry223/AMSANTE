@@ -14,7 +14,7 @@ import { heroState } from "./heroState";
  */
 export function CardMesh({
   source = "hero",
-  cardCode = "AMSA-2025-8K4T",
+  cardCode = `AMSA-${new Date().getFullYear()}-8K4T`,
   holder = "Fatoumata Traoré",
   formula = "Confort",
   scale = 1,

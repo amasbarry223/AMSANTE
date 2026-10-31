@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { BarChart3, CalendarClock, FileSignature, ListChecks, TrendingDown, UserPlus, UsersRound } from "lucide-react";
 import { faq } from "@/data/faq";
+import { STATS } from "@/data/stats";
 import { Reveal, StaggerContainer, StaggerItem, Eyebrow } from "@/components/motion/Reveal";
 import { SplitHeading } from "@/components/motion/SplitHeading";
 import { DrawPath } from "@/components/motion/DrawPath";
@@ -104,7 +105,7 @@ export default function EntreprisesPage() {
       </section>
 
       {/* ── Bénéfices ─────────────────────────────────────────────── */}
-      <section className="container-ams py-20 sm:py-24" aria-label="Vos bénéfices">
+      <section className="container-ams py-24 sm:py-32" aria-label="Vos bénéfices">
         <Reveal>
           <Eyebrow>Ce que vous y gagnez</Eyebrow>
         </Reveal>
@@ -130,7 +131,7 @@ export default function EntreprisesPage() {
       </section>
 
       {/* ── Mise en place ─────────────────────────────────────────── */}
-      <section className="bg-white py-20 sm:py-24" aria-label="Comment se passe la mise en place">
+      <section className="bg-white py-24 sm:py-32" aria-label="Comment se passe la mise en place">
         <div className="container-ams">
           <Reveal>
             <Eyebrow>Mise en place</Eyebrow>
@@ -174,28 +175,28 @@ export default function EntreprisesPage() {
       </section>
 
       {/* ── Chiffres groupe ───────────────────────────────────────── */}
-      <section className="bg-ink py-20 text-sand-50 sm:py-24" aria-label="AMSANTÉ en chiffres">
+      <section className="bg-ink py-24 text-sand-50 sm:py-32" aria-label="AMSANTÉ en chiffres">
         <div className="container-ams">
           <Reveal>
             <Eyebrow tone="light">Le dispositif groupe</Eyebrow>
           </Reveal>
-          {/* TODO: remplacer par les chiffres réels du portefeuille entreprises AMSANTÉ (placeholders). */}
+          {/* TODO: remplacer par les chiffres réels du portefeuille entreprises AMSANTÉ — source : src/data/stats.ts */}
           <div className="mt-10 grid gap-8 sm:grid-cols-3">
             <Reveal>
               <p className="font-display text-[clamp(2.4rem,5vw,3.6rem)] font-bold text-teal-300">
-                <Counter value={120} format="number" />
+                <Counter value={STATS.companies} format="number" />
               </p>
               <p className="mt-1 text-[14.5px] text-teal-100/75">entreprises accompagnées</p>
             </Reveal>
             <Reveal delay={0.08}>
               <p className="font-display text-[clamp(2.4rem,5vw,3.6rem)] font-bold text-teal-300">
-                <Counter value={8500} format="number" />
+                <Counter value={STATS.groupMembers} format="number" />
               </p>
               <p className="mt-1 text-[14.5px] text-teal-100/75">salariés et ayants droit couverts</p>
             </Reveal>
             <Reveal delay={0.16}>
               <p className="font-display text-[clamp(2.4rem,5vw,3.6rem)] font-bold text-teal-300">
-                <Counter value={5} format="number" />
+                <Counter value={STATS.groupActivationDays} format="number" />
               </p>
               <p className="mt-1 text-[14.5px] text-teal-100/75">jours pour activer un dispositif complet</p>
             </Reveal>
@@ -204,7 +205,7 @@ export default function EntreprisesPage() {
       </section>
 
       {/* ── FAQ entreprise ────────────────────────────────────────── */}
-      <section className="container-ams py-20 sm:py-24" aria-label="Questions fréquentes entreprises">
+      <section className="container-ams py-24 sm:py-32" aria-label="Questions fréquentes entreprises">
         <div className="mx-auto max-w-3xl">
           <Reveal>
             <Eyebrow>Questions fréquentes</Eyebrow>
@@ -213,7 +214,7 @@ export default function EntreprisesPage() {
             Vous vous demandez sûrement…
           </SplitHeading>
           <Reveal delay={0.1} className="mt-8">
-            <Accordion type="single" collapsible className="rounded-[16px] border border-sand-200 bg-white px-5 shadow-soft">
+            <Accordion type="single" collapsible className="rounded-[24px] border border-sand-200 bg-white px-6 shadow-soft">
               {b2bFaq.map((f, i) => (
                 <AccordionItem key={f.id} value={f.id} className={i === b2bFaq.length - 1 ? "border-b-0" : undefined}>
                   <AccordionTrigger className="py-5 text-left text-[15.5px] font-semibold hover:no-underline">
@@ -232,7 +233,7 @@ export default function EntreprisesPage() {
       {/* ── CTA final ─────────────────────────────────────────────── */}
       <section className="container-ams pb-24" aria-label="Demander un devis">
         <Reveal>
-          <div className="relative overflow-hidden rounded-[28px] bg-[linear-gradient(135deg,#0F5B57_0%,#0B1F1E_75%)] px-8 py-14 text-center text-sand-50 shadow-card sm:px-14">
+          <div className="bg-panel-ink relative overflow-hidden rounded-[28px] px-8 py-14 text-center text-sand-50 shadow-card sm:px-14">
             <BogolanTexture color="#E3F4F1" opacity={0.06} />
             <div aria-hidden className="absolute -left-24 -top-24 size-80 rounded-full bg-teal-500/20 blur-3xl" />
             <div className="relative mx-auto max-w-2xl">

@@ -19,9 +19,12 @@ import type { CoverageType, FormulaId } from "@/data/types";
 
 const coverages: { id: CoverageType; label: string }[] = [
   { id: "seul", label: "Seul·e" },
-  { id: "couple", label: "En couple" },
-  { id: "famille", label: "En famille" },
+  { id: "couple", label: "Couple" },
+  { id: "famille", label: "Famille" },
 ];
+
+/** Formule mise en avant — source unique data/products.ts (jamais codée en dur). */
+const POPULAR = products.find((p) => p.popular) ?? products[0];
 
 /** Avatars enfants simulés. */
 function ChildAvatar({ index, onRemove }: { index: number; onRemove: () => void }) {
@@ -96,7 +99,7 @@ export function ExpressSimulator() {
     router.push("/souscrire");
   };
 
-  const go = () => prefillAndGo("confort");
+  const go = () => prefillAndGo(POPULAR.id);
 
   return (
     <section className="relative overflow-hidden py-24 sm:py-32" aria-label="Simulateur express">
@@ -129,7 +132,7 @@ export function ExpressSimulator() {
                       onClick={() => setCoverage(c.id)}
                       aria-pressed={coverage === c.id}
                       className={cn(
-                        "relative flex-1 rounded-full px-3 py-2.5 text-[13px] font-semibold transition-colors",
+                        "relative min-h-11 flex-1 rounded-full px-3 text-[13px] font-semibold transition-colors",
                         coverage === c.id ? "text-sand-50" : "text-muted-foreground hover:text-ink"
                       )}
                     >
@@ -217,7 +220,7 @@ export function ExpressSimulator() {
               <Reveal key={p.id} delay={i * 0.07}>
                 <div
                   className={cn(
-                    "relative flex h-full flex-col rounded-[16px] border bg-white p-6 transition-all hover:-translate-y-1 hover:shadow-lift",
+                    "relative flex h-full flex-col rounded-[24px] border bg-white p-6 transition-all hover:-translate-y-1 hover:shadow-lift sm:p-8",
                     p.popular ? "border-teal-500 shadow-soft ring-1 ring-teal-500/30" : "border-sand-200"
                   )}
                 >
@@ -241,7 +244,7 @@ export function ExpressSimulator() {
                   </ul>
                   {p.popular ? (
                     <Button onClick={go} className="mt-6 w-full" size="lg">
-                      Continuer avec Confort <ArrowRight className="size-4" />
+                      Continuer avec {POPULAR.name} <ArrowRight className="size-4" />
                     </Button>
                   ) : (
                     <Button onClick={() => prefillAndGo(p.id)} variant="outline" className="mt-6 w-full" size="lg">

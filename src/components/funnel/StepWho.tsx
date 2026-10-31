@@ -28,8 +28,8 @@ const COVERAGE_OPTIONS: {
   icon: LucideIcon;
 }[] = [
   { id: "seul", label: "Seul·e", desc: "Une carte, pour moi.", icon: User },
-  { id: "couple", label: "En couple", desc: "Moi et mon conjoint·e.", icon: Heart },
-  { id: "famille", label: "En famille", desc: "Conjoint·e + jusqu'à 6 enfants.", icon: Users },
+  { id: "couple", label: "Couple", desc: "Moi et mon conjoint·e.", icon: Heart },
+  { id: "famille", label: "Famille", desc: "Conjoint·e + jusqu'à 6 enfants.", icon: Users },
 ];
 
 const AVATAR_TONES = ["bg-teal-500", "bg-ochre-500", "bg-teal-700", "bg-ink-soft", "bg-warning", "bg-teal-300"];

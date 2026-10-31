@@ -125,7 +125,7 @@ export function Footer() {
         </div>
 
         {/* mention réglementaire */}
-        <div className="border-t border-white/10 py-6 text-[12px] leading-relaxed text-sand-50/45">
+        <div className="border-t border-white/10 py-6 text-[12px] leading-relaxed text-sand-50/65">
           <p>
             AMSANTÉ est une plateforme opérée par un cabinet de courtage d&apos;assurance agréé au
             Mali — {/* TODO: remplacer par le vrai n° d'agrément */} Agrément n° XXXX-XXXX (à

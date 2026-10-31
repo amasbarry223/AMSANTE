@@ -63,7 +63,7 @@ export default function DevenirPartenairePage() {
       </section>
 
       {/* Avantages */}
-      <section aria-label="Vos avantages" className="py-16 sm:py-24">
+      <section aria-label="Vos avantages" className="py-24 sm:py-32">
         <div className="container-ams">
           <StaggerContainer className="grid gap-5 md:grid-cols-3">
             {ADVANTAGES.map((a) => (
@@ -115,7 +115,7 @@ export default function DevenirPartenairePage() {
       </section>
 
       {/* Formulaire de candidature */}
-      <section aria-label="Formulaire de candidature" className="bg-sand-100/60 py-16 sm:py-24">
+      <section aria-label="Formulaire de candidature" className="bg-sand-100/60 py-24 sm:py-32">
         <div className="container-ams">
           <Reveal>
             <div className="mx-auto max-w-2xl text-center">

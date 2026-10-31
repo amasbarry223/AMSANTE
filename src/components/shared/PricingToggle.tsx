@@ -11,11 +11,13 @@ import { DemoModal } from "@/components/shared/DemoModal";
 import { Button } from "@/components/ui/button";
 
 /* TODO: grille tarifaire SaaS à confirmer par l'équipe commerciale
-   (les montants ci-dessous sont des valeurs de travail). */
+   (les montants ci-dessous sont des valeurs de travail).
+   NB : les noms de plans SaaS sont volontairement distincts des formules
+   d'assurance (Essentiel/Confort/Premium) pour éviter toute confusion. */
 const plans = [
   {
-    id: "essentiel",
-    name: "Essentiel",
+    id: "bureau",
+    name: "Bureau",
     monthly: 75000,
     description: "Pour digitaliser le quotidien : assurés, contrats et sinistres.",
     features: [
@@ -28,12 +30,12 @@ const plans = [
     onQuote: false,
   },
   {
-    id: "professionnel",
-    name: "Professionnel",
+    id: "cabinet",
+    name: "Cabinet",
     monthly: 200000,
     description: "Pour les cabinets qui encaissent et pilotent la croissance.",
     features: [
-      "Tout Essentiel, plus :",
+      "Tout Bureau, plus :",
       "Encaissement Mobile Money intégré",
       "Commissions automatiques (apporteurs)",
       "Reporting exportable (CSV, PDF)",
@@ -43,12 +45,12 @@ const plans = [
     onQuote: false,
   },
   {
-    id: "entreprise",
-    name: "Entreprise",
+    id: "reseau",
+    name: "Réseau",
     monthly: null,
     description: "Pour les groupes multi-sites et les intégrations sur mesure.",
     features: [
-      "Tout Professionnel, plus :",
+      "Tout Cabinet, plus :",
       "Intégration à votre système existant (API)",
       "Multi-cabinets et rôles avancés",
       "Accompagnement dédié",
@@ -118,7 +120,7 @@ export function PricingToggle() {
             <div
               key={plan.id}
               className={cn(
-                "flex flex-col rounded-[24px] border bg-white p-7 shadow-soft transition-all hover:-translate-y-1 hover:shadow-lift sm:p-8",
+                "flex flex-col rounded-[24px] border bg-white p-6 shadow-soft transition-all hover:-translate-y-1 hover:shadow-lift sm:p-8",
                 plan.popular ? "border-teal-700/40 ring-1 ring-teal-700/30" : "border-sand-200"
               )}
             >

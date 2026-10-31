@@ -51,7 +51,7 @@ const steps = [
   {
     icon: Wallet,
     title: "Je suis remboursé en Mobile Money",
-    text: "Le remboursement arrive directement sur votre compte Orange Money, Moov Money ou Wave — en général sous 72 heures après validation du dossier. Pas de chèque, pas de file d'attente.",
+    text: "Le remboursement arrive directement sur votre compte Orange Money, Moov Africa Money ou Wave — en général sous 72 heures après validation du dossier. Pas de chèque, pas de file d'attente.",
   },
 ];
 
@@ -61,7 +61,7 @@ const operators = [
     className: "bg-ochre-500 text-sand-50",
   },
   {
-    name: "Moov Money",
+    name: "Moov Africa Money",
     className: "bg-teal-700 text-sand-50",
   },
   {
@@ -233,7 +233,7 @@ export default function CommentCaMarchePage() {
 
           <StaggerContainer className="mt-12 grid gap-5 md:grid-cols-3">
             <StaggerItem>
-              <div className="h-full rounded-[24px] border border-white/10 bg-white/5 p-7 shadow-card backdrop-blur-sm">
+              <div className="h-full rounded-[16px] border border-white/10 bg-white/5 p-6 shadow-card backdrop-blur-sm">
                 <h3 className="font-display text-[18px] font-bold text-sand-50">
                   Qu&apos;est-ce que le tiers payant ?
                 </h3>
@@ -245,7 +245,7 @@ export default function CommentCaMarchePage() {
               </div>
             </StaggerItem>
             <StaggerItem>
-              <div className="h-full rounded-[24px] border border-white/10 bg-white/5 p-7 shadow-card backdrop-blur-sm">
+              <div className="h-full rounded-[16px] border border-white/10 bg-white/5 p-6 shadow-card backdrop-blur-sm">
                 <h3 className="font-display text-[18px] font-bold text-sand-50">
                   Ce que vous ne payez pas
                 </h3>
@@ -257,7 +257,7 @@ export default function CommentCaMarchePage() {
               </div>
             </StaggerItem>
             <StaggerItem>
-              <div className="h-full rounded-[24px] border border-white/10 bg-white/5 p-7 shadow-card backdrop-blur-sm">
+              <div className="h-full rounded-[16px] border border-white/10 bg-white/5 p-6 shadow-card backdrop-blur-sm">
                 <h3 className="font-display text-[18px] font-bold text-sand-50">
                   Le reste à charge
                 </h3>
@@ -326,7 +326,7 @@ export default function CommentCaMarchePage() {
       {/* ─────────────────────────── CTA final ─────────────────────────── */}
       <section className="container-ams pb-28" aria-label="Passer à l'action">
         <Reveal>
-          <div className="relative overflow-hidden rounded-[28px] bg-[linear-gradient(135deg,#0F5B57_0%,#0B1F1E_75%)] px-8 py-16 text-sand-50 shadow-card sm:px-14 sm:py-20">
+          <div className="bg-panel-ink relative overflow-hidden rounded-[28px] px-8 py-16 text-sand-50 shadow-card sm:px-14 sm:py-20">
             <BogolanTexture color="#E3F4F1" opacity={0.06} />
             <div aria-hidden className="absolute -right-24 -top-24 size-96 rounded-full bg-teal-500/20 blur-3xl" />
             <div className="relative max-w-2xl">
@@ -344,7 +344,7 @@ export default function CommentCaMarchePage() {
                 <PrimaryCta href="/souscrire" variant="on-dark" size="xl">
                   Souscrire maintenant <ArrowRight className="size-4" aria-hidden />
                 </PrimaryCta>
-                <Button asChild size="xl" variant="outline-light" className="min-h-13">
+                <Button asChild size="xl" variant="outline-light">
                   <Link href="/assurance-sante">Voir les formules</Link>
                 </Button>
               </div>

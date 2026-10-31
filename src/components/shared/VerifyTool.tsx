@@ -99,7 +99,7 @@ export function VerifyTool() {
                 size="lg"
                 className="min-h-12"
                 disabled={phase === "verifying"}
-                onClick={() => void runVerify("AMSA-2025-8K4T")}
+                onClick={() => void runVerify(`AMSA-${new Date().getFullYear()}-8K4T`)}
               >
                 <QrCode className="size-4" aria-hidden />
                 Simuler un scan

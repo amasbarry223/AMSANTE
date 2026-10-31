@@ -402,19 +402,31 @@ export function OtpPage() {
               carte, remboursements et proches vous y attendent.
             </p>
             {/* TODO: remplacer par la vraie APP_URL de l'espace client.
-               Si l'utilisateur vient d'un CTA « ?redirect=… », la route est préservée. */}
-            <Button asChild size="lg" className="mt-7 min-h-12 w-full">
-              <a
-                href={`https://app.amsante.ml${redirectTarget ?? ""}`}
-                target="_blank"
-                rel="noreferrer"
-              >
-                Continuer vers mon espace
-              </a>
-            </Button>
-            <p className="mt-4 text-[12px] text-muted-foreground/80">
-              Environnement de démonstration — l’ouverture se fera sur app.amsante.ml.
-            </p>
+               Si l'utilisateur vient d'un CTA « ?redirect=… » (ex. déclarer un
+               remboursement), l'espace n'existe pas encore : on l'oriente vers la
+               procédure interne au lieu d'une 404 externe. */}
+            {redirectTarget ? (
+              <>
+                <Button asChild size="lg" className="mt-7 min-h-12 w-full">
+                  <Link href="/aide#sinistres">Voir la procédure de déclaration</Link>
+                </Button>
+                <p className="mt-4 text-[12px] leading-relaxed text-muted-foreground/80">
+                  Environnement de démonstration — l’espace assuré ouvre bientôt. En
+                  attendant, suivez la procédure de déclaration sur WhatsApp.
+                </p>
+              </>
+            ) : (
+              <>
+                <Button asChild size="lg" className="mt-7 min-h-12 w-full">
+                  <a href="https://app.amsante.ml" target="_blank" rel="noreferrer">
+                    Continuer vers mon espace
+                  </a>
+                </Button>
+                <p className="mt-4 text-[12px] text-muted-foreground/80">
+                  Environnement de démonstration — l’ouverture se fera sur app.amsante.ml.
+                </p>
+              </>
+            )}
           </motion.div>
         )}
       </AnimatePresence>

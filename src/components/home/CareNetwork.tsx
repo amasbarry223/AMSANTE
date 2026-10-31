@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { MapPin, Navigation, Phone } from "lucide-react";
@@ -28,7 +28,7 @@ const typeColors: Record<string, string> = {
  */
 export function CareNetwork() {
   const [hovered, setHovered] = useState<Provider | null>(null);
-  const shown = useMemo(() => providers.slice(0, 14), []);
+  // Les 18 prestataires sont tous tracés : le compteur affiché correspond au nombre de points.
 
   return (
     <section className="py-24 sm:py-32" aria-label="Réseau de soins">
@@ -104,7 +104,7 @@ export function CareNetwork() {
                 <circle cx="12" cy="14" r="8" />
               </g>
               {/* points prestataires */}
-              {shown.map((p) => (
+              {providers.map((p) => (
                 <g
                   key={p.id}
                   transform={`translate(${p.x} ${p.y})`}

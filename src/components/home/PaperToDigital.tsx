@@ -6,6 +6,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Check, Bell, QrCode, Smartphone, Calculator, BadgeCheck } from "lucide-react";
 import { gsap, initGsap, ScrollTrigger } from "@/lib/motion/gsap";
 import { duration, ease } from "@/lib/motion/tokens";
+import { quote } from "@/lib/pricing";
+import { formatFcfa } from "@/lib/utils/format";
 import { Eyebrow, Reveal } from "@/components/motion/Reveal";
 import { SplitHeading } from "@/components/motion/SplitHeading";
 import { cn } from "@/lib/utils";
@@ -37,9 +39,18 @@ const steps = [
     id: 4,
     icon: Bell,
     title: "Je suis remboursé en Mobile Money",
-    text: "Pour les soins hors tiers payant, le remboursement tombe sur votre Orange Money, Moov Money ou Wave — sous 72 h en moyenne.",
+    text: "Pour les soins hors tiers payant, le remboursement tombe sur votre Orange Money, Moov Africa Money ou Wave — sous 72 h en moyenne.",
   },
 ];
+
+/** Montant du mock calculé par le moteur réel (mêmes données que le simulateur express). */
+const MOCK_MONTHLY = quote({
+  coverage: "famille",
+  children: 2,
+  age: 32,
+  formula: "confort",
+  frequency: "mensuel",
+}).monthly;
 
 /** Maquettes d'interface (mocks purement décoratifs). */
 function Panel({ index }: { index: number }) {
@@ -57,7 +68,7 @@ function Panel({ index }: { index: number }) {
           <div className="rounded-xl border border-sand-200 bg-white p-3">
             <div className="flex items-center justify-between text-[12px]">
               <span className="text-muted-foreground">2 adultes · 2 enfants</span>
-              <span className="tnum font-bold text-teal-900">27 400 FCFA/mois</span>
+              <span className="tnum font-bold text-teal-900">{formatFcfa(MOCK_MONTHLY)}/mois</span>
             </div>
             <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-sand-200">
               <div className="h-full w-[68%] rounded-full bg-teal-500" />
@@ -81,7 +92,7 @@ function Panel({ index }: { index: number }) {
             <div className="mt-2 rounded-lg bg-[linear-gradient(128deg,#12766F,#0B1F1E)] p-2.5 text-white">
               <div className="flex justify-between items-center">
                 <span className="text-[9px] font-bold">AMSANTÉ</span>
-                <span className="tnum text-[8px] opacity-80">AMSA-2025-8K4T</span>
+                <span className="tnum text-[8px] opacity-80">AMSA-{new Date().getFullYear()}-8K4T</span>
               </div>
               <p className="mt-4 text-[10px] font-semibold uppercase">F. Traoré</p>
               <div className="mt-1 flex justify-between items-center">
@@ -216,9 +227,19 @@ export function PaperToDigital() {
                     >
                       <s.icon className="size-[18px]" />
                     </span>
-                    <div className={cn("transition-opacity duration-300", i === active ? "opacity-100" : "opacity-45")}>
-                      <p className="font-display text-[17px] font-semibold">{s.title}</p>
-                      <p className="mt-1 max-w-[440px] text-[14px] leading-relaxed text-sand-50/60">{s.text}</p>
+                    <div>
+                      <p className={cn(
+                        "font-display text-[17px] font-semibold transition-colors duration-300",
+                        i === active ? "text-sand-50" : "text-sand-50/60"
+                      )}>
+                        {s.title}
+                      </p>
+                      <p className={cn(
+                        "mt-1 max-w-[440px] text-[14px] leading-relaxed transition-colors duration-300",
+                        i === active ? "text-sand-50/80" : "text-sand-50/60"
+                      )}>
+                        {s.text}
+                      </p>
                     </div>
                   </li>
                 ))}

@@ -26,8 +26,8 @@ import { cn } from "@/lib/utils";
 
 const COVERAGES: { id: CoverageType; label: string }[] = [
   { id: "seul", label: "Seul·e" },
-  { id: "couple", label: "En couple" },
-  { id: "famille", label: "En famille" },
+  { id: "couple", label: "Couple" },
+  { id: "famille", label: "Famille" },
 ];
 
 const FREQUENCIES: { id: BillingFrequency; label: string }[] = [
@@ -211,7 +211,7 @@ export function SimulatorPanel() {
               viewport={{ once: true, margin: "0px 0px -10% 0px" }}
               transition={{ duration: duration.base, ease: ease.out, delay: i * 0.07 }}
               className={cn(
-                "relative flex h-full flex-col rounded-[16px] border bg-white p-6 transition-all hover:-translate-y-1 hover:shadow-lift",
+                "relative flex h-full flex-col rounded-[24px] border bg-white p-6 transition-all hover:-translate-y-1 hover:shadow-lift sm:p-8",
                 p.popular ? "border-teal-500 shadow-soft ring-1 ring-teal-500/30" : "border-sand-200"
               )}
             >

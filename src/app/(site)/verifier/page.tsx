@@ -48,7 +48,7 @@ export default function VerifierPage() {
       </section>
 
       {/* Outil */}
-      <section aria-label="Outil de vérification" className="py-14 sm:py-20">
+      <section aria-label="Outil de vérification" className="py-24 sm:py-32">
         <div className="container-ams">
           <VerifyTool />
 

@@ -31,7 +31,7 @@ const panels = [
     benefits: ["Devis groupe sous 24 h ouvrées", "Gestion des ayants droit simplifiée", "Reporting clair pour la direction"],
     href: "/entreprises/devis",
     cta: "Demander un devis groupe",
-    accent: "from-ochre-500 to-ochre-500/70",
+    accent: "from-ochre-700 to-ochre-800",
     illustration: "team",
   },
   {
@@ -91,8 +91,7 @@ export function ForWho() {
           </div>
           <div
             ref={trackRef}
-            className="flex flex-col gap-5 lg:flex-row lg:gap-7"
-            style={{ width: "max-content" }}
+            className="flex flex-col gap-5 lg:w-max lg:flex-row lg:gap-7"
           >
             {panels.map((p) => (
               <article
@@ -123,7 +122,7 @@ export function ForWho() {
                   {p.illustration === "card" && (
                     <div className="absolute right-2 top-0 w-64 rotate-6 rounded-2xl bg-white/10 p-3 ring-1 ring-white/25 backdrop-blur-sm">
                       <div className="flex items-center justify-between text-[10px] font-bold tracking-widest">
-                        <span>AMSANTÉ</span><span className="tnum opacity-70">AMSA-2025</span>
+                        <span>AMSANTÉ</span><span className="tnum opacity-70">AMSA-{new Date().getFullYear()}</span>
                       </div>
                       <div className="mt-8 flex items-end justify-between">
                         <span className="text-[11px] font-semibold uppercase tracking-wider">F. Traoré</span>

@@ -157,7 +157,7 @@ const legalDocs: Record<string, LegalDoc> = {
       {
         title: "Primes et paiement",
         paragraphs: [
-          "Les primes sont payables par Mobile Money (Orange Money, Moov Money, Wave), au choix mensuel, trimestriel ou annuel. Les remises éventuelles (−2 % trimestriel, −5 % annuel) s'appliquent automatiquement au moment du paiement.",
+          "Les primes sont payables par Mobile Money (Orange Money, Moov Africa Money, Wave), au choix mensuel, trimestriel ou annuel. Les remises éventuelles (−2 % trimestriel, −5 % annuel) s'appliquent automatiquement au moment du paiement.",
           "Un impayé peut entraîner la suspension des garanties puis, après mise en demeure restée sans effet, la résiliation du contrat, selon les conditions prévues au contrat d'assurance.",
         ],
       },

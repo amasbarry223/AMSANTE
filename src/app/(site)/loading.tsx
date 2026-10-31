@@ -17,7 +17,7 @@ export default function SiteLoading() {
           A
         </span>
       </span>
-      <p className="text-[13px] font-semibold uppercase tracking-[0.18em] text-ink/40">
+      <p className="text-[13px] font-semibold uppercase tracking-[0.18em] text-ink/60">
         Chargement…
       </p>
     </div>

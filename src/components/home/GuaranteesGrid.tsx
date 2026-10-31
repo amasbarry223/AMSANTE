@@ -11,7 +11,7 @@ import type { FormulaId } from "@/data/types";
 import { formatFcfa } from "@/lib/utils/format";
 import { Eyebrow, Reveal } from "@/components/motion/Reveal";
 import { SplitHeading } from "@/components/motion/SplitHeading";
-import { duration, ease } from "@/lib/motion/tokens";
+import { duration, ease, cardHover } from "@/lib/motion/tokens";
 import { cn } from "@/lib/utils";
 
 const icons: Record<string, React.ElementType> = {
@@ -47,7 +47,7 @@ export function GuaranteesGrid() {
                   onClick={() => setFormula(p.id)}
                   aria-pressed={formula === p.id}
                   className={cn(
-                    "relative rounded-full px-5 py-2.5 text-[13.5px] font-semibold transition-colors",
+                    "relative min-h-11 rounded-full px-5 text-[13.5px] font-semibold transition-colors",
                     formula === p.id ? "text-sand-50" : "text-muted-foreground hover:text-ink"
                   )}
                 >
@@ -74,7 +74,7 @@ export function GuaranteesGrid() {
               <div key={g.key}>
                 <motion.div
                   layout
-                  whileHover={{ y: -4 }}
+                  whileHover={cardHover}
                   transition={{ duration: duration.fast, ease: ease.out }}
                   className="group relative min-h-[148px] cursor-default overflow-hidden rounded-[16px] border border-sand-200 bg-white p-4 transition-shadow hover:shadow-lift hover:ring-1 hover:ring-teal-500/40 focus-within:ring-1 focus-within:ring-teal-500/40"
                   tabIndex={0}

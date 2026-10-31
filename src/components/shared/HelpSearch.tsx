@@ -17,7 +17,7 @@ import {
 import { faq, faqCategories } from "@/data/faq";
 import { Eyebrow, Reveal } from "@/components/motion/Reveal";
 import { SplitHeading } from "@/components/motion/SplitHeading";
-import { duration, ease } from "@/lib/motion/tokens";
+import { duration, ease, cardHover } from "@/lib/motion/tokens";
 import { cn } from "@/lib/utils";
 import {
   Accordion,
@@ -204,7 +204,7 @@ export function HelpSearch() {
                     <Reveal key={cat} delay={i * 0.04}>
                       <motion.button
                         type="button"
-                        whileHover={{ y: -4 }}
+                        whileHover={cardHover}
                         whileTap={{ scale: 0.98 }}
                         transition={{ duration: duration.fast, ease: ease.out }}
                         onClick={() => setActiveCategory(selected ? null : cat)}

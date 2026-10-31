@@ -24,7 +24,7 @@ export const fr = {
     reinsurance: [
       "Remboursé en Mobile Money",
       "Carte digitale immédiate",
-      "Réseau de soins à Bamako",
+      "Réseau de soins à Bamako et Kati",
     ],
   },
   dock: {

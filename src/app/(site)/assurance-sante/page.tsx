@@ -88,7 +88,7 @@ export default function AssuranceSantePage() {
                 <StaggerItem key={p.id} className="h-full">
                   <div
                     className={cn(
-                      "flex h-full flex-col rounded-[24px] border bg-white p-7 shadow-soft transition-shadow hover:shadow-lift sm:p-8",
+                      "flex h-full flex-col rounded-[24px] border bg-white p-6 shadow-soft transition-shadow hover:shadow-lift sm:p-8",
                       featured ? "border-teal-700/40 ring-1 ring-teal-700/30" : "border-sand-200"
                     )}
                   >
@@ -127,13 +127,13 @@ export default function AssuranceSantePage() {
 
                     <div className="mt-8 flex-1" aria-hidden />
 
-                    {featured ? (
-                      <PrimaryCta href="/souscrire" className="w-full justify-center">
-                        Souscrire à Confort <ArrowRight className="size-4" />
-                      </PrimaryCta>
-                    ) : (
-                      <ChooseFormulaButton formulaId={p.id} label={`Choisir ${p.name}`} />
-                    )}
+                    {/* Le CTA passe TOUJOURS par ChooseFormulaButton : la formule
+                        pré-remplie dans le tunnel correspond au libellé affiché. */}
+                    <ChooseFormulaButton
+                      formulaId={p.id}
+                      label={`Souscrire à ${p.name}`}
+                      variant={featured ? "default" : "outline"}
+                    />
                   </div>
                 </StaggerItem>
               );
@@ -336,7 +336,7 @@ export default function AssuranceSantePage() {
                       {freq === "trimestriel" &&
                         "Un peu d'économie et moins d'oublis : une seule démarche tous les trois mois."}
                       {freq === "annuel" &&
-                        "La meilleure offre : une année entière couverte, deux mois d'économie au passage."}
+                        "La meilleure offre : une année entière couverte, 5 % d'économie au passage."}
                     </p>
                   </div>
                 </StaggerItem>
@@ -435,7 +435,7 @@ export default function AssuranceSantePage() {
       {/* ─────────────────────────── CTA final ─────────────────────────── */}
       <section className="container-ams pb-28" aria-label="Simuler ma prime">
         <Reveal>
-          <div className="relative overflow-hidden rounded-[28px] bg-[linear-gradient(135deg,#0F5B57_0%,#0B1F1E_75%)] px-8 py-16 text-sand-50 shadow-card sm:px-14 sm:py-20">
+          <div className="bg-panel-ink relative overflow-hidden rounded-[28px] px-8 py-16 text-sand-50 shadow-card sm:px-14 sm:py-20">
             <BogolanTexture color="#E3F4F1" opacity={0.06} />
             <div aria-hidden className="absolute -right-24 -top-24 size-96 rounded-full bg-teal-500/20 blur-3xl" />
             <div className="relative max-w-2xl">
@@ -453,7 +453,7 @@ export default function AssuranceSantePage() {
                 <PrimaryCta href="/simulateur" variant="on-dark" size="xl">
                   Simuler ma prime <ArrowRight className="size-4" aria-hidden />
                 </PrimaryCta>
-                <Button asChild size="xl" variant="outline-light" className="min-h-13">
+                <Button asChild size="xl" variant="outline-light">
                   <Link href="/comment-ca-marche">Comprendre le parcours</Link>
                 </Button>
               </div>

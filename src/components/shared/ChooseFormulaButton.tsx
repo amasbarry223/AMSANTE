@@ -9,13 +9,16 @@ import type { FormulaId } from "@/data/types";
  * CTA « Choisir {formule} » : pré-sélectionne la formule dans le store du
  * tunnel (flag session anti-écrasement) puis navigue vers /souscrire —
  * ainsi le libellé du bouton correspond toujours à l'état du tunnel.
+ * `variant="default"` (plein) pour la carte mise en avant, `outline` sinon.
  */
 export function ChooseFormulaButton({
   formulaId,
   label,
+  variant = "outline",
 }: {
   formulaId: FormulaId;
   label: string;
+  variant?: "default" | "outline";
 }) {
   const router = useRouter();
 
@@ -40,7 +43,7 @@ export function ChooseFormulaButton({
   }
 
   return (
-    <Button onClick={choose} variant="outline" size="lg" className="w-full">
+    <Button onClick={choose} variant={variant} size="lg" className="w-full">
       {label}
     </Button>
   );

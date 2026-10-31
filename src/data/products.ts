@@ -1,4 +1,4 @@
-import type { Formula, FormulaId } from "./types";
+import type { BillingFrequency, Formula, FormulaId } from "./types";
 
 /**
  * Formules AMSANTÉ — données mock.
@@ -30,7 +30,7 @@ export const products: Formula[] = [
     highlights: [
       "Maternité suivie de A à Z",
       "Dentaire et optique inclus",
-      "Plafonds doublés vs Essentiel",
+      "Plafonds au moins doublés vs Essentiel",
     ],
     popular: true,
   },
@@ -56,20 +56,20 @@ export function getFormula(id: FormulaId): Formula {
   return f;
 }
 
-export const frequencyDiscount: Record<string, number> = {
+export const frequencyDiscount: Record<BillingFrequency, number> = {
   mensuel: 0,
   trimestriel: 0.02,
   annuel: 0.05,
 };
 
-export const frequencyLabel: Record<string, string> = {
+export const frequencyLabel: Record<BillingFrequency, string> = {
   mensuel: "par mois",
   trimestriel: "par trimestre",
   annuel: "par an",
 };
 
 /** Multiplicateur de fréquence (prime de la période). */
-export const frequencyMultiplier: Record<string, number> = {
+export const frequencyMultiplier: Record<BillingFrequency, number> = {
   mensuel: 1,
   trimestriel: 3,
   annuel: 12,

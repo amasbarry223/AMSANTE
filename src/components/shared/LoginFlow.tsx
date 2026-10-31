@@ -88,13 +88,17 @@ export function LoginFlow() {
   /* §8.7 — capture du paramètre ?redirect= (ex. /connexion?redirect=/sinistres/nouveau).
      Lu côté effet pour éviter tout décalage d'hydratation ; validé : chemin interne
      uniquement (pas d'open redirect). L'espace connecté étant hors périmètre,
-     OtpPage redirigera vers APP_URL + ce chemin. */
+     OtpPage redirigera vers APP_URL + ce chemin.
+     Sans paramètre valide, on PURGE toute trace d'un redirect antérieur — sinon un
+     vieux ?redirect= persisté en session resurgirait sur une connexion sans contexte. */
   useEffect(() => {
     try {
       const params = new URLSearchParams(window.location.search);
       const target = params.get("redirect");
       if (target && target.startsWith("/") && !target.startsWith("//")) {
         sessionStorage.setItem(OTP_REDIRECT_KEY, target);
+      } else {
+        sessionStorage.removeItem(OTP_REDIRECT_KEY);
       }
     } catch {
       /* ignore */
