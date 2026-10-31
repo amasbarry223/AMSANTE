@@ -11,6 +11,7 @@ import { duration, ease } from "@/lib/motion/tokens";
 import { SplitHeading } from "@/components/motion/SplitHeading";
 import { Magnetic } from "@/components/motion/Magnetic";
 import { Button } from "@/components/ui/button";
+import { PrimaryCta } from "@/components/shared/PrimaryCta";
 import { InsuranceCard2D } from "@/components/cards/InsuranceCard2D";
 import { BogolanTexture } from "@/components/layout/BogolanPattern";
 import { canRender3D } from "@/lib/utils/device";
@@ -142,11 +143,9 @@ export function Hero() {
               transition={{ duration: duration.base, ease: ease.out, delay: 0.7 }}
               className="mt-8 flex flex-wrap items-center gap-3.5"
             >
-              <Magnetic>
-                <Button asChild size="xl" variant="on-dark">
-                  <Link href="/simulateur">Simuler ma prime</Link>
-                </Button>
-              </Magnetic>
+              <PrimaryCta href="/simulateur" size="xl" variant="on-dark">
+                Simuler ma prime
+              </PrimaryCta>
               <Magnetic strength={8}>
                 <Button asChild size="xl" variant="outline-light">
                   <Link href="/entreprises">

@@ -21,7 +21,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Segmented, ageFactorLabel, coverageLabel } from "@/components/funnel/shared";
-import { duration, ease } from "@/lib/motion/tokens";
+import { duration, ease, stagger } from "@/lib/motion/tokens";
 import { cn } from "@/lib/utils";
 
 const COVERAGES: { id: CoverageType; label: string }[] = [
@@ -30,11 +30,17 @@ const COVERAGES: { id: CoverageType; label: string }[] = [
   { id: "famille", label: "Famille" },
 ];
 
-const FREQUENCIES: { id: BillingFrequency; label: string }[] = [
-  { id: "mensuel", label: "Mensuel" },
-  { id: "trimestriel", label: "Trimestriel −2 %" },
-  { id: "annuel", label: "Annuel −5 %" },
-];
+/** Libellés dérivés de la source unique frequencyDiscount (jamais en dur). */
+const FREQUENCIES: { id: BillingFrequency; label: string }[] = (
+  [
+    { id: "mensuel", label: "Mensuel" },
+    { id: "trimestriel", label: "Trimestriel" },
+    { id: "annuel", label: "Annuel" },
+  ] as const
+).map((f) => {
+  const d = frequencyDiscount[f.id];
+  return { ...f, label: d > 0 ? `${f.label} −${Math.round(d * 100)} %` : f.label };
+});
 
 /**
  * Simulateur complet (page /simulateur) : primes recalculées en direct via le
@@ -89,7 +95,7 @@ export function SimulatorPanel() {
     <div className="space-y-8">
       {/* ── Contrôles ─────────────────────────────────────────────── */}
       <div className="rounded-[28px] border border-sand-200 bg-white p-5 shadow-soft sm:p-8">
-        <div className="grid gap-7 md:grid-cols-2">
+        <div className="grid gap-6 md:grid-cols-2">
           <div>
             <p className="mb-2.5 text-[13px] font-semibold">1 · Je m&apos;assure…</p>
             <Segmented
@@ -118,7 +124,7 @@ export function SimulatorPanel() {
           </div>
         </div>
 
-        <div className="mt-7 grid gap-7 md:grid-cols-3">
+        <div className="mt-7 grid gap-6 md:grid-cols-3">
           {/* Enfants (famille) */}
           <div className={cn(coverage !== "famille" && "pointer-events-none opacity-40")}>
             <p className="mb-2.5 text-[13px] font-semibold">
@@ -209,14 +215,14 @@ export function SimulatorPanel() {
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "0px 0px -10% 0px" }}
-              transition={{ duration: duration.base, ease: ease.out, delay: i * 0.07 }}
+              transition={{ duration: duration.base, ease: ease.out, delay: i * stagger.base }}
               className={cn(
-                "relative flex h-full flex-col rounded-[24px] border bg-white p-6 transition-all hover:-translate-y-1 hover:shadow-lift sm:p-8",
+                "relative flex h-full flex-col rounded-card-lg border bg-white p-6 transition-all hover:-translate-y-1 hover:shadow-lift sm:p-8",
                 p.popular ? "border-teal-500 shadow-soft ring-1 ring-teal-500/30" : "border-sand-200"
               )}
             >
               {p.popular && (
-                <span className="absolute -top-3 left-6 rounded-full bg-ochre-500 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-white">
+                <span className="absolute -top-3 left-6 rounded-full bg-ochre-500 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-ink">
                   Recommandée
                 </span>
               )}

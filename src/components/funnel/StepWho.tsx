@@ -32,7 +32,7 @@ const COVERAGE_OPTIONS: {
   { id: "famille", label: "Famille", desc: "Conjoint·e + jusqu'à 6 enfants.", icon: Users },
 ];
 
-const AVATAR_TONES = ["bg-teal-500", "bg-ochre-500", "bg-teal-700", "bg-ink-soft", "bg-warning", "bg-teal-300"];
+const AVATAR_TONES = ["bg-teal-700", "bg-ochre-700", "bg-teal-900", "bg-ink-soft"];
 
 /** Ajuste le nombre de cartes « enfant » sur le compteur (famille). */
 function syncChildren(target: number) {

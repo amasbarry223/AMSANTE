@@ -10,15 +10,20 @@ import { StatsTrust } from "@/components/home/StatsTrust";
 import { HomeFaq } from "@/components/home/HomeFaq";
 import { FinalCta } from "@/components/home/FinalCta";
 import { faq, homeFaqIds } from "@/data/faq";
+import { products } from "@/data/products";
+import { formatFcfa } from "@/lib/utils/format";
 import {
   insuranceAgencyJsonLd,
   faqPageJsonLd,
 } from "@/lib/seo";
 
+/** Prix d'entrée dérivé de la source unique products.ts (jamais codé en dur). */
+const entryPrice = formatFcfa(Math.min(...products.map((p) => p.adultMonthly)));
+
 export const metadata: Metadata = {
   title: "AMSANTÉ — Assurance santé 100 % digitale au Mali",
   description:
-    "Souscrivez en 5 minutes, présentez votre carte digitale chez le médecin, soyez remboursé en Mobile Money. Essentiel, Confort, Premium — à partir de 7 500 FCFA/mois.",
+    `Souscrivez en 5 minutes, présentez votre carte digitale chez le médecin, soyez remboursé en Mobile Money. Essentiel, Confort, Premium — à partir de ${entryPrice}/mois.`,
   alternates: { canonical: "/" },
 };
 

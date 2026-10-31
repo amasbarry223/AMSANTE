@@ -88,14 +88,14 @@ export default function AssuranceSantePage() {
                 <StaggerItem key={p.id} className="h-full">
                   <div
                     className={cn(
-                      "flex h-full flex-col rounded-[24px] border bg-white p-6 shadow-soft transition-shadow hover:shadow-lift sm:p-8",
+                      "flex h-full flex-col rounded-card-lg border bg-white p-6 shadow-soft transition-shadow hover:shadow-lift sm:p-8",
                       featured ? "border-teal-700/40 ring-1 ring-teal-700/30" : "border-sand-200"
                     )}
                   >
                     <div className="flex items-center justify-between gap-3">
                       <h2 className="font-display text-[22px] font-bold text-ink">{p.name}</h2>
                       {featured && (
-                        <span className="rounded-full bg-ochre-500 px-3.5 py-1 text-[12px] font-bold uppercase tracking-wide text-sand-50">
+                        <span className="rounded-full bg-ochre-500 px-3.5 py-1 text-[12px] font-bold uppercase tracking-wide text-ink">
                           Recommandée
                         </span>
                       )}
@@ -167,7 +167,7 @@ export default function AssuranceSantePage() {
 
           {/* Desktop : vrai tableau en grille 4 colonnes */}
           <Reveal className="mt-12 hidden md:block">
-            <div className="overflow-hidden rounded-[24px] border border-sand-200 bg-white shadow-soft">
+            <div className="overflow-hidden rounded-card-lg border border-sand-200 bg-white shadow-soft">
               <div className="grid grid-cols-4 bg-teal-900 text-sand-50">
                 <div className="px-7 py-5 text-[13px] font-bold uppercase tracking-wide">Garantie</div>
                 {products.map((p) => (
@@ -310,7 +310,7 @@ export default function AssuranceSantePage() {
               }).period;
               return (
                 <StaggerItem key={freq}>
-                  <div className="h-full rounded-[16px] border border-sand-200 bg-white p-7 shadow-soft transition-all hover:-translate-y-1 hover:shadow-lift">
+                  <div className="h-full rounded-[16px] border border-sand-200 bg-white p-6 shadow-soft transition-all hover:-translate-y-1 hover:shadow-lift">
                     <div className="flex items-center justify-between">
                       <h3 className="font-display text-[18px] font-bold capitalize text-ink">{freq}</h3>
                       {discount > 0 ? (
@@ -336,7 +336,7 @@ export default function AssuranceSantePage() {
                       {freq === "trimestriel" &&
                         "Un peu d'économie et moins d'oublis : une seule démarche tous les trois mois."}
                       {freq === "annuel" &&
-                        "La meilleure offre : une année entière couverte, 5 % d'économie au passage."}
+                        `La meilleure offre : une année entière couverte, ${Math.round(frequencyDiscount.annuel * 100)} % d'économie au passage.`}
                     </p>
                   </div>
                 </StaggerItem>
@@ -416,7 +416,7 @@ export default function AssuranceSantePage() {
           </div>
 
           <Reveal delay={0.1}>
-            <Accordion type="single" collapsible className="rounded-[24px] border border-sand-200 bg-white px-6 shadow-soft">
+            <Accordion type="single" collapsible className="rounded-card-lg border border-sand-200 bg-white px-6 shadow-soft">
               {souscriptionFaq.map((f) => (
                 <AccordionItem key={f.id} value={f.id} className="border-sand-200 last:border-0">
                   <AccordionTrigger className="py-5 text-left font-display text-[16px] font-semibold hover:no-underline hover:text-teal-900">

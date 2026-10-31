@@ -4,6 +4,8 @@ import { cn } from "@/lib/utils";
 
 /**
  * Défilement infini (bandeau partenaires). Pause au survol.
+ * L'animation vient du token unique `--animate-marquee` (globals.css) ;
+ * la prop `duration` n'ajuste que la vitesse (animationDuration inline).
  * Le contenu est dupliqué deux fois pour une boucle parfaite.
  */
 export function Marquee({
@@ -20,10 +22,10 @@ export function Marquee({
   return (
     <div className={cn("group relative overflow-hidden", className)}>
       <div
-        className="flex w-max items-center motion-safe:animate-[marquee_var(--marquee-dur)_linear_infinite] group-hover:[animation-play-state:paused]"
+        className="flex w-max items-center motion-safe:animate-marquee group-hover:[animation-play-state:paused]"
         style={
           {
-            "--marquee-dur": `${duration}s`,
+            animationDuration: `${duration}s`,
             animationDirection: reverse ? "reverse" : "normal",
           } as React.CSSProperties
         }

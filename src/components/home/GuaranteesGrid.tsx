@@ -95,7 +95,7 @@ export function GuaranteesGrid() {
                     <motion.div
                       initial={false}
                       animate={{ opacity: 1, height: "auto" }}
-                      className="pointer-events-none absolute inset-x-0 bottom-0 translate-y-full overflow-hidden bg-teal-900 p-4 text-sand-50 transition-transform duration-300 ease-out group-hover:translate-y-0 group-focus-within:translate-y-0"
+                      className="pointer-events-none absolute inset-x-0 bottom-0 translate-y-full overflow-hidden bg-teal-900 p-4 text-sand-50 transition-transform duration-300 ease-ams-out group-hover:translate-y-0 group-focus-within:translate-y-0"
                     >
                       <p className="text-[11px] leading-snug text-teal-100/85">{g.description}</p>
                       {included ? (

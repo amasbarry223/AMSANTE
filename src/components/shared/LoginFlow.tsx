@@ -87,8 +87,9 @@ export function LoginFlow() {
 
   /* §8.7 — capture du paramètre ?redirect= (ex. /connexion?redirect=/sinistres/nouveau).
      Lu côté effet pour éviter tout décalage d'hydratation ; validé : chemin interne
-     uniquement (pas d'open redirect). L'espace connecté étant hors périmètre,
-     OtpPage redirigera vers APP_URL + ce chemin.
+     uniquement (pas d'open redirect). L'espace connecté étant hors périmètre, la
+     destination est consommée par OtpPage après vérification OTP (l'écran « prêt »
+     propose alors le retour vers le parcours demandé, ici /aide#sinistres).
      Sans paramètre valide, on PURGE toute trace d'un redirect antérieur — sinon un
      vieux ?redirect= persisté en session resurgirait sur une connexion sans contexte. */
   useEffect(() => {
@@ -527,7 +528,7 @@ function PointsVisual() {
 
 function DashboardVisual() {
   return (
-    <div className="glass-dark w-[340px] max-w-full rounded-[24px] p-6 shadow-card" aria-hidden>
+    <div className="glass-dark w-[340px] max-w-full rounded-card-lg p-6 shadow-card" aria-hidden>
       <div className="flex items-center justify-between">
         <span className="block h-3 w-24 rounded-full bg-sand-50/40 blur-[2px]" />
         <span className="block size-8 rounded-full bg-teal-500/60 blur-[2px]" />

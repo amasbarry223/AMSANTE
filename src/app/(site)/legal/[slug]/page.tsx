@@ -2,7 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Info } from "lucide-react";
+import { frequencyDiscount } from "@/data/products";
 import { Eyebrow, Reveal } from "@/components/motion/Reveal";
+import { Button } from "@/components/ui/button";
+import { stagger } from "@/lib/motion/tokens";
 
 /** Contenu de travail : générique, honnête, à faire valider par un juriste. */
 type LegalSection = { title: string; paragraphs: string[]; list?: string[] };
@@ -157,7 +160,7 @@ const legalDocs: Record<string, LegalDoc> = {
       {
         title: "Primes et paiement",
         paragraphs: [
-          "Les primes sont payables par Mobile Money (Orange Money, Moov Africa Money, Wave), au choix mensuel, trimestriel ou annuel. Les remises éventuelles (−2 % trimestriel, −5 % annuel) s'appliquent automatiquement au moment du paiement.",
+          `Les primes sont payables par Mobile Money (Orange Money, Moov Africa Money, Wave), au choix mensuel, trimestriel ou annuel. Les remises éventuelles (−${Math.round(frequencyDiscount.trimestriel * 100)} % trimestriel, −${Math.round(frequencyDiscount.annuel * 100)} % annuel) s'appliquent automatiquement au moment du paiement.`,
           "Un impayé peut entraîner la suspension des garanties puis, après mise en demeure restée sans effet, la résiliation du contrat, selon les conditions prévues au contrat d'assurance.",
         ],
       },
@@ -253,7 +256,7 @@ export default async function LegalPage({
 
           <div className="mt-10 space-y-12">
             {doc.sections.map((section, i) => (
-              <Reveal key={section.title} delay={Math.min(i * 0.04, 0.2)}>
+              <Reveal key={section.title} delay={Math.min(i * stagger.tight, 0.2)}>
                 <article>
                   <h2 className="font-display text-[20px] font-bold text-ink sm:text-[22px]">
                     {section.title}
@@ -291,12 +294,9 @@ export default async function LegalPage({
               <p className="text-[14.5px] font-semibold text-ink">
                 Une question juridique précise ?
               </p>
-              <Link
-                href="/aide"
-                className="inline-flex min-h-11 items-center gap-2 rounded-full bg-teal-900 px-5 py-2.5 text-[13.5px] font-semibold text-sand-50 transition-colors hover:bg-teal-700"
-              >
-                Passer par le centre d&apos;aide
-              </Link>
+              <Button asChild className="min-h-11 text-[13.5px]">
+                <Link href="/aide">Passer par le centre d&apos;aide</Link>
+              </Button>
             </div>
           </Reveal>
         </div>

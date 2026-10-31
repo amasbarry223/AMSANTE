@@ -5,63 +5,13 @@ import { motion } from "framer-motion";
 import { Check } from "lucide-react";
 import { formatFcfa } from "@/lib/utils/format";
 import { duration, ease } from "@/lib/motion/tokens";
+import { saasPlans, SAAS_ANNUAL_FACTOR } from "@/data/saasPlans";
 import { cn } from "@/lib/utils";
 import { AmountDisplay } from "@/components/shared/AmountDisplay";
 import { DemoModal } from "@/components/shared/DemoModal";
 import { Button } from "@/components/ui/button";
 
-/* TODO: grille tarifaire SaaS à confirmer par l'équipe commerciale
-   (les montants ci-dessous sont des valeurs de travail).
-   NB : les noms de plans SaaS sont volontairement distincts des formules
-   d'assurance (Essentiel/Confort/Premium) pour éviter toute confusion. */
-const plans = [
-  {
-    id: "bureau",
-    name: "Bureau",
-    monthly: 75000,
-    description: "Pour digitaliser le quotidien : assurés, contrats et sinistres.",
-    features: [
-      "Gestion des assurés et ayants droit",
-      "Suivi des sinistres en temps réel",
-      "Scan des cartes digitales (QR)",
-      "1 poste de travail inclus",
-    ],
-    popular: false,
-    onQuote: false,
-  },
-  {
-    id: "cabinet",
-    name: "Cabinet",
-    monthly: 200000,
-    description: "Pour les cabinets qui encaissent et pilotent la croissance.",
-    features: [
-      "Tout Bureau, plus :",
-      "Encaissement Mobile Money intégré",
-      "Commissions automatiques (apporteurs)",
-      "Reporting exportable (CSV, PDF)",
-      "Postes illimités + support prioritaire",
-    ],
-    popular: true,
-    onQuote: false,
-  },
-  {
-    id: "reseau",
-    name: "Réseau",
-    monthly: null,
-    description: "Pour les groupes multi-sites et les intégrations sur mesure.",
-    features: [
-      "Tout Cabinet, plus :",
-      "Intégration à votre système existant (API)",
-      "Multi-cabinets et rôles avancés",
-      "Accompagnement dédié",
-    ],
-    popular: false,
-    onQuote: true,
-  },
-];
-
-/** Prix annuel = mensuel × 10 (2 mois offerts). */
-const ANNUAL_FACTOR = 10;
+/** Prix annuel = mensuel × SAAS_ANNUAL_FACTOR (source unique data/saasPlans.ts). */
 
 /**
  * Grille tarifaire SaaS AMSANTÉ : 3 plans + toggle mensuel / annuel animé
@@ -110,24 +60,24 @@ export function PricingToggle() {
         </div>
       </div>
 
-      {/* Plans */}
+      {/* Plans — données data/saasPlans.ts */}
       <div className="mt-10 grid gap-5 lg:grid-cols-3">
-        {plans.map((plan) => {
+        {saasPlans.map((plan) => {
           const monthly = plan.monthly;
-          const annualTotal = monthly !== null ? monthly * ANNUAL_FACTOR : null;
+          const annualTotal = monthly !== null ? monthly * SAAS_ANNUAL_FACTOR : null;
           const annualMonthlyEquiv = annualTotal !== null ? Math.round(annualTotal / 12) : null;
           return (
             <div
               key={plan.id}
               className={cn(
-                "flex flex-col rounded-[24px] border bg-white p-6 shadow-soft transition-all hover:-translate-y-1 hover:shadow-lift sm:p-8",
+                "flex flex-col rounded-card-lg border bg-white p-6 shadow-soft transition-all hover:-translate-y-1 hover:shadow-lift sm:p-8",
                 plan.popular ? "border-teal-700/40 ring-1 ring-teal-700/30" : "border-sand-200"
               )}
             >
               <div className="flex items-center justify-between gap-3">
                 <h3 className="font-display text-[20px] font-bold text-ink">{plan.name}</h3>
                 {plan.popular && (
-                  <span className="rounded-full bg-ochre-500 px-3.5 py-1 text-[12px] font-bold uppercase tracking-wide text-sand-50">
+                  <span className="rounded-full bg-ochre-500 px-3.5 py-1 text-[12px] font-bold uppercase tracking-wide text-ink">
                     Le plus choisi
                   </span>
                 )}

@@ -48,7 +48,7 @@ export function HomeFaq() {
         </div>
 
         <Reveal delay={0.1}>
-          <Accordion type="single" collapsible className="rounded-[24px] border border-sand-200 bg-white px-6 shadow-soft">
+          <Accordion type="single" collapsible className="rounded-card-lg border border-sand-200 bg-white px-6 shadow-soft">
             {items.map((f) => (
               <AccordionItem key={f.id} value={f.id} className="border-sand-200 last:border-0">
                 <AccordionTrigger className="py-5 text-left font-display text-[16px] font-semibold hover:no-underline hover:text-teal-900">

@@ -28,7 +28,6 @@ export function PartnersBand() {
           <div
             key={p}
             className="flex h-12 w-36 shrink-0 items-center justify-center rounded-lg border border-dashed border-sand-300 bg-sand-100 text-[11px] font-semibold tracking-wider text-muted-foreground/60"
-            aria-label={`${p} — logo à remplacer`}
           >
             {p}
             {/* TODO: remplacer par un vrai logo partenaire */}

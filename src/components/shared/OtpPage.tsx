@@ -208,7 +208,7 @@ export function OtpPage() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -16 }}
             transition={{ duration: duration.fast, ease: ease.out }}
-            className="w-full max-w-md rounded-[28px] border border-sand-200 bg-white p-7 shadow-soft sm:p-9"
+            className="w-full max-w-md rounded-[28px] border border-sand-200 bg-white p-6 shadow-soft sm:p-8"
           >
             {phase === "otp" && (
               <>

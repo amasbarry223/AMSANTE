@@ -3,10 +3,10 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import { Magnetic } from "@/components/motion/Magnetic";
 import { Reveal } from "@/components/motion/Reveal";
 import { SplitHeading } from "@/components/motion/SplitHeading";
 import { Button } from "@/components/ui/button";
+import { PrimaryCta } from "@/components/shared/PrimaryCta";
 import { InsuranceCard2D } from "@/components/cards/InsuranceCard2D";
 import { BogolanTexture } from "@/components/layout/BogolanPattern";
 import { duration, ease } from "@/lib/motion/tokens";
@@ -33,13 +33,9 @@ export function FinalCta() {
                 dès que le paiement passe — souvent avant même d&apos;avoir refermé votre téléphone.
               </p>
               <div className="mt-8 flex flex-wrap items-center gap-3.5">
-                <Magnetic>
-                  <Button asChild size="xl" variant="on-dark">
-                    <Link href="/simulateur">
-                      Simuler ma prime <ArrowRight className="size-4" />
-                    </Link>
-                  </Button>
-                </Magnetic>
+                <PrimaryCta href="/simulateur" size="xl" variant="on-dark">
+                  Simuler ma prime <ArrowRight className="size-4" />
+                </PrimaryCta>
                 <Button asChild size="xl" variant="outline-light">
                   <Link href="/comment-ca-marche">Comprendre le parcours</Link>
                 </Button>

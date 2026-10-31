@@ -104,7 +104,6 @@ export const guarantees: Guarantee[] = [
 ];
 
 export const communeList = [
-  "Commune I",
   "Commune II",
   "Commune III",
   "Commune IV",

@@ -252,7 +252,7 @@ export function MobileMoneyPay({ amount }: { amount: number }) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: duration.fast, ease: ease.out }}
-            className="flex flex-col items-center rounded-[24px] border border-teal-100 bg-teal-50/70 px-6 py-10 text-center"
+            className="flex flex-col items-center rounded-card-lg border border-teal-100 bg-teal-50/70 px-6 py-10 text-center"
             aria-live="polite"
           >
             <motion.span
@@ -266,7 +266,7 @@ export function MobileMoneyPay({ amount }: { amount: number }) {
             <p className="mt-5 font-display text-xl font-bold">Validez le paiement sur votre téléphone</p>
             <p className="mt-1.5 max-w-sm text-[14px] text-muted-foreground">
               Une demande <span className="font-semibold text-teal-900">{operatorInfo.name}</span> de{" "}
-              <span className="font-semibold text-teal-900">{formatFcfa(amount)}</span> a été envoyée
+              <span className="tnum font-semibold text-teal-900">{formatFcfa(amount)}</span> a été envoyée
               au <span className="tnum font-semibold">+223 {payee.replace(/(\d{2})(?=\d)/g, "$1 ")}</span>.
             </p>
             <p className="tnum mt-5 text-[32px] font-bold leading-none text-teal-900">
@@ -298,7 +298,7 @@ export function MobileMoneyPay({ amount }: { amount: number }) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: duration.fast, ease: ease.out }}
-            className="rounded-[24px] border border-destructive/40 bg-destructive/5 px-6 py-10 text-center"
+            className="rounded-card-lg border border-destructive/40 bg-destructive/5 px-6 py-10 text-center"
             role="alert"
           >
             <span className="mx-auto flex size-16 items-center justify-center rounded-full bg-destructive/10 text-destructive">
@@ -332,7 +332,7 @@ export function MobileMoneyPay({ amount }: { amount: number }) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: duration.fast, ease: ease.out }}
-            className="rounded-[24px] border border-warning/50 bg-warning/10 px-6 py-10 text-center"
+            className="rounded-card-lg border border-warning/50 bg-warning/10 px-6 py-10 text-center"
             role="alert"
           >
             <span className="mx-auto flex size-16 items-center justify-center rounded-full bg-warning/15 text-warning">

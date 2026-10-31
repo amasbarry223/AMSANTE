@@ -58,7 +58,7 @@ const steps = [
 const operators = [
   {
     name: "Orange Money",
-    className: "bg-ochre-500 text-sand-50",
+    className: "bg-ochre-500 text-ink",
   },
   {
     name: "Moov Africa Money",
@@ -125,7 +125,7 @@ export default function CommentCaMarchePage() {
               {steps.map((s, i) => {
                 const Icon = s.icon;
                 return (
-                  <li key={s.title} className="flex items-start gap-5 sm:gap-7">
+                  <li key={s.title} className="flex items-start gap-5 sm:gap-6">
                     <span className="relative z-10 flex size-14 shrink-0 items-center justify-center rounded-2xl border border-sand-200 bg-white text-teal-900 shadow-soft sm:size-[72px] sm:rounded-[16px]">
                       <Icon className="size-6 sm:size-7" aria-hidden />
                       <span className="tnum absolute -top-2 -right-2 flex size-6 items-center justify-center rounded-full bg-teal-900 text-[11px] font-bold text-sand-50">
@@ -168,7 +168,7 @@ export default function CommentCaMarchePage() {
 
           <div className="mt-10 grid gap-5 lg:grid-cols-3">
             <Reveal>
-              <div className="h-full rounded-[16px] border border-sand-200 bg-white p-7 shadow-soft transition-all hover:-translate-y-1 hover:shadow-lift">
+              <div className="h-full rounded-[16px] border border-sand-200 bg-white p-6 shadow-soft transition-all hover:-translate-y-1 hover:shadow-lift">
                 <span className="flex size-11 items-center justify-center rounded-xl bg-teal-100 text-teal-900">
                   <CalendarClock className="size-5" aria-hidden />
                 </span>
@@ -183,7 +183,7 @@ export default function CommentCaMarchePage() {
               </div>
             </Reveal>
             <Reveal delay={0.08}>
-              <div className="h-full rounded-[16px] border border-sand-200 bg-white p-7 shadow-soft transition-all hover:-translate-y-1 hover:shadow-lift">
+              <div className="h-full rounded-[16px] border border-sand-200 bg-white p-6 shadow-soft transition-all hover:-translate-y-1 hover:shadow-lift">
                 <span className="flex size-11 items-center justify-center rounded-xl bg-teal-100 text-teal-900">
                   <Baby className="size-5" aria-hidden />
                 </span>
@@ -196,7 +196,7 @@ export default function CommentCaMarchePage() {
               </div>
             </Reveal>
             <Reveal delay={0.16}>
-              <div className="relative h-full overflow-hidden rounded-[16px] bg-teal-900 p-7 text-sand-50 shadow-card">
+              <div className="relative h-full overflow-hidden rounded-[16px] bg-teal-900 p-6 text-sand-50 shadow-card">
                 <BogolanTexture color="#E3F4F1" opacity={0.05} />
                 <span className="relative flex size-11 items-center justify-center rounded-xl bg-white/10 text-teal-100">
                   <Siren className="size-5" aria-hidden />

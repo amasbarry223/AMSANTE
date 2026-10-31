@@ -154,7 +154,7 @@ export function DemoModal({
         </Button>
       </DialogTrigger>
 
-      <DialogContent className="max-w-md rounded-[28px] border-sand-200 p-7 sm:p-8">
+      <DialogContent className="max-w-md rounded-[28px] border-sand-200 p-6 sm:p-8">
         {status === "success" ? (
           <div className="py-4 text-center" aria-live="polite">
             <span className="mx-auto flex size-16 items-center justify-center rounded-full bg-teal-100 text-teal-900">

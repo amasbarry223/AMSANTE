@@ -18,11 +18,17 @@ import { Segmented, StepCard, StepTitle, ageFactorLabel, coverageLabel } from "@
 import { formatFcfa } from "@/lib/utils/format";
 import { cn } from "@/lib/utils";
 
-const FREQUENCIES: { id: BillingFrequency; label: string }[] = [
-  { id: "mensuel", label: "Mensuel" },
-  { id: "trimestriel", label: "Trimestriel −2 %" },
-  { id: "annuel", label: "Annuel −5 %" },
-];
+/** Libellés dérivés de la source unique frequencyDiscount (jamais en dur). */
+const FREQUENCIES: { id: BillingFrequency; label: string }[] = (
+  [
+    { id: "mensuel", label: "Mensuel" },
+    { id: "trimestriel", label: "Trimestriel" },
+    { id: "annuel", label: "Annuel" },
+  ] as const
+).map((f) => {
+  const d = frequencyDiscount[f.id];
+  return { ...f, label: d > 0 ? `${f.label} −${Math.round(d * 100)} %` : f.label };
+});
 
 /** Étape 2 — Formule : comparatif des 3 offres + fréquence de paiement. */
 export function StepFormula() {
@@ -95,7 +101,7 @@ export function StepFormula() {
               )}
             >
               {p.popular && (
-                <span className="absolute -top-3 left-5 rounded-full bg-ochre-500 px-3 py-1 text-[10.5px] font-bold uppercase tracking-wider text-white">
+                <span className="absolute -top-3 left-5 rounded-full bg-ochre-500 px-3 py-1 text-[10.5px] font-bold uppercase tracking-wider text-ink">
                   Recommandée
                 </span>
               )}

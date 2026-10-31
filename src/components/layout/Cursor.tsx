@@ -14,8 +14,9 @@ export function Cursor() {
   const [hovering, setHovering] = useState(false);
   const x = useMotionValue(-100);
   const y = useMotionValue(-100);
-  // Ressorts du curseur : valeurs dérivées des tokens (UI interactive).
-  const cursorSpring = { stiffness: 260, damping: 26, mass: 0.6 } as const;
+  // Ressorts du curseur : dérivés du token ease.spring (UI interactive),
+  // avec une inertie légèrement supérieure (mass 0,6) pour le confort du pointeur.
+  const cursorSpring = { ...motionEase.spring, mass: 0.6 } as const;
   const rx = useSpring(x, cursorSpring);
   const ry = useSpring(y, cursorSpring);
 

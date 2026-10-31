@@ -268,7 +268,7 @@ export function B2BQuoteFunnel() {
 
           <aside className="hidden lg:block" aria-label="Résumé vivant de votre devis">
             <div className="sticky top-24">
-              <div className="rounded-[24px] border border-sand-200 bg-white p-6 shadow-soft">
+              <div className="rounded-card-lg border border-sand-200 bg-white p-6 shadow-soft">
                 <B2BLiveSummary />
               </div>
             </div>

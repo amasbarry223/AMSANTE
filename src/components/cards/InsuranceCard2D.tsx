@@ -45,7 +45,7 @@ export function InsuranceCard2D({
   const sizes = {
     sm: { root: "max-w-[300px]", face: "p-4 rounded-[16px]" },
     md: { root: "max-w-[420px]", face: "p-6 rounded-[16px]" },
-    lg: { root: "max-w-[520px]", face: "p-7 rounded-[24px]" },
+    lg: { root: "max-w-[520px]", face: "p-6 rounded-card-lg" },
   };
 
   const handleMouse = (e: React.MouseEvent) => {

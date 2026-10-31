@@ -5,6 +5,7 @@ import { Counter } from "@/components/motion/Counter";
 import { Eyebrow, Reveal, StaggerContainer, StaggerItem } from "@/components/motion/Reveal";
 import { SplitHeading } from "@/components/motion/SplitHeading";
 import { ProviderApplication } from "@/components/shared/ProviderApplication";
+import { providers } from "@/data/providers";
 
 export const metadata: Metadata = {
   title: "Devenir partenaire — établissements de soins",
@@ -68,7 +69,7 @@ export default function DevenirPartenairePage() {
           <StaggerContainer className="grid gap-5 md:grid-cols-3">
             {ADVANTAGES.map((a) => (
               <StaggerItem key={a.title}>
-                <article className="h-full rounded-[24px] border border-sand-200 bg-white p-7 shadow-soft transition-all hover:-translate-y-1 hover:shadow-lift">
+                <article className="h-full rounded-card-lg border border-sand-200 bg-white p-6 shadow-soft transition-all hover:-translate-y-1 hover:shadow-lift">
                   <span className="flex size-12 items-center justify-center rounded-full bg-teal-100 text-teal-900">
                     <a.icon className="size-5" aria-hidden />
                   </span>
@@ -84,13 +85,17 @@ export default function DevenirPartenairePage() {
           {/* Chiffres placeholders */}
           {/* TODO: remplacer par les vraies données du réseau (délais, volumes) */}
           <Reveal delay={0.1}>
-            <dl className="mt-12 grid gap-5 rounded-[24px] border border-sand-200 bg-teal-50 p-8 sm:grid-cols-3">
+            <dl className="mt-12 grid gap-5 rounded-card-lg border border-sand-200 bg-teal-50 p-8 sm:grid-cols-3">
               <div>
                 <dd className="font-display text-[34px] font-bold leading-none text-teal-900">
-                  <Counter value={18} />
+                  {/* Dérivé de la source unique providers.ts (jamais codé en dur). */}
+                  <Counter value={providers.length} />
                 </dd>
                 <dt className="mt-1.5 text-[13px] font-medium text-muted-foreground">
                   établissements déjà conventionnés
+                  <span className="ml-1.5 rounded bg-ochre-100 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-ochre-500">
+                    démo
+                  </span>
                 </dt>
               </div>
               <div>

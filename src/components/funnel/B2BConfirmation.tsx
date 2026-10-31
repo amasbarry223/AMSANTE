@@ -58,7 +58,7 @@ export function B2BConfirmation({ result }: { result: B2BResultView }) {
 
       {/* Fourchette animée */}
       <Reveal className="mx-auto mt-10 max-w-2xl">
-        <div className="rounded-[24px] border border-sand-200 bg-white p-6 text-center shadow-soft sm:p-8">
+        <div className="rounded-card-lg border border-sand-200 bg-white p-6 text-center shadow-soft sm:p-8">
           <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
             Prime annuelle estimée
           </p>

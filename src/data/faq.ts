@@ -1,4 +1,9 @@
 import type { FaqItem } from "./types";
+import { frequencyDiscount } from "./products";
+
+/** Remises dérivées de la source unique (products.ts) — jamais codées en dur. */
+const REMISE_TRIM = Math.round(frequencyDiscount.trimestriel * 100);
+const REMISE_ANNUEL = Math.round(frequencyDiscount.annuel * 100);
 
 /** FAQ AMSANTÉ — données mock rédigées (aucun lorem ipsum). */
 export const faq: FaqItem[] = [
@@ -84,7 +89,7 @@ export const faq: FaqItem[] = [
     category: "Paiement",
     question: "Puis-je payer annuellement avec une remise ?",
     answer:
-      "Oui : −2 % en paiement trimestriel et −5 % en paiement annuel, appliqués automatiquement dans le simulateur et le tunnel de souscription.",
+      `Oui : −${REMISE_TRIM} % en paiement trimestriel et −${REMISE_ANNUEL} % en paiement annuel, appliqués automatiquement dans le simulateur et le tunnel de souscription.`,
   },
   {
     id: "f13",

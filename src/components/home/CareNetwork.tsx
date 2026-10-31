@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { MapPin, Navigation, Phone } from "lucide-react";
 import { providers } from "@/data/providers";
@@ -9,7 +8,7 @@ import type { Provider } from "@/data/types";
 import { Counter } from "@/components/motion/Counter";
 import { Eyebrow, Reveal } from "@/components/motion/Reveal";
 import { SplitHeading } from "@/components/motion/SplitHeading";
-import { Button } from "@/components/ui/button";
+import { PrimaryCta } from "@/components/shared/PrimaryCta";
 import { duration, ease } from "@/lib/motion/tokens";
 
 const typeColors: Record<string, string> = {
@@ -57,11 +56,9 @@ export function CareNetwork() {
                   </span>
                 </p>
               </div>
-              <Button asChild size="lg" className="min-h-12">
-                <Link href="/prestataires">
-                  <MapPin className="size-4" /> Trouver un prestataire
-                </Link>
-              </Button>
+              <PrimaryCta href="/prestataires" className="min-h-12">
+                <MapPin className="size-4" /> Trouver un prestataire
+              </PrimaryCta>
             </div>
           </Reveal>
         </div>

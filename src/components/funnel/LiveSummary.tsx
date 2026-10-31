@@ -49,7 +49,7 @@ export function LiveSummaryBody({ className }: { className?: string }) {
       </div>
 
       <div className="rounded-[16px] bg-teal-50 p-4">
-        <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-teal-900/70">
+        <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-teal-900">
           Prime {frequencyLabel[frequency].replace("par ", "")}
         </p>
         <p className="mt-1 font-display text-[30px] font-bold leading-none text-teal-900">
@@ -100,7 +100,7 @@ export function LiveSummaryBody({ className }: { className?: string }) {
 /** Colonne sticky desktop. */
 export function LiveSummary() {
   return (
-    <div className="rounded-[24px] border border-sand-200 bg-white p-6 shadow-soft">
+    <div className="rounded-card-lg border border-sand-200 bg-white p-6 shadow-soft">
       <LiveSummaryBody />
     </div>
   );

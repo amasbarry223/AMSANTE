@@ -183,14 +183,14 @@ export function VerifyTool() {
                   <div className="rounded-[16px] border-2 border-success bg-success/10 p-6">
                     <div className="flex items-center justify-between gap-3">
                       <div className="flex items-center gap-3">
-                        <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-success text-white">
+                        <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-success text-ink">
                           <CheckCircle2 className="size-6" aria-hidden />
                         </span>
                         <p className="font-display text-lg font-bold text-success">
                           Carte valide
                         </p>
                       </div>
-                      <Badge className="rounded-full bg-success text-[11px] font-bold text-white">
+                      <Badge className="rounded-full bg-success text-[11px] font-bold text-ink">
                         Droits ouverts
                       </Badge>
                     </div>
@@ -261,7 +261,7 @@ export function VerifyTool() {
 function Viewfinder({ phase, reduced }: { phase: Phase; reduced: boolean }) {
   const corner = "absolute size-9 border-teal-700";
   return (
-    <div className="relative mx-auto aspect-[4/3] w-full overflow-hidden rounded-[24px] border border-sand-200 bg-[linear-gradient(160deg,#F0FAF8,#F7F4EE)]">
+    <div className="relative mx-auto aspect-[4/3] w-full overflow-hidden rounded-card-lg border border-sand-200 bg-[linear-gradient(160deg,#F0FAF8,#F7F4EE)]">
       {/* coins de visée */}
       <span className={cn(corner, "left-3 top-3 rounded-tl-xl border-l-2 border-t-2")} aria-hidden />
       <span className={cn(corner, "right-3 top-3 rounded-tr-xl border-r-2 border-t-2")} aria-hidden />

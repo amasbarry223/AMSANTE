@@ -36,7 +36,12 @@
   /* Rayons */
   --radius-input: 10px;
   --radius-card: 16px;
+  --radius-card-lg: 24px;
   --radius-panel: 28px;
+
+  /* Courbes d'easing (double des tokens motion/lib/motion/tokens.ts) */
+  --ease-ams-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-ams-in-out: cubic-bezier(0.65, 0, 0.35, 1);
 
   /* Ombres teintées teal */
   --shadow-soft: 0 1px 2px rgb(15 91 87 / 0.06), 0 12px 32px -12px rgb(15 91 87 / 0.18);
@@ -84,7 +89,8 @@
   --muted-foreground: #516360;
   --accent: #e3f4f1;
   --accent-foreground: #0f5b57;
-  --destructive: #d64545;
+  /* Rouge légèrement approfondi : blanc ≥ 4,5:1 (AA) sur les boutons/badges */
+  --destructive: #c93a3a;
   --destructive-foreground: #ffffff;
   --border: #eae3d6;
   --input: #e2dccd;
@@ -256,7 +262,7 @@
   background: currentColor;
   transform: scaleX(0);
   transform-origin: right;
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform var(--transition-fast, 0.35s) var(--ease-ams-out);
 }
 .link-underline:hover::after,
 .link-underline:focus-visible::after {

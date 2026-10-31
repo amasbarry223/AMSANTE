@@ -44,7 +44,7 @@ export function B2BLiveSummary() {
       </div>
 
       <div className="rounded-[16px] bg-teal-50 p-4">
-        <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-teal-900/70">
+        <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-teal-900">
           Prime annuelle estimée
         </p>
         <p className="tnum mt-1 font-display text-[22px] font-bold leading-none text-teal-900">

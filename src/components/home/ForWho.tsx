@@ -91,7 +91,7 @@ export function ForWho() {
           </div>
           <div
             ref={trackRef}
-            className="flex flex-col gap-5 lg:w-max lg:flex-row lg:gap-7"
+            className="flex flex-col gap-5 lg:w-max lg:flex-row lg:gap-6"
           >
             {panels.map((p) => (
               <article
@@ -103,7 +103,7 @@ export function ForWho() {
                 )}
               >
                 <BogolanTexture color="#E3F4F1" opacity={0.06} />
-                <p className="relative text-[12px] font-bold uppercase tracking-[0.22em] text-white/70">
+                <p className="relative text-[12px] font-bold uppercase tracking-[0.22em] text-white/90">
                   {p.kicker}
                 </p>
                 <h3 className="relative mt-4 max-w-[380px] font-display text-[clamp(1.5rem,2.6vw,2.1rem)] font-bold leading-tight">

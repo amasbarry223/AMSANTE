@@ -10,6 +10,7 @@ import { quote } from "@/lib/pricing";
 import { formatFcfa } from "@/lib/utils/format";
 import { Eyebrow, Reveal } from "@/components/motion/Reveal";
 import { SplitHeading } from "@/components/motion/SplitHeading";
+import { stagger } from "@/lib/motion/tokens";
 import { cn } from "@/lib/utils";
 
 /**
@@ -85,7 +86,7 @@ function Panel({ index }: { index: number }) {
   if (index === 1) {
     return (
       <div className="relative mx-auto w-[230px] rounded-[28px] border-[6px] border-ink bg-ink p-1 shadow-card">
-        <div className="overflow-hidden rounded-[24px] bg-[linear-gradient(150deg,#12766F,#0B1F1E)] p-3">
+        <div className="overflow-hidden rounded-card-lg bg-[linear-gradient(150deg,#12766F,#0B1F1E)] p-3">
           <div className="mx-auto mb-2 h-4 w-16 rounded-full bg-black/60" />
           <div className="rounded-2xl bg-white/95 p-3">
             <p className="text-[10px] font-bold uppercase tracking-widest text-teal-900">Ma carte</p>
@@ -150,7 +151,7 @@ function Panel({ index }: { index: number }) {
           </span>
           <div>
             <p className="text-[12px] font-bold text-ink">Orange Money</p>
-            <p className="tnum text-[13px] font-bold text-success">+ 25 000 FCFA reçus</p>
+            <p className="tnum text-[13px] font-bold text-success">+ {formatFcfa(25000)} reçus</p>
           </div>
         </motion.div>
         <p className="pl-1 text-[11px] text-muted-foreground">
@@ -167,7 +168,7 @@ function Panel({ index }: { index: number }) {
 function MockShell({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div className="w-full max-w-[330px] rounded-[16px] glass-panel p-4 shadow-lift">
-      <p className="mb-3 flex items-center gap-2 text-[11px] font-bold uppercase tracking-widest text-teal-900/70">
+      <p className="mb-3 flex items-center gap-2 text-[11px] font-bold uppercase tracking-widest text-teal-900">
         <span className="size-1.5 rounded-full bg-teal-500" /> {title}
       </p>
       {children}
@@ -219,7 +220,7 @@ export function PaperToDigital() {
                   <li key={s.id} className="flex gap-4">
                     <span
                       className={cn(
-                        "mt-0.5 flex size-10 shrink-0 items-center justify-center rounded-xl border transition-all duration-300",
+                        "mt-0.5 flex size-10 shrink-0 items-center justify-center rounded-xl border transition-all duration-300 ease-ams-out",
                         i <= active
                           ? "border-teal-500 bg-teal-500/20 text-teal-300"
                           : "border-white/12 text-sand-50/40"
@@ -229,13 +230,13 @@ export function PaperToDigital() {
                     </span>
                     <div>
                       <p className={cn(
-                        "font-display text-[17px] font-semibold transition-colors duration-300",
+                        "font-display text-[17px] font-semibold transition-colors duration-300 ease-ams-out",
                         i === active ? "text-sand-50" : "text-sand-50/60"
                       )}>
                         {s.title}
                       </p>
                       <p className={cn(
-                        "mt-1 max-w-[440px] text-[14px] leading-relaxed transition-colors duration-300",
+                        "mt-1 max-w-[440px] text-[14px] leading-relaxed transition-colors duration-300 ease-ams-out",
                         i === active ? "text-sand-50/80" : "text-sand-50/60"
                       )}>
                         {s.text}
@@ -268,7 +269,7 @@ export function PaperToDigital() {
           <div className="lg:hidden">
             <ol className="space-y-5">
               {steps.map((s, i) => (
-                <Reveal key={s.id} delay={i * 0.05}>
+                <Reveal key={s.id} delay={i * stagger.tight}>
                   <li className="rounded-2xl border border-white/10 bg-white/5 p-4">
                     <p className="flex items-center gap-2.5 font-display text-[16px] font-semibold">
                       <s.icon className="size-4 text-teal-300" /> {s.title}

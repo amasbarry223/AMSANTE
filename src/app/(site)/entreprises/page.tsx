@@ -8,6 +8,7 @@ import { DrawPath } from "@/components/motion/DrawPath";
 import { Counter } from "@/components/motion/Counter";
 import { PrimaryCta } from "@/components/shared/PrimaryCta";
 import { BogolanTexture } from "@/components/layout/BogolanPattern";
+import { stagger } from "@/lib/motion/tokens";
 import {
   Accordion,
   AccordionContent,
@@ -137,7 +138,7 @@ export default function EntreprisesPage() {
             <Eyebrow>Mise en place</Eyebrow>
           </Reveal>
           <SplitHeading className="mt-4 max-w-2xl font-display text-[clamp(1.8rem,3.6vw,2.8rem)] font-bold">
-            Quatre étapes, deux semaines, zéro papier.
+            Quatre étapes, cinq jours, zéro papier.
           </SplitHeading>
 
           <div className="relative mt-12 max-w-2xl">
@@ -157,7 +158,7 @@ export default function EntreprisesPage() {
               {SETUP_STEPS.map((s, i) => {
                 const Icon = s.icon;
                 return (
-                  <Reveal as="li" key={s.title} delay={i * 0.08} className="relative flex gap-5">
+                  <Reveal as="li" key={s.title} delay={i * stagger.base} className="relative flex gap-5">
                     <span className="z-10 flex size-14 shrink-0 items-center justify-center rounded-full border-2 border-teal-500 bg-white font-display text-lg font-bold text-teal-900 shadow-soft">
                       <span className="tnum">{i + 1}</span>
                       <Icon className="ml-1 size-4 text-teal-500" aria-hidden />
@@ -188,7 +189,7 @@ export default function EntreprisesPage() {
               </p>
               <p className="mt-1 text-[14.5px] text-teal-100/75">entreprises accompagnées</p>
             </Reveal>
-            <Reveal delay={0.08}>
+            <Reveal delay={stagger.base}>
               <p className="font-display text-[clamp(2.4rem,5vw,3.6rem)] font-bold text-teal-300">
                 <Counter value={STATS.groupMembers} format="number" />
               </p>
@@ -214,7 +215,7 @@ export default function EntreprisesPage() {
             Vous vous demandez sûrement…
           </SplitHeading>
           <Reveal delay={0.1} className="mt-8">
-            <Accordion type="single" collapsible className="rounded-[24px] border border-sand-200 bg-white px-6 shadow-soft">
+            <Accordion type="single" collapsible className="rounded-card-lg border border-sand-200 bg-white px-6 shadow-soft">
               {b2bFaq.map((f, i) => (
                 <AccordionItem key={f.id} value={f.id} className={i === b2bFaq.length - 1 ? "border-b-0" : undefined}>
                   <AccordionTrigger className="py-5 text-left text-[15.5px] font-semibold hover:no-underline">

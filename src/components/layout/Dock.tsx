@@ -7,6 +7,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Calculator, MapPin, MessageCircle } from "lucide-react";
 import { duration, ease } from "@/lib/motion/tokens";
 import { Magnetic } from "@/components/motion/Magnetic";
+import { Button } from "@/components/ui/button";
 import { fr } from "@/content/fr";
 
 /**
@@ -47,12 +48,11 @@ export function Dock() {
         >
           <div className="flex items-center gap-1 rounded-full glass-panel p-1.5 shadow-lift">
             <Magnetic strength={6}>
-              <Link
-                href="/simulateur"
-                className="flex min-h-11 items-center gap-2 rounded-full bg-teal-900 px-4 text-[13px] font-semibold text-sand-50 transition-colors hover:bg-teal-700"
-              >
-                <Calculator className="size-4" /> {fr.dock.simuler}
-              </Link>
+              <Button asChild className="min-h-11 px-4 text-[13px]">
+                <Link href="/simulateur">
+                  <Calculator className="size-4" /> {fr.dock.simuler}
+                </Link>
+              </Button>
             </Magnetic>
             <Link
               href="/prestataires"

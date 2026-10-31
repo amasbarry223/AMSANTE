@@ -9,15 +9,19 @@ import { cn } from "@/lib/utils";
  * CTA primaire unique du site : même forme (pill), même couleur (teal-900),
  * même comportement magnétique, partout. Utiliser pour « Simuler ma prime »,
  * les CTA finaux, etc.
+ * - `href` : navigation interne (cas général).
+ * - `onClick` : action directe sans navigation (ex. « Réessayer » de la 500).
  */
 export function PrimaryCta({
   href,
+  onClick,
   children,
   className,
   size = "lg",
   variant = "default",
 }: {
-  href: string;
+  href?: string;
+  onClick?: () => void;
   children: React.ReactNode;
   className?: string;
   size?: "default" | "lg" | "xl";
@@ -26,11 +30,23 @@ export function PrimaryCta({
 }) {
   return (
     <Magnetic>
-      <Button asChild size={size} variant={variant} className={cn("min-h-11", className)}>
-        <Link href={href}>
+      {href ? (
+        <Button asChild size={size} variant={variant} className={cn("min-h-11", className)}>
+          <Link href={href}>
+            {children}
+          </Link>
+        </Button>
+      ) : (
+        <Button
+          type="button"
+          onClick={onClick}
+          size={size}
+          variant={variant}
+          className={cn("min-h-11", className)}
+        >
           {children}
-        </Link>
-      </Button>
+        </Button>
+      )}
     </Magnetic>
   );
 }

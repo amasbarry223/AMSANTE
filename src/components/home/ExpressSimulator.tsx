@@ -13,7 +13,7 @@ import { Eyebrow, Reveal } from "@/components/motion/Reveal";
 import { SplitHeading } from "@/components/motion/SplitHeading";
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
-import { duration, ease } from "@/lib/motion/tokens";
+import { duration, ease, stagger } from "@/lib/motion/tokens";
 import { cn } from "@/lib/utils";
 import type { CoverageType, FormulaId } from "@/data/types";
 
@@ -26,9 +26,11 @@ const coverages: { id: CoverageType; label: string }[] = [
 /** Formule mise en avant — source unique data/products.ts (jamais codée en dur). */
 const POPULAR = products.find((p) => p.popular) ?? products[0];
 
-/** Avatars enfants simulés. */
+/** Avatars enfants simulés — tons foncés uniquement : chiffres blancs lisibles
+ *  (≥ 4,5:1) et le badge ocre-500 « Recommandée » reste le seul accent ocre vif
+ *  de l'écran (règle : 1 usage par écran). */
 function ChildAvatar({ index, onRemove }: { index: number; onRemove: () => void }) {
-  const hues = ["bg-teal-500", "bg-ochre-500", "bg-teal-700", "bg-warning", "bg-teal-300", "bg-sand-300"];
+  const hues = ["bg-teal-700", "bg-ochre-700", "bg-teal-900", "bg-ink-soft"];
   return (
     <motion.button
       layout
@@ -120,7 +122,7 @@ export function ExpressSimulator() {
         <Reveal delay={0.15} className="mx-auto mt-10 max-w-[980px]">
           {/* contrôles */}
           <div className="rounded-[28px] border border-sand-200 bg-white p-6 shadow-soft sm:p-8">
-            <div className="grid gap-7 md:grid-cols-3 md:items-center">
+            <div className="grid gap-6 md:grid-cols-3 md:items-center">
               {/* 1. couverture */}
               <div>
                 <p className="mb-2.5 text-[13px] font-semibold text-foreground">1 · Je m&apos;assure…</p>
@@ -217,15 +219,15 @@ export function ExpressSimulator() {
           {products.map((p, i) => {
             const q = quotes[i];
             return (
-              <Reveal key={p.id} delay={i * 0.07}>
+              <Reveal key={p.id} delay={i * stagger.base}>
                 <div
                   className={cn(
-                    "relative flex h-full flex-col rounded-[24px] border bg-white p-6 transition-all hover:-translate-y-1 hover:shadow-lift sm:p-8",
+                    "relative flex h-full flex-col rounded-card-lg border bg-white p-6 transition-all hover:-translate-y-1 hover:shadow-lift sm:p-8",
                     p.popular ? "border-teal-500 shadow-soft ring-1 ring-teal-500/30" : "border-sand-200"
                   )}
                 >
                   {p.popular && (
-                    <span className="absolute -top-3 left-6 rounded-full bg-ochre-500 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-white">
+                    <span className="absolute -top-3 left-6 rounded-full bg-ochre-500 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-ink">
                       Recommandée
                     </span>
                   )}

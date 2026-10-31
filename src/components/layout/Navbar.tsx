@@ -27,7 +27,7 @@ import {
 } from "lucide-react";
 import { Logo } from "@/components/layout/Logo";
 import { Button } from "@/components/ui/button";
-import { Magnetic } from "@/components/motion/Magnetic";
+import { PrimaryCta } from "@/components/shared/PrimaryCta";
 import { duration, ease, stagger } from "@/lib/motion/tokens";
 import { cn } from "@/lib/utils";
 
@@ -182,11 +182,9 @@ export function Navbar() {
             >
               Se connecter
             </Link>
-            <Magnetic strength={8}>
-              <Button asChild size="default" variant={dark ? "on-dark" : "default"}>
-                <Link href="/simulateur">Simuler ma prime</Link>
-              </Button>
-            </Magnetic>
+            <PrimaryCta href="/simulateur" size="default" variant={dark ? "on-dark" : "default"}>
+              Simuler ma prime
+            </PrimaryCta>
           </div>
 
           {/* ── Burger mobile ── */}
@@ -217,7 +215,7 @@ export function Navbar() {
               onMouseEnter={() => openMega(mega)}
               className="absolute left-1/2 top-[calc(100%+8px)] hidden w-[560px] -translate-x-1/2 lg:block"
             >
-              <div className="glass-panel rounded-[24px] p-3 shadow-lift">
+              <div className="glass-panel rounded-card-lg p-3 shadow-lift">
                 <div className="grid gap-1">
                   {(mega === "assurance" ? assuranceMega : prestatairesMega).map((l) => (
                     <Link

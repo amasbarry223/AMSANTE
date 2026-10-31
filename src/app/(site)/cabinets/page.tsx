@@ -133,7 +133,7 @@ function Mock({ kind }: { kind: (typeof modules)[number]["mock"] }) {
   if (kind === "operators") {
     return (
       <div className="mt-5 flex gap-2" aria-hidden>
-        <span className="flex h-9 flex-1 items-center justify-center rounded-[10px] bg-ochre-500 text-[11px] font-bold text-sand-50">OM</span>
+        <span className="flex h-9 flex-1 items-center justify-center rounded-[10px] bg-ochre-500 text-[11px] font-bold text-ink">OM</span>
         <span className="flex h-9 flex-1 items-center justify-center rounded-[10px] bg-teal-700 text-[11px] font-bold text-sand-50">Moov</span>
         <span className="flex h-9 flex-1 items-center justify-center rounded-[10px] bg-sand-300 text-[11px] font-bold text-ink">Wave</span>
       </div>

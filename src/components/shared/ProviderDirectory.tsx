@@ -20,6 +20,7 @@ import {
   SearchX,
   Smile,
   Stethoscope,
+  X,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { toast } from "sonner";
@@ -27,6 +28,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   Drawer,
+  DrawerClose,
   DrawerContent,
   DrawerDescription,
   DrawerHeader,
@@ -184,7 +186,7 @@ export function ProviderDirectory() {
     <section aria-label="Annuaire des prestataires conventionnés" className="py-14 sm:py-20">
       <div className="container-ams">
         {/* ── Filtres ─────────────────────────────────────────────── */}
-        <div className="rounded-[24px] border border-sand-200 bg-white p-5 shadow-soft sm:p-6">
+        <div className="rounded-card-lg border border-sand-200 bg-white p-5 shadow-soft sm:p-6">
           <div className="grid gap-4 sm:grid-cols-[1fr_auto] sm:items-end">
             <div className="space-y-1.5">
               <Label htmlFor="recherche-prestataire">Rechercher un établissement</Label>
@@ -553,6 +555,13 @@ export function ProviderDirectory() {
       {/* ── Drawer fiche détaillée ──────────────────────────────────── */}
       <Drawer direction="right" open={drawerOpen} onOpenChange={setDrawerOpen}>
         <DrawerContent className="sm:max-w-md">
+          {/* Fermeture explicite, visible et clavier (Échap + overlay déjà actifs) */}
+          <DrawerClose
+            aria-label="Fermer la fiche"
+            className="absolute right-4 top-4 flex size-11 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-sand-100 hover:text-ink focus-visible:outline-2 focus-visible:outline-teal-500"
+          >
+            <X className="size-5" aria-hidden />
+          </DrawerClose>
           {detail && (
             <>
               <DrawerHeader className="text-left">

@@ -19,6 +19,7 @@ import { Eyebrow, Reveal } from "@/components/motion/Reveal";
 import { SplitHeading } from "@/components/motion/SplitHeading";
 import { duration, ease, cardHover } from "@/lib/motion/tokens";
 import { cn } from "@/lib/utils";
+import { stagger } from "@/lib/motion/tokens";
 import {
   Accordion,
   AccordionContent,
@@ -104,7 +105,7 @@ export function HelpSearch() {
                 type="button"
                 onClick={() => setQuery("")}
                 aria-label="Effacer la recherche"
-                className="absolute top-1/2 right-3 flex size-9 -translate-y-1/2 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-sand-100 hover:text-ink"
+                className="absolute top-1/2 right-3 flex size-11 -translate-y-1/2 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-sand-100 hover:text-ink"
               >
                 <X className="size-4" aria-hidden />
               </button>
@@ -125,7 +126,7 @@ export function HelpSearch() {
               </p>
 
               {results.length > 0 ? (
-                <div className="mt-4 rounded-[24px] border border-sand-200 bg-white px-6 shadow-card">
+                <div className="mt-4 rounded-card-lg border border-sand-200 bg-white px-6 shadow-card">
                   <Accordion type="single" collapsible>
                     {results.map((f) => (
                       <AccordionItem key={f.id} value={f.id} className="border-sand-200 last:border-0">
@@ -143,7 +144,7 @@ export function HelpSearch() {
                   </Accordion>
                 </div>
               ) : (
-                <div className="mt-4 rounded-[24px] border border-sand-200 bg-white p-8 text-center shadow-card">
+                <div className="mt-4 rounded-card-lg border border-sand-200 bg-white p-8 text-center shadow-card">
                   <p className="font-display text-[17px] font-bold text-ink">
                     Aucun résultat — essayez un autre mot.
                   </p>
@@ -155,7 +156,7 @@ export function HelpSearch() {
                     href={WHATSAPP_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-5 inline-flex min-h-11 items-center gap-2 rounded-full bg-success px-5 py-2.5 text-[14px] font-semibold text-white transition-opacity hover:opacity-90"
+                    className="mt-5 inline-flex min-h-11 items-center gap-2 rounded-full bg-success px-5 py-2.5 text-[14px] font-semibold text-ink transition-opacity hover:opacity-90"
                   >
                     <MessageCircle className="size-4" aria-hidden />
                     Poser ma question sur WhatsApp
@@ -201,7 +202,7 @@ export function HelpSearch() {
                   const Icon = categoryIcons[cat] ?? ClipboardList;
                   const selected = activeCategory === cat;
                   return (
-                    <Reveal key={cat} delay={i * 0.04}>
+                    <Reveal key={cat} delay={i * stagger.tight}>
                       <motion.button
                         type="button"
                         whileHover={cardHover}
@@ -248,11 +249,11 @@ export function HelpSearch() {
                         {cat}
                       </h3>
                     </Reveal>
-                    <Reveal delay={0.08} className="mt-4">
+                    <Reveal delay={stagger.base} className="mt-4">
                       <Accordion
                         type="single"
                         collapsible
-                        className="rounded-[24px] border border-sand-200 bg-white px-6 shadow-soft"
+                        className="rounded-card-lg border border-sand-200 bg-white px-6 shadow-soft"
                       >
                         {items.map((f) => (
                           <AccordionItem

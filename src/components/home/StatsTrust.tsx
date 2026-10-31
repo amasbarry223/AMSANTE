@@ -5,6 +5,7 @@ import { Eyebrow, Reveal } from "@/components/motion/Reveal";
 import { SplitHeading } from "@/components/motion/SplitHeading";
 import { STATS } from "@/data/stats";
 import { Lock, FileCheck2, Smartphone } from "lucide-react";
+import { stagger } from "@/lib/motion/tokens";
 
 /**
  * Chiffres et confiance : compteurs animés (source unique src/data/stats.ts),
@@ -37,7 +38,7 @@ export function StatsTrust() {
 
         <div className="mt-12 grid grid-cols-2 gap-4 lg:grid-cols-4">
           {stats.map((s, i) => (
-            <Reveal key={s.label} delay={i * 0.06}>
+            <Reveal key={s.label} delay={i * stagger.base}>
               <div className="rounded-[16px] border border-white/10 bg-white/[0.04] p-6">
                 <p className="font-display text-[clamp(1.9rem,3.4vw,2.8rem)] font-bold leading-none text-teal-300">
                   <Counter value={s.value} />
@@ -45,7 +46,7 @@ export function StatsTrust() {
                 </p>
                 <p className="mt-2.5 text-[13.5px] leading-snug text-sand-50/70">{s.label}</p>
                 {s.note && (
-                  <p className="mt-1 text-[10px] uppercase tracking-wider text-ochre-100/50">{s.note}</p>
+                  <p className="mt-1 text-[10px] uppercase tracking-wider text-ochre-100/70">{s.note}</p>
                 )}
               </div>
             </Reveal>
@@ -54,7 +55,7 @@ export function StatsTrust() {
 
         <div className="mt-6 grid gap-4 md:grid-cols-3">
           {badges.map((b, i) => (
-            <Reveal key={b.title} delay={i * 0.06}>
+            <Reveal key={b.title} delay={i * stagger.base}>
               <div className="flex h-full items-start gap-4 rounded-[16px] border border-white/10 bg-white/[0.04] p-6">
                 <span className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-teal-500/15 text-teal-300">
                   <b.icon className="size-5" />

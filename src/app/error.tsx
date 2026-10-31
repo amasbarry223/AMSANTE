@@ -6,8 +6,8 @@ import { motion } from "framer-motion";
 import { RefreshCw, Search } from "lucide-react";
 import { BogolanTexture } from "@/components/layout/BogolanPattern";
 import { SplitHeading } from "@/components/motion/SplitHeading";
-import { Magnetic } from "@/components/motion/Magnetic";
 import { Button } from "@/components/ui/button";
+import { PrimaryCta } from "@/components/shared/PrimaryCta";
 import { duration, ease } from "@/lib/motion/tokens";
 
 /**
@@ -72,12 +72,10 @@ export default function Error({
         ) : null}
 
         <div className="mt-9 flex flex-col items-center gap-3.5 sm:flex-row">
-          <Magnetic>
-            <Button onClick={reset} variant="on-dark" size="lg">
-              <RefreshCw className="size-4" aria-hidden />
-              Réessayer
-            </Button>
-          </Magnetic>
+          <PrimaryCta onClick={reset} variant="on-dark">
+            <RefreshCw className="size-4" aria-hidden />
+            Réessayer
+          </PrimaryCta>
           <Button asChild variant="outline-light" size="lg">
             <Link href="/aide">
               <Search className="size-4" aria-hidden />

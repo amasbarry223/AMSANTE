@@ -111,7 +111,7 @@ export const MOBILE_MONEY_OPERATORS: {
   hint: string;
   tileClass: string;
 }[] = [
-  { id: "orange_money", name: "Orange Money", hint: " USSD · #144#", tileClass: "bg-ochre-500 text-white" },
+  { id: "orange_money", name: "Orange Money", hint: " USSD · #144#", tileClass: "bg-ochre-500 text-ink" },
   { id: "moov_money", name: "Moov Africa Money", hint: "USSD · #155#", tileClass: "bg-teal-700 text-white" },
   { id: "wave", name: "Wave", hint: "Application Wave", tileClass: "bg-sand-300 text-ink" },
 ];

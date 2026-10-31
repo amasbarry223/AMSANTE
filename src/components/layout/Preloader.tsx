@@ -46,15 +46,15 @@ export function Preloader() {
             transition={{ duration: duration.fast, ease: ease.out }}
             className="flex flex-col items-center gap-4"
           >
-            {/* logo tracé */}
+            {/* logo tracé — durées et courbe issues des tokens motion */}
             <svg viewBox="0 0 40 40" className="size-16" fill="none">
               <rect x="3" y="7" width="34" height="26" rx="6" stroke="#17A398" strokeWidth="2.4"
                 strokeDasharray="140" strokeDashoffset="140"
-                style={{ animation: "ams-draw 0.9s cubic-bezier(0.16,1,0.3,1) forwards" }} />
+                style={{ animation: `ams-draw ${duration.slow}s var(--ease-ams-out) forwards` }} />
               <path d="M9 24c2.5 0 2.5-6 5-6s2.5 8 5 8 2.5-10 5-10 2.5 6 5 6h2" stroke="#E3F4F1" strokeWidth="2.4"
                 strokeLinecap="round" strokeLinejoin="round"
                 strokeDasharray="60" strokeDashoffset="60"
-                style={{ animation: "ams-draw 0.7s cubic-bezier(0.16,1,0.3,1) 0.35s forwards" }} />
+                style={{ animation: `ams-draw ${duration.base}s var(--ease-ams-out) ${duration.fast}s forwards` }} />
             </svg>
             <motion.p
               initial={{ opacity: 0, y: 8 }}

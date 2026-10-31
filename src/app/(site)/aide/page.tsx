@@ -5,6 +5,7 @@ import { Eyebrow, Reveal, StaggerContainer, StaggerItem } from "@/components/mot
 import { SplitHeading } from "@/components/motion/SplitHeading";
 import { HelpSearch } from "@/components/shared/HelpSearch";
 import { BogolanTexture } from "@/components/layout/BogolanPattern";
+import { Button } from "@/components/ui/button";
 import { allFaqJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = {
@@ -78,7 +79,7 @@ export default function AidePage() {
 
           <StaggerContainer className="mt-10 grid gap-5 md:grid-cols-3">
             <StaggerItem>
-              <div className="h-full rounded-[24px] border border-sand-200 bg-sand-50 p-6 shadow-soft sm:p-8">
+              <div className="h-full rounded-card-lg border border-sand-200 bg-sand-50 p-6 shadow-soft sm:p-8">
                 <span className="flex size-11 items-center justify-center rounded-xl bg-teal-100 text-teal-900">
                   <FileText className="size-5" aria-hidden />
                 </span>
@@ -91,7 +92,7 @@ export default function AidePage() {
               </div>
             </StaggerItem>
             <StaggerItem>
-              <div className="h-full rounded-[24px] border border-sand-200 bg-sand-50 p-6 shadow-soft sm:p-8">
+              <div className="h-full rounded-card-lg border border-sand-200 bg-sand-50 p-6 shadow-soft sm:p-8">
                 <span className="flex size-11 items-center justify-center rounded-xl bg-teal-100 text-teal-900">
                   <Send className="size-5" aria-hidden />
                 </span>
@@ -104,7 +105,7 @@ export default function AidePage() {
               </div>
             </StaggerItem>
             <StaggerItem>
-              <div className="h-full rounded-[24px] border border-sand-200 bg-sand-50 p-6 shadow-soft sm:p-8">
+              <div className="h-full rounded-card-lg border border-sand-200 bg-sand-50 p-6 shadow-soft sm:p-8">
                 <span className="flex size-11 items-center justify-center rounded-xl bg-teal-100 text-teal-900">
                   <Wallet className="size-5" aria-hidden />
                 </span>
@@ -124,7 +125,7 @@ export default function AidePage() {
                 href={WHATSAPP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex min-h-11 items-center gap-2 rounded-full bg-success px-5 py-2.5 text-[14px] font-semibold text-white transition-opacity hover:opacity-90"
+                className="inline-flex min-h-11 items-center gap-2 rounded-full bg-success px-5 py-2.5 text-[14px] font-semibold text-ink transition-opacity hover:opacity-90"
               >
                 <MessageCircle className="size-4" aria-hidden />
                 Déclarer sur WhatsApp
@@ -150,7 +151,7 @@ export default function AidePage() {
         <div className="container-ams">
           <Reveal>
             <div className="grid gap-5 lg:grid-cols-[1.2fr_1fr_1fr]">
-              <div className="rounded-[24px] border border-sand-200 bg-white p-7 shadow-soft lg:col-span-1">
+              <div className="rounded-card-lg border border-sand-200 bg-white p-6 shadow-soft lg:col-span-1">
                 <span className="flex size-11 items-center justify-center rounded-xl bg-success/15 text-success">
                   <MessageCircle className="size-5" aria-hidden />
                 </span>
@@ -163,14 +164,14 @@ export default function AidePage() {
                   href={WHATSAPP_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-5 inline-flex min-h-11 items-center gap-2 rounded-full bg-success px-5 py-2.5 text-[14px] font-semibold text-white transition-opacity hover:opacity-90"
+                  className="mt-5 inline-flex min-h-11 items-center gap-2 rounded-full bg-success px-5 py-2.5 text-[14px] font-semibold text-ink transition-opacity hover:opacity-90"
                 >
                   <MessageCircle className="size-4" aria-hidden />
                   Ouvrir WhatsApp
                 </a>
               </div>
 
-              <div className="rounded-[24px] border border-sand-200 bg-white p-7 shadow-soft">
+              <div className="rounded-card-lg border border-sand-200 bg-white p-6 shadow-soft">
                 <span className="flex size-11 items-center justify-center rounded-xl bg-teal-100 text-teal-900">
                   <Phone className="size-5" aria-hidden />
                 </span>
@@ -188,7 +189,7 @@ export default function AidePage() {
                 </a>
               </div>
 
-              <div className="rounded-[24px] border border-sand-200 bg-white p-7 shadow-soft">
+              <div className="rounded-card-lg border border-sand-200 bg-white p-6 shadow-soft">
                 <span className="flex size-11 items-center justify-center rounded-xl bg-teal-100 text-teal-900">
                   <Clock className="size-5" aria-hidden />
                 </span>
@@ -226,12 +227,11 @@ export default function AidePage() {
               <p className="text-[15px] font-semibold text-teal-900">
                 Vous êtes prestataire de santé et vous voulez rejoindre le réseau ?
               </p>
-              <Link
-                href="/prestataires/devenir-partenaire"
-                className="inline-flex min-h-11 items-center gap-2 rounded-full bg-teal-900 px-5 py-2.5 text-[13.5px] font-semibold text-sand-50 transition-colors hover:bg-teal-700"
-              >
-                Devenir partenaire <ArrowRight className="size-4" aria-hidden />
-              </Link>
+              <Button asChild className="min-h-11 text-[13.5px]">
+                <Link href="/prestataires/devenir-partenaire">
+                  Devenir partenaire <ArrowRight className="size-4" aria-hidden />
+                </Link>
+              </Button>
             </div>
           </Reveal>
         </div>
